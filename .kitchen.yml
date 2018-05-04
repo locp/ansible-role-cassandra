@@ -1,0 +1,79 @@
+---
+# .kitchen.yml:  Test Kitchen configuration file.
+driver:
+  name: docker
+  use_sudo: false
+
+platforms:
+  - name: centos
+    driver_config:
+      image: centos:centos7
+      run_command: /usr/sbin/init
+      privileged: true
+      platform: rhel
+      provision_command:
+        - yum install -y epel-release
+        - yum install -y gcc python2-pip rsyslog initscripts python2-devel
+        - pip install ansible==2.1.0.0
+        - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
+        - sed -i 's/#LogLevel INFO/LogLevel DEBUG/g' /etc/ssh/sshd_config
+        - systemctl enable rsyslog.service
+        - systemctl enable sshd.service
+
+  # - name: ubuntu
+  #   driver_config:
+  #     image: ubuntu:16.04
+  #     platform: ubuntu
+  #     provision_command:
+  #       - apt-get clean
+  #       - apt-get update
+  #       - apt-get install -y python-pip python-dev
+  #       - pip install ansible==2.0.0.0 pycparser
+
+provisioner:
+  additional_copy_path:
+    - tests
+  ansible_inventory: tests/inventory
+  ansible_verbose: false
+  # ansible_verbosity: 3
+  hosts: all
+  name: ansible_playbook
+  require_ansible_repo: false
+  require_chef_for_busser: false
+  require_chef_omnibus: false
+  require_pip: false
+  role_name: cassandra
+
+verifier:
+  name: serverspec
+  sudo_path: true
+
+suites:
+  - name: Redhat
+    verifier:
+      patterns:
+        - tests/spec/common/*_spec.rb
+        - tests/spec/redhat/*_spec.rb
+    provisioner:
+      idempotency_test: true
+      playbook: tests/test.yml
+    includes:
+      - centos
+
+  - name: Check
+    provisioner:
+      ansible_check: true
+      playbook: tests/test.yml
+
+  # - name: Debian
+  #   verifier:
+  #     patterns:
+  #       - tests/spec/common/*_spec.rb
+  #       - tests/spec/debian/*_spec.rb
+  #   provisioner:
+  #     idempotency_test: true
+  #     playbook: tests/test.yml
+  #   includes:
+  #     - ubuntu

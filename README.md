@@ -13,6 +13,11 @@ Role Variables
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
+|Variable Name                  |Default|Description                                         |
+|-------------------------------|-------|----------------------------------------------------|
+|cassandra_configure_apache_repo|false  |Whether to configure the Apache Cassandra repository|
+|cassandra_repo_apache_release  |311x   |The name of the release series (can be one of 30x, 22x, or 21x).|
+
 Dependencies
 ------------
 

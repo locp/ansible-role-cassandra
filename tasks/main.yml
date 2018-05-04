@@ -1,2 +1,11 @@
 ---
 # tasks file for cassandra
+- name: Configure the Apache Cassandra YUM Repository
+  yum_repository:
+    name: cassandra
+    baseurl: "https://www.apache.org/dist/cassandra/redhat/{{ cassandra_repo_apache_release }}/"
+    gpgcheck: yes
+    description: Apache Cassandra
+    repo_gpgcheck: yes
+    gpgkey: https://www.apache.org/dist/cassandra/KEYS
+  when: cassandra_configure_apache_repo == True

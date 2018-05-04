@@ -1,5 +1,10 @@
 ---
 - hosts: localhost
+
   remote_user: root
+
+  vars:
+    cassandra_configure_apache_repo: True
+
   roles:
     - cassandra
