@@ -25,12 +25,8 @@ platforms:
   - name: ubuntu-16.04
     driver_config:
       provision_command:
-        - apt-get install -y python-pip
-        - apt-get install -y python-dev
-        - apt-get install -y libffi-dev
+        - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
         - pip install ansible==2.1.0.0
-        - pip install pycparser
-        - apt-get install -y python-apt
 
 provisioner:
   additional_copy_path:

@@ -28,6 +28,7 @@ install:
 script:
   - make lint
   - bundle exec kitchen list
+  - bundle exec kitchen create $INSTANCE || true
   - bundle exec kitchen test $INSTANCE
 
 notifications:
