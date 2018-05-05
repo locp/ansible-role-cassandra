@@ -40,3 +40,7 @@ matrix:
     env: INSTANCE="Redhat-centos"
   - python: 2.7
     env: INSTANCE="Check-centos"
+  - python: 2.7
+    env: INSTANCE="Check-ubuntu-1604"
+  - python: 2.7
+    env: INSTANCE="Debian-ubuntu-1604"
