@@ -28,6 +28,7 @@ install:
 script:
   - make lint
   - bundle exec kitchen list
+  - bundle exec kitchen create $INSTANCE || true
   - bundle exec kitchen test $INSTANCE
 
 notifications:
@@ -40,3 +41,7 @@ matrix:
     env: INSTANCE="Redhat-centos"
   - python: 2.7
     env: INSTANCE="Check-centos"
+  - python: 2.7
+    env: INSTANCE="Check-ubuntu-1604"
+  - python: 2.7
+    env: INSTANCE="Debian-ubuntu-1604"

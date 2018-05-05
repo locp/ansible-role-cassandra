@@ -5,6 +5,7 @@
 
   vars:
     cassandra_configure_apache_repo: True
+    cassandra_repo_apache_release: 311x
 
   roles:
     - cassandra
