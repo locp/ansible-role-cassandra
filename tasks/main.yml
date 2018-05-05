@@ -3,3 +3,21 @@
 - name: Import the Apache Cassandra Repository Tasks
   include: apache_repo.yml
   when: cassandra_configure_apache_repo == True
+
+- name: Install the Cassandra Package (YUM)
+  yum:
+    name: "{{ cassandra_package }}"
+    update_cache: yes
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'RedHat'
+    - not ansible_check_mode
+
+- name: Install the Cassandra Package (Apt)
+  apt:
+    name: "{{ cassandra_package }}"
+    cache_valid_time: 600
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
+    - not ansible_check_mode

@@ -13,19 +13,19 @@
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
 
+- name: Add the Apache Apt Key
+  apt_key:
+    keyserver: pool.sks-keyservers.net
+    id: A278B781FE4B2BDA
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
+
 - name: Configure the Apache Cassandra Apt Repository
   apt_repository:
     filename: /etc/apt/sources.list.d/cassandra.sources
     repo: "deb http://www.apache.org/dist/cassandra/debian {{cassandra_repo_apache_release }} main"
     state: present
-  when:
-    - ansible_os_family is defined
-    - ansible_os_family == 'Debian'
-
-- name: Add the Apache Apt Key
-  apt_key:
-    keyserver: pool.sks-keyservers.net
-    id: A278B781FE4B2BDA
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'

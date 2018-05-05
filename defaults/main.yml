@@ -1,4 +1,5 @@
 ---
 # defaults file for cassandra
 cassandra_configure_apache_repo: False
+cassandra_package: cassandra
 cassandra_repo_apache_release: 311x
