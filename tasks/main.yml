@@ -21,3 +21,27 @@
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
     - not ansible_check_mode
+
+- name: Set Default Configuration File Location (Debian)
+  set_fact:
+    cassandra_configuration_file: /etc/cassandra/cassandra.yaml
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
+    - cassandra_configuration_file is not defined
+
+- name: Set Default Configuration File Location (RedHat)
+  set_fact:
+    cassandra_configuration_file: /etc/cassandra/conf/cassandra.yaml
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'RedHat'
+    - cassandra_configuration_file is not defined
+
+- name: Apply Cassandra Configuration
+  template:
+    src: "{{ cassandra_configuration_templ }}"
+    dest: "{{ cassandra_configuration_file }}"
+    owner: root
+    group: root
+    mode: 0644
