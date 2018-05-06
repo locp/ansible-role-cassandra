@@ -45,3 +45,17 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Set the DC for Cassandra
+  lineinfile:
+    dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
+    regexp: '^dc='
+    line: "dc={{ cassandra_dc }}"
+  when: cassandra_dc is defined
+
+- name: Set the Rack for Cassandra
+  lineinfile:
+    dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
+    regexp: '^rack='
+    line: "rack={{ cassandra_rack }}"
+  when: cassandra_rack is defined

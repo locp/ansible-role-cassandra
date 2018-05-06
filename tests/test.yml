@@ -24,4 +24,6 @@
               seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
+    cassandra_dc: DC1
+    cassandra_rack: RACK1
     cassandra_repo_apache_release: 311x
