@@ -51,11 +51,15 @@
     dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
     regexp: '^dc='
     line: "dc={{ cassandra_dc }}"
-  when: cassandra_dc is defined
+  when:
+    - cassandra_dc is defined
+    - not ansible_check_mode
 
 - name: Set the Rack for Cassandra
   lineinfile:
     dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
     regexp: '^rack='
     line: "rack={{ cassandra_rack }}"
-  when: cassandra_rack is defined
+  when:
+    - cassandra_rack is defined
+    - not ansible_check_mode
