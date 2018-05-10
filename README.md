@@ -7,12 +7,12 @@ Ansible role to install and configure Apache Cassandra.
 Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 ## Role Variables
-
+ 
 |Variable Name                  |Default  |Description                                         |
 |-------------------------------|---------|----------------------------------------------------|
 |cassandra_configuration        |         |The configuration for Cassandra.                    |
-|cassandra_configuration_file   |/etc/cassandra/conf/cassandra.yaml(RedHat)|The location of the Cassandra configuration file.|
-||/etc/cassandra/cassandra.yaml(Debian)||
+|cassandra_configuration_file   |/etc/cassandra/default.conf/cassandra.yaml (RedHat)|The location of the Cassandra configuration file.|
+||/etc/cassandra/cassandra.yaml (Debian)||
 |cassandra_configuration_templ  |cassandra.yaml.j2|Name of the template file for Cassandra configuration.|
 |cassandra_configure_apache_repo|False    |Whether to configure the Apache Cassandra repository|
 |cassandra_package              |cassandra|The name of the package to be installed to provide Cassandra|
