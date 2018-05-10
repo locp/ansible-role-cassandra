@@ -32,7 +32,7 @@
 
 - name: Set Default Configuration File Location (RedHat)
   set_fact:
-    cassandra_configuration_file: /etc/cassandra/conf/cassandra.yaml
+    cassandra_configuration_file: /etc/cassandra/default.conf/cassandra.yaml
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
@@ -45,6 +45,8 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - cassandra_restart_service
 
 - name: Set the DC for Cassandra
   lineinfile:
@@ -54,6 +56,8 @@
   when:
     - cassandra_dc is defined
     - not ansible_check_mode
+  notify:
+    - cassandra_restart_service
 
 - name: Set the Rack for Cassandra
   lineinfile:
@@ -63,3 +67,11 @@
   when:
     - cassandra_rack is defined
     - not ansible_check_mode
+  notify:
+    - cassandra_restart_service
+
+- name: Ensure the Service is in the Required State
+  systemd:
+    name: cassandra
+    daemon_reload: yes
+    state: "{{ cassandra_service_state }}"
