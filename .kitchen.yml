@@ -22,11 +22,11 @@ platforms:
         - systemctl enable rsyslog.service
         - systemctl enable sshd.service
 
-  - name: ubuntu-16.04
-    driver_config:
-      provision_command:
-        - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
-        - pip install ansible==2.1.0.0
+  # - name: ubuntu-16.04
+  #   driver_config:
+  #     provision_command:
+  #       - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
+  #       - pip install ansible==2.1.0.0
 
 provisioner:
   additional_copy_path:
@@ -63,13 +63,13 @@ suites:
       ansible_check: true
       playbook: tests/test.yml
 
-  - name: Debian
-    verifier:
-      patterns:
-        - tests/spec/common/*_spec.rb
-        - tests/spec/debian/*_spec.rb
-    provisioner:
-      idempotency_test: true
-      playbook: tests/test.yml
-    includes:
-      - ubuntu-16.04
+  # - name: Debian
+  #   verifier:
+  #     patterns:
+  #       - tests/spec/common/*_spec.rb
+  #       - tests/spec/debian/*_spec.rb
+  #   provisioner:
+  #     idempotency_test: true
+  #     playbook: tests/test.yml
+  #   includes:
+  #     - ubuntu-16.04
