@@ -75,3 +75,5 @@
     name: cassandra
     daemon_reload: yes
     state: "{{ cassandra_service_state }}"
+  when:
+    - not ansible_check_mode

@@ -4,4 +4,7 @@
   service:
     name: cassandra
     state: restarted
-  when: cassandra_service_restart
+  when:
+    - cassandra_service_restart
+    - not ansible_check_mode
+
