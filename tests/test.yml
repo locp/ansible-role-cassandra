@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+
+  remote_user: root
+
+  roles:
+    - cassandra
+
+  vars:
+    cassandra_configuration:
+      authenticator: PasswordAuthenticator
+      cluster_name: MyCassandraCluster
+      commitlog_directory: /var/lib/cassandra/commitlog
+      commitlog_sync: periodic
+      commitlog_sync_period_in_ms: 10000
+      data_file_directories:
+        - /var/lib/cassandra/data
+      endpoint_snitch: GossipingPropertyFileSnitch
+      hints_directory: "/var/lib/cassandra/hints"
+      listen_address: "{{ ansible_default_ipv4.address }}"
+      partitioner: org.apache.cassandra.dht.Murmur3Partitioner
+      saved_caches_directory: /var/lib/cassandra/saved_caches
+      seed_provider:
+        -
+          class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
+          parameters:
+            -
+              seeds: "{{ ansible_default_ipv4.address }}"
+      start_native_transport: true
+    cassandra_configure_apache_repo: true
+    cassandra_dc: DC1
+    cassandra_rack: RACK1
+    cassandra_repo_apache_release: 311x

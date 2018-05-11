@@ -1,0 +1,80 @@
+---
+# tasks file for cassandra
+- name: Import the Apache Cassandra Repository Tasks
+  include: apache_repo.yml
+  when: cassandra_configure_apache_repo == True
+
+- name: Install the Cassandra Package (YUM)
+  yum:
+    name: "{{ cassandra_package }}"
+    update_cache: yes
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'RedHat'
+    - not ansible_check_mode
+
+- name: Install the Cassandra Package (Apt)
+  apt:
+    name: "{{ cassandra_package }}"
+    cache_valid_time: 600
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
+    - not ansible_check_mode
+
+- name: Set Default Configuration File Location (Debian)
+  set_fact:
+    cassandra_configuration_file: /etc/cassandra/cassandra.yaml
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
+    - cassandra_configuration_file is not defined
+
+- name: Set Default Configuration File Location (RedHat)
+  set_fact:
+    cassandra_configuration_file: /etc/cassandra/default.conf/cassandra.yaml
+  when:
+    - ansible_os_family is defined
+    - ansible_os_family == 'RedHat'
+    - cassandra_configuration_file is not defined
+
+- name: Apply Cassandra Configuration
+  template:
+    src: "{{ cassandra_configuration_templ }}"
+    dest: "{{ cassandra_configuration_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - cassandra_restart_service
+
+- name: Set the DC for Cassandra
+  lineinfile:
+    dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
+    regexp: '^dc='
+    line: "dc={{ cassandra_dc }}"
+  when:
+    - cassandra_dc is defined
+    - not ansible_check_mode
+  notify:
+    - cassandra_restart_service
+
+- name: Set the Rack for Cassandra
+  lineinfile:
+    dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
+    regexp: '^rack='
+    line: "rack={{ cassandra_rack }}"
+  when:
+    - cassandra_rack is defined
+    - not ansible_check_mode
+  notify:
+    - cassandra_restart_service
+
+- name: Ensure the Service is in the Required State
+  systemd:
+    name: cassandra
+    enabled: "{{ cassandra_service_enabled }}"
+    daemon_reload: yes
+    state: "{{ cassandra_service_state }}"
+  when:
+    - not ansible_check_mode
