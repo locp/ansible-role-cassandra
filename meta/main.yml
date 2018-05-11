@@ -5,8 +5,14 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: 2.2.0
+  min_ansible_version: 2.2.0.0
 
   galaxy_tags:
     - apache
     - cassandra
+
+  platforms:
+    -
+      name: EL
+      versions:
+        - 7
