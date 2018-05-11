@@ -14,7 +14,7 @@ platforms:
       provision_command:
         - yum install -y epel-release
         - yum install -y gcc python2-pip rsyslog initscripts python2-devel
-        - pip install ansible==2.1.0.0
+        - pip install ansible==2.2.0.0
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
@@ -22,11 +22,11 @@ platforms:
         - systemctl enable rsyslog.service
         - systemctl enable sshd.service
 
-  - name: ubuntu-16.04
-    driver_config:
-      provision_command:
-        - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
-        - pip install ansible==2.1.0.0
+  # - name: ubuntu-16.04
+  #   driver_config:
+  #     provision_command:
+  #       - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
+  #       - pip install ansible==2.2.0.0
 
 provisioner:
   additional_copy_path:
@@ -63,13 +63,13 @@ suites:
       ansible_check: true
       playbook: tests/test.yml
 
-  - name: Debian
-    verifier:
-      patterns:
-        - tests/spec/common/*_spec.rb
-        - tests/spec/debian/*_spec.rb
-    provisioner:
-      idempotency_test: true
-      playbook: tests/test.yml
-    includes:
-      - ubuntu-16.04
+  # - name: Debian
+  #   verifier:
+  #     patterns:
+  #       - tests/spec/common/*_spec.rb
+  #       - tests/spec/debian/*_spec.rb
+  #   provisioner:
+  #     idempotency_test: true
+  #     playbook: tests/test.yml
+  #   includes:
+  #     - ubuntu-16.04
