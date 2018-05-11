@@ -73,6 +73,7 @@
 - name: Ensure the Service is in the Required State
   systemd:
     name: cassandra
+    enabled: "{{ cassandra_service_enabled }}"
     daemon_reload: yes
     state: "{{ cassandra_service_state }}"
   when:

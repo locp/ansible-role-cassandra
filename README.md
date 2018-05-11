@@ -17,6 +17,7 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 |cassandra_configure_apache_repo|False    |Whether to configure the Apache Cassandra repository|
 |cassandra_package              |cassandra|The name of the package to be installed to provide Cassandra|
 |cassandra_repo_apache_release  |         |The name of the release series (can be one of 311x, 30x, 22x, or 21x).  This must be set if `cassandra_configure_apache_repo` is set to True.|
+|cassandra_service_enabled      |yes      |Should the cassandra service be enabled.|
 |cassandra_service_restart      |True     |If set to true, changes to the Cassandra config file or the data directories will ensure that Cassandra service is refreshed after the changes.  Setting this flag to false will disable this behaviour, therefore allowing the changes to be made but allow the user to control when the service is restarted.|
 
 ## Dependencies
