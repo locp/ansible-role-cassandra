@@ -7,7 +7,7 @@ Ansible role to install and configure Apache Cassandra.
 Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 ## Role Variables
- 
+
 |Variable Name                  |Default  |Description                                         |
 |-------------------------------|---------|----------------------------------------------------|
 |cassandra_configuration        |         |The configuration for Cassandra.                    |
@@ -16,7 +16,7 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 |cassandra_configuration_templ  |cassandra.yaml.j2|Name of the template file for Cassandra configuration.|
 |cassandra_configure_apache_repo|False    |Whether to configure the Apache Cassandra repository|
 |cassandra_package              |cassandra|The name of the package to be installed to provide Cassandra|
-|cassandra_repo_apache_release  |311x     |The name of the release series (can be one of 30x, 22x, or 21x).|
+|cassandra_repo_apache_release  |         |The name of the release series (can be one of 311x, 30x, 22x, or 21x).  This must be set if `cassandra_configure_apache_repo` is set to True.|
 |cassandra_service_restart      |True     |If set to true, changes to the Cassandra config file or the data directories will ensure that Cassandra service is refreshed after the changes.  Setting this flag to false will disable this behaviour, therefore allowing the changes to be made but allow the user to control when the service is restarted.|
 
 ## Dependencies
@@ -28,9 +28,12 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 ```YAML
 ---
 - hosts: localhost
+
   remote_user: root
+
   roles:
     - cassandra
+
   vars:
     cassandra_configuration:
       authenticator: PasswordAuthenticator
@@ -41,17 +44,20 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
       data_file_directories:
         - /var/lib/cassandra/data
       endpoint_snitch: GossipingPropertyFileSnitch
+      hints_directory: "/var/lib/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /var/lib/cassandra/saved_caches
       seed_provider:
         -
-          class_name: "org.apache.cassandra.locator.SimpleSeedProvider,"
+          class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
           parameters:
             -
               seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
+    cassandra_dc: DC1
+    cassandra_rack: RACK1
     cassandra_repo_apache_release: 311x
 ```
 

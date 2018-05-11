@@ -1,8 +1,11 @@
 ---
 - hosts: localhost
+
   remote_user: root
+
   roles:
     - cassandra
+
   vars:
     cassandra_configuration:
       authenticator: PasswordAuthenticator
@@ -13,12 +16,13 @@
       data_file_directories:
         - /var/lib/cassandra/data
       endpoint_snitch: GossipingPropertyFileSnitch
+      hints_directory: "/var/lib/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /var/lib/cassandra/saved_caches
       seed_provider:
         -
-          class_name: "org.apache.cassandra.locator.SimpleSeedProvider,"
+          class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
           parameters:
             -
               seeds: "{{ ansible_default_ipv4.address }}"
