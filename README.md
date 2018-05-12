@@ -92,7 +92,7 @@ executes this module.
 
 ## License
 
-[GPLv3](LICENSE)
+[GPLv3](https://github.com/locp/ansible-role-cassandra/blob/develop/LICENSE)
 
 ## Author Information
 
