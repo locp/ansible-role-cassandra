@@ -5,12 +5,11 @@ driver:
   use_sudo: false
 
 platforms:
-  - name: centos
+  - name: centos-7
     driver_config:
-      image: centos:centos7
       run_command: /usr/sbin/init
       privileged: true
-      platform: rhel
+      platform: centos
       provision_command:
         - yum install -y epel-release
         - yum install -y gcc python2-pip rsyslog initscripts python2-devel
@@ -22,11 +21,19 @@ platforms:
         - systemctl enable rsyslog.service
         - systemctl enable sshd.service
 
-  # - name: ubuntu-16.04
-  #   driver_config:
-  #     provision_command:
-  #       - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
-  #       - pip install ansible==2.2.0.0
+  - name: debian-9
+    driver_config:
+      platform: debian
+      provision_command:
+        - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
+        - pip install ansible==2.2.0.0
+
+  - name: ubuntu-16.04
+    driver_config:
+      platform: ubuntu
+      provision_command:
+        - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
+        - pip install ansible==2.2.0.0
 
 provisioner:
   additional_copy_path:
@@ -56,20 +63,21 @@ suites:
       idempotency_test: true
       playbook: tests/test.yml
     includes:
-      - centos
+      - centos-7
 
   - name: Check
     provisioner:
       ansible_check: true
       playbook: tests/test.yml
 
-  # - name: Debian
-  #   verifier:
-  #     patterns:
-  #       - tests/spec/common/*_spec.rb
-  #       - tests/spec/debian/*_spec.rb
-  #   provisioner:
-  #     idempotency_test: true
-  #     playbook: tests/test.yml
-  #   includes:
-  #     - ubuntu-16.04
+  - name: Debian
+    verifier:
+      patterns:
+        - tests/spec/common/*_spec.rb
+        - tests/spec/debian/*_spec.rb
+    provisioner:
+      idempotency_test: true
+      playbook: tests/test.yml
+    includes:
+      - debian-9
+      - ubuntu-16.04
