@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.2.1](https://github.com/locp/ansible-role-cassandra/tree/0.2.1) (2018-05-12)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.0...0.2.1)
+
+**Fixed bugs:**
+
+- Documentation Rendering Sucks in Ansible Galaxy [\#10](https://github.com/locp/ansible-role-cassandra/issues/10)
+
 ## [0.2.0](https://github.com/locp/ansible-role-cassandra/tree/0.2.0) (2018-05-12)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.1.0...0.2.0)
 
