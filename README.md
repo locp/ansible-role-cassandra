@@ -20,50 +20,37 @@ executes this module.
 
 ## Role Variables
 
-### `cassandra_configuration`
-(default: *none*)
+* `cassandra_configuration` (default: *none*):
+  The configuration for Cassandra.  See the example play book below.
 
-The configuration for Cassandra.  See the example play book below.
+* `cassandra_configuration_file` (default: `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
+  `/etc/cassandra/cassandra.yaml` on Debian):
+  The location of the Cassandra configuration file.
 
-### `cassandra_configuration_file`
-(default: `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
-  `/etc/cassandra/cassandra.yaml` on Debian)
+* `cassandra_configuration_templ` (default: `cassandra.yaml.j2`):
+  Name of the template file for Cassandra configuration.
 
-The location of the Cassandra configuration file.
+* `cassandra_configure_apache_repo` (default: **False**):
+  Whether to configure the Apache Cassandra repository.
 
-### `cassandra_configuration_templ`
-(default: `cassandra.yaml.j2`)
+  **SEE ALSO:** `cassandra_repo_apache_release`.
 
-Name of the template file for Cassandra configuration.
+* `cassandra_package` (default: `cassandra`):
+  The name of the package to be installed to provide Cassandra.
 
-### `cassandra_configure_apache_repo`
-(default: **False**)
+* `cassandra_repo_apache_release` (default: *None*):
+  The name of the release series (can be one of 311x, 30x, 22x, or 21x).  This
+  must be set if `cassandra_configure_apache_repo` is set to True.
 
-Whether to configure the Apache Cassandra repository.
+* `cassandra_service_enabled` (default: **yes**):
+  Should the cassandra service be enabled (can be yes or no).
 
-### `cassandra_package`
-(default: `cassandra`)
-
-The name of the package to be installed to provide Cassandra.
-
-### `cassandra_repo_apache_release`
-(default: *None*)
-
-The name of the release series (can be one of 311x, 30x, 22x, or 21x).  This
-must be set if `cassandra_configure_apache_repo` is set to True.
-
-### `cassandra_service_enabled`
-(default: **yes**)
-Should the cassandra service be enabled (can be yes or no).
-
-### `cassandra_service_restart`
-(default: **True**)
-
-If set to true, changes to the Cassandra configuration file or the data
-directories will ensure that Cassandra service is refreshed after the
-changes.  Setting this flag to false will disable this behaviour, therefore
-allowing the changes to be made but allow the user to control when the service
-is restarted.
+* `cassandra_service_restart` (default: **True**):
+  If set to true, changes to the Cassandra configuration file or the data
+  directories will ensure that Cassandra service is refreshed after the
+  changes.  Setting this flag to false will disable this behaviour, therefore
+  allowing the changes to be made but allow the user to control when the service
+  is restarted.
 
 ## Example Playbook
 
@@ -105,7 +92,7 @@ is restarted.
 
 ## License
 
-GPLv3
+[GPLv3](LICENSE)
 
 ## Author Information
 
