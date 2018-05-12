@@ -12,7 +12,12 @@ galaxy_info:
     - cassandra
 
   platforms:
-    -
-      name: EL
+    - name: EL
       versions:
         - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
