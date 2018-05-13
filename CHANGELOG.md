@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.2.2](https://github.com/locp/ansible-role-cassandra/tree/0.2.2) (2018-05-13)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.1...0.2.2)
+
+**Fixed bugs:**
+
+- The comment in the Cassandra Configuration File Should Use ansible\_managed [\#12](https://github.com/locp/ansible-role-cassandra/issues/12)
+- Link to License Must Refer to Git Hub [\#11](https://github.com/locp/ansible-role-cassandra/issues/11)
+
 ## [0.2.1](https://github.com/locp/ansible-role-cassandra/tree/0.2.1) (2018-05-12)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.0...0.2.1)
 
