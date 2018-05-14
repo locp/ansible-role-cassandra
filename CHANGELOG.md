@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.2.3](https://github.com/locp/ansible-role-cassandra/tree/0.2.3) (2018-05-14)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.2...0.2.3)
+
+**Fixed bugs:**
+
+- Error installing 0.2.2 of the module from Galaxy. [\#13](https://github.com/locp/ansible-role-cassandra/issues/13)
+
 ## [0.2.2](https://github.com/locp/ansible-role-cassandra/tree/0.2.2) (2018-05-13)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.1...0.2.2)
 
