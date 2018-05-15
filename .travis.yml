@@ -30,7 +30,7 @@ script:
   - bundle exec kitchen list
   - bundle exec kitchen create $INSTANCE || true # A minor schlonk to avoid failure during kitchen build.
   - bundle exec kitchen test $INSTANCE
-  - ansible-galaxy install --roles-path roles -vvvr install_roles.yml
+  - make install_current_version
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
