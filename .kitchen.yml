@@ -39,8 +39,8 @@ provisioner:
   additional_copy_path:
     - tests
   ansible_inventory: tests/inventory
-  ansible_verbose: false
-  # ansible_verbosity: 3
+  ansible_verbose: true
+  ansible_verbosity: 1
   hosts: all
   name: ansible_playbook
   require_ansible_repo: false
