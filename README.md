@@ -20,10 +20,26 @@ executes this module.
 
 ## Role Variables
 
+* `cassandra_cms_heap_new_size_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.
+  See [Tuning Java resources]
+  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` and
+  `ansible_processor_cores` facts to be set.
+
+* `cassandra_cms_max_heapsize_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  MAX_HEAP_SIZE when using the Concurrent Mark Sweep (CMS) Collector.
+  See [Tuning Java resources]
+  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
+
 * `cassandra_configuration` (default: *none*):
   The configuration for Cassandra.  See the example play book below.
 
-* `cassandra_configuration_file` (default: `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
+* `cassandra_configuration_file` (default:
+  `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
   `/etc/cassandra/cassandra.yaml` on Debian):
   The location of the Cassandra configuration file.
 
@@ -34,6 +50,21 @@ executes this module.
   Whether to configure the Apache Cassandra repository.
 
   **SEE ALSO:** `cassandra_repo_apache_release`.
+
+* `cassandra_heap_new_size_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  HEAP_NEWSIZE.
+  See [Tuning Java resources]
+  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` and
+  `ansible_processor_cores` facts to be set.
+
+* `cassandra_max_heapsize_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  MAX_HEAP_SIZE.
+  See [Tuning Java resources]
+  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
 
 * `cassandra_package` (default: `cassandra`):
   The name of the package to be installed to provide Cassandra.

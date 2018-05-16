@@ -4,6 +4,52 @@
   include: apache_repo.yml
   when: cassandra_configure_apache_repo == True
 
+- name: Custom Facts Part 1 of 2
+  set_fact:
+    cassandra_cms_max_heapsize_mb: "{{
+      [
+        ([ansible_memtotal_mb * 0.5, 1024] | min),
+        ([ansible_memtotal_mb * 0.25, 14336] | min)
+      ] | max | round | int }}"
+    cassandra_max_heapsize_mb: "{{
+      [
+        ([ansible_memtotal_mb * 0.5, 1024] | min),
+        ([ansible_memtotal_mb * 0.25, 8192] | min)
+      ] | max | round | int }}"
+  when:
+    - ansible_memtotal_mb is defined
+
+- name: Custom Facts Part 2 of 2
+  set_fact:
+    cassandra_cms_heap_new_size_mb: "{{
+      [
+        (ansible_processor_cores * 100.0),
+        ((cassandra_cms_max_heapsize_mb | int) * 0.25)
+      ] | min | round | int }}"
+    cassandra_heap_new_size_mb: "{{
+      [
+        (ansible_processor_cores * 100.0),
+        ((cassandra_max_heapsize_mb | int) * 0.25)
+      ] | min | round | int }}"
+  when:
+    - ansible_memtotal_mb is defined
+    - ansible_processor_cores is defined
+
+- name: Debug Custom Facts
+  debug:
+    msg: {
+      'ansible_memtotal_mb': "{{ ansible_memtotal_mb }}",
+      'ansible_processor_cores': "{{ ansible_processor_cores }}",
+      'cassandra_cms_heap_new_size_mb': "{{ cassandra_cms_heap_new_size_mb }}",
+      'cassandra_cms_max_heapsize_mb': "{{ cassandra_cms_max_heapsize_mb }}",
+      'cassandra_heap_new_size_mb': "{{ cassandra_heap_new_size_mb }}",
+      'cassandra_max_heapsize_mb': "{{ cassandra_max_heapsize_mb }}"
+    }
+    verbosity: 1
+  when:
+    - ansible_memtotal_mb is defined
+    - ansible_processor_cores is defined
+
 - name: Install the Cassandra Package (YUM)
   yum:
     name: "{{ cassandra_package }}"
