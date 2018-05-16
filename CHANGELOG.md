@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.3.0](https://github.com/locp/ansible-role-cassandra/tree/0.3.0) (2018-05-16)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.3...0.3.0)
+
+**Implemented enhancements:**
+
+- Custom Facts For Max Heap Size and Heap New Size [\#14](https://github.com/locp/ansible-role-cassandra/issues/14)
+
 ## [0.2.3](https://github.com/locp/ansible-role-cassandra/tree/0.2.3) (2018-05-14)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.2...0.2.3)
 
