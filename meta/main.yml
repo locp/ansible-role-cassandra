@@ -12,6 +12,7 @@ galaxy_info:
   galaxy_tags:
     - apache
     - cassandra
+    - nosql
 
   platforms:
     - name: EL
