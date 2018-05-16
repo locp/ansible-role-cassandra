@@ -22,17 +22,15 @@ executes this module.
 
 * `cassandra_cms_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
-  HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.
-  See [Tuning Java resources]
-  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` and
   `ansible_processor_cores` facts to be set.
 
 * `cassandra_cms_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
-  MAX_HEAP_SIZE when using the Concurrent Mark Sweep (CMS) Collector.
-  See [Tuning Java resources]
-  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  MAX_HEAP_SIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` fact to be set.
 
 * `cassandra_configuration` (default: *none*):
@@ -53,17 +51,15 @@ executes this module.
 
 * `cassandra_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
-  HEAP_NEWSIZE.
-  See [Tuning Java resources]
-  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  HEAP_NEWSIZE.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` and
   `ansible_processor_cores` facts to be set.
 
 * `cassandra_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
-  MAX_HEAP_SIZE.
-  See [Tuning Java resources]
-  (https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  MAX_HEAP_SIZE.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` fact to be set.
 
 * `cassandra_package` (default: `cassandra`):
