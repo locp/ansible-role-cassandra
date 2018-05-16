@@ -3,4 +3,5 @@ lint:
 	ansible-lint -pv . tests/test.yml
 
 install_current_version:
-	ansible-galaxy install --force locp.cassandra
+	rm -rf /tmp/roles
+	ansible-galaxy install --roles-path /tmp/roles locp.cassandra
