@@ -68,6 +68,14 @@
     - ansible_os_family == 'Debian'
     - not ansible_check_mode
 
+- name: Custom Directories
+  include: directory.yml
+  with_items: "{{ cassandra_directories.keys() }}"
+  loop_control:
+    loop_var: cassandra_directory_set
+  when:
+    - cassandra_directories is defined
+
 - name: Set Default Configuration File Location (Debian)
   set_fact:
     cassandra_configuration_file: /etc/cassandra/cassandra.yaml
