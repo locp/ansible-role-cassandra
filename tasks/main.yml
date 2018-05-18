@@ -23,23 +23,23 @@
   set_fact:
     cassandra_cms_heap_new_size_mb: "{{
       [
-        (ansible_processor_cores * 100.0),
+        (ansible_processor_vcpus * 100.0),
         ((cassandra_cms_max_heapsize_mb | int) * 0.25)
       ] | min | round | int }}"
     cassandra_heap_new_size_mb: "{{
       [
-        (ansible_processor_cores * 100.0),
+        (ansible_processor_vcpus * 100.0),
         ((cassandra_max_heapsize_mb | int) * 0.25)
       ] | min | round | int }}"
   when:
     - ansible_memtotal_mb is defined
-    - ansible_processor_cores is defined
+    - ansible_processor_vcpus is defined
 
 - name: Debug Custom Facts
   debug:
     msg: {
       'ansible_memtotal_mb': "{{ ansible_memtotal_mb }}",
-      'ansible_processor_cores': "{{ ansible_processor_cores }}",
+      'ansible_processor_vcpus': "{{ ansible_processor_vcpus }}",
       'cassandra_cms_heap_new_size_mb': "{{ cassandra_cms_heap_new_size_mb }}",
       'cassandra_cms_max_heapsize_mb': "{{ cassandra_cms_max_heapsize_mb }}",
       'cassandra_heap_new_size_mb': "{{ cassandra_heap_new_size_mb }}",
@@ -48,7 +48,7 @@
     verbosity: 1
   when:
     - ansible_memtotal_mb is defined
-    - ansible_processor_cores is defined
+    - ansible_processor_vcpus is defined
 
 - name: Install the Cassandra Package (YUM)
   yum:
@@ -67,6 +67,14 @@
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
     - not ansible_check_mode
+
+- name: Custom Directories
+  include: directory.yml
+  with_items: "{{ cassandra_directories.keys() }}"
+  loop_control:
+    loop_var: cassandra_directory_set
+  when:
+    - cassandra_directories is defined
 
 - name: Set Default Configuration File Location (Debian)
   set_fact:
