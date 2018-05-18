@@ -29,7 +29,7 @@ executes this module.
   HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` and
-  `ansible_processor_cores` facts to be set.
+  `ansible_processor_vcpus` facts to be set.
 
 * `cassandra_cms_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
@@ -63,7 +63,7 @@ executes this module.
   HEAP_NEWSIZE.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` and
-  `ansible_processor_cores` facts to be set.
+  `ansible_processor_vcpus` facts to be set.
 
 * `cassandra_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the

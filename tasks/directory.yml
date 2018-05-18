@@ -1,8 +1,4 @@
 ---
-- name: Show me the data
-  debug:
-    msg: "{{ cassandra_directories[cassandra_directory_set] }}"
-
 - name: Create Custom Directory
   file:
     group: "{{ cassandra_directories[cassandra_directory_set].group | default('cassandra') }}"
