@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.4.0](https://github.com/locp/ansible-role-cassandra/tree/0.4.0) (2018-05-18)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.3.0...0.4.0)
+
+**Implemented enhancements:**
+
+- As a user, I should be able to specify data directories... [\#15](https://github.com/locp/ansible-role-cassandra/issues/15)
+
+**Fixed bugs:**
+
+- Java Custom Facts Using Incorrect Metric [\#16](https://github.com/locp/ansible-role-cassandra/issues/16)
+
 ## [0.3.0](https://github.com/locp/ansible-role-cassandra/tree/0.3.0) (2018-05-16)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.2.3...0.3.0)
 
