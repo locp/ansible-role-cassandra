@@ -12,7 +12,11 @@ galaxy_info:
   galaxy_tags:
     - apache
     - cassandra
+    - centos
+    - debian
     - nosql
+    - redhat
+    - ubuntu
 
   platforms:
     - name: EL
