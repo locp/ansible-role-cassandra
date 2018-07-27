@@ -1,9 +1,5 @@
 # ansible-role-cassandra
 
-[![License](https://img.shields.io/github/license/locp/ansible-role-cassandra.svg?style=flat-square)](https://github.com/locp/ansible-role-cassandra/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/locp/ansible-role-cassandra.svg?branch=develop)](https://travis-ci.org/locp/ansible-role-cassandra)
-[![Ansible Role](https://img.shields.io/ansible/role/d/25368.svg?style=flat-square)](https://galaxy.ansible.com/locp/cassandra/)
-
 Ansible role to install and configure Apache Cassandra.
 
 ## Requirements
