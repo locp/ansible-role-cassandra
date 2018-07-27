@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.4.1](https://github.com/locp/ansible-role-cassandra/tree/0.4.1) (2018-07-27)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.0...0.4.1)
+
+**Fixed bugs:**
+
+- The name in the final task in main.yml needs to be qualified [\#18](https://github.com/locp/ansible-role-cassandra/issues/18)
+- Remove bling from README. [\#17](https://github.com/locp/ansible-role-cassandra/issues/17)
+
 ## [0.4.0](https://github.com/locp/ansible-role-cassandra/tree/0.4.0) (2018-05-18)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.3.0...0.4.0)
 
