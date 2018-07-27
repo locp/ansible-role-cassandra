@@ -135,7 +135,7 @@
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
 
-- name: Ensure the Service is in the Required State
+- name: Ensure the Service is in the Required State (Debian)
   service:
     name: cassandra
     enabled: "{{ cassandra_service_enabled }}"
