@@ -1,0 +1,11 @@
+---
+- name: Create Custom Directory
+  file:
+    group: "{{ cassandra_directories[cassandra_directory_set].group | default('cassandra') }}"
+    mode: "{{ cassandra_directories[cassandra_directory_set].mode | default(0700) }}"
+    owner: "{{ cassandra_directories[cassandra_directory_set].owner | default('cassandra') }}"
+    path: "{{ item }}"
+    state: directory
+  with_items: "{{ cassandra_directories[cassandra_directory_set].paths }}"
+  when:
+    - not ansible_check_mode

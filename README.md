@@ -20,10 +20,24 @@ executes this module.
 
 ## Role Variables
 
+* `cassandra_cms_heap_new_size_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` and
+  `ansible_processor_vcpus` facts to be set.
+
+* `cassandra_cms_max_heapsize_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  MAX_HEAP_SIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
+
 * `cassandra_configuration` (default: *none*):
   The configuration for Cassandra.  See the example play book below.
 
-* `cassandra_configuration_file` (default: `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
+* `cassandra_configuration_file` (default:
+  `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
   `/etc/cassandra/cassandra.yaml` on Debian):
   The location of the Cassandra configuration file.
 
@@ -34,6 +48,24 @@ executes this module.
   Whether to configure the Apache Cassandra repository.
 
   **SEE ALSO:** `cassandra_repo_apache_release`.
+
+* `cassandra_directories`:
+  If defined, this will create directories after the package has been
+  installed (therefore when the cassandra user is available) but before
+  Cassandra is configured.  See the example playbook for more details.
+
+* `cassandra_heap_new_size_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  HEAP_NEWSIZE.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` and
+  `ansible_processor_vcpus` facts to be set.
+
+* `cassandra_max_heapsize_mb`:
+  A custom fact that returns a value (MB) that might be suitable to set the
+  MAX_HEAP_SIZE.  See
+  [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
+  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
 
 * `cassandra_package` (default: `cassandra`):
   The name of the package to be installed to provide Cassandra.
@@ -54,9 +86,17 @@ executes this module.
 
 ## Example Playbook
 
+This creates a *very* basic configuration.  Please note that the
+definition of `cassandra_directories` will
+create an alternative directories structure for the Cassandra data.
+In this example, there will be a directory called /data owned by root
+with `rwxr-xr-x` permissions.  It will have a series of sub-directories
+all of which will be defaulted to being owned by the cassandra user
+with `rwx------` permissions.
+
 ```YAML
 ---
-- hosts: localhost
+- hosts: cassandra
 
   remote_user: root
 
@@ -67,26 +107,43 @@ executes this module.
     cassandra_configuration:
       authenticator: PasswordAuthenticator
       cluster_name: MyCassandraCluster
-      commitlog_directory: /var/lib/cassandra/commitlog
+      commitlog_directory: /data/cassandra/commitlog
       commitlog_sync: periodic
       commitlog_sync_period_in_ms: 10000
       data_file_directories:
-        - /var/lib/cassandra/data
+        - /data/cassandra/data
       endpoint_snitch: GossipingPropertyFileSnitch
-      hints_directory: "/var/lib/cassandra/hints"
+      hints_directory: "/data/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
-      saved_caches_directory: /var/lib/cassandra/saved_caches
+      saved_caches_directory: /data/cassandra/saved_caches
       seed_provider:
-        -
-          class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
+        - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
           parameters:
-            -
-              seeds: "{{ ansible_default_ipv4.address }}"
+            - seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
+
     cassandra_configure_apache_repo: true
+
     cassandra_dc: DC1
+
+    cassandra_directories:
+      root:
+        group: root
+        mode: "0755"
+        owner: root
+        paths:
+          - /data
+      data:
+        paths:
+          - /data/cassandra
+          - /data/cassandra/commitlog
+          - /data/cassandra/data
+          - /data/cassandra/hints
+          - /data/cassandra/saved_caches
+
     cassandra_rack: RACK1
+
     cassandra_repo_apache_release: 311x
 ```
 
