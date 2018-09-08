@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.4.2](https://github.com/locp/ansible-role-cassandra/tree/0.4.2) (2018-09-08)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.1...0.4.2)
+
+**Fixed bugs:**
+
+- Removal of accidental release 4.0.1 \(was supposed to be 0.4.1\). [\#20](https://github.com/locp/ansible-role-cassandra/issues/20)
+- Update for CVE-2017-7481 [\#19](https://github.com/locp/ansible-role-cassandra/issues/19)
+
+**Merged pull requests:**
+
+- Hotfix/0.4.2 [\#21](https://github.com/locp/ansible-role-cassandra/pull/21) ([dallinb](https://github.com/dallinb))
+
 ## [0.4.1](https://github.com/locp/ansible-role-cassandra/tree/0.4.1) (2018-07-27)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.0...0.4.1)
 
