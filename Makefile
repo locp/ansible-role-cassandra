@@ -1,6 +1,7 @@
 lint:
 	bundle exec rubocop -ES
 	ansible-lint -pv . tests/test.yml
+	ansible-review -v tests/test.yml
 
 install_current_version:
 	rm -rf /tmp/roles

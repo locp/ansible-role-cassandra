@@ -23,6 +23,7 @@ install:
   # Check versions
   - ansible --version
   - ansible-lint --version
+  - pip show -v ansible-review
   - rubocop --version
 
 script:
