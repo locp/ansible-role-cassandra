@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.4.3](https://github.com/locp/ansible-role-cassandra/tree/0.4.3) (2018-09-12)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.2...0.4.3)
+
+**Merged pull requests:**
+
+- Force cassandra directories keys to be list [\#22](https://github.com/locp/ansible-role-cassandra/pull/22) ([jgagnon1](https://github.com/jgagnon1))
+
 ## [0.4.2](https://github.com/locp/ansible-role-cassandra/tree/0.4.2) (2018-09-08)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.1...0.4.2)
 
