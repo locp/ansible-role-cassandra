@@ -70,7 +70,7 @@
 
 - name: Custom Directories
   include: directory.yml
-  with_items: "{{ cassandra_directories.keys() }}"
+  with_items: "{{ cassandra_directories.keys() | list }}"
   loop_control:
     loop_var: cassandra_directory_set
   when:
