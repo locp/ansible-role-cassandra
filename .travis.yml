@@ -50,3 +50,7 @@ matrix:
     env: INSTANCE="Debian-debian-9"
   - python: 2.7
     env: INSTANCE="Check-debian-9"
+  - python: 2.7
+    env: INSTANCE="Fedora-fedora-28"
+  - python: 2.7
+    env: INSTANCE="Check-fedora-28"
