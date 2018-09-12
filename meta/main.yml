@@ -14,6 +14,7 @@ galaxy_info:
     - cassandra
     - centos
     - debian
+    - fedora
     - nosql
     - redhat
     - ubuntu
@@ -28,3 +29,6 @@ galaxy_info:
     - name: Debian
       versions:
         - stretch
+    - name: Fedora
+      versions:
+        - 28

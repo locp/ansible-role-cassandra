@@ -5,6 +5,21 @@ driver:
   use_sudo: false
 
 platforms:
+  - name: fedora-28
+    driver_config:
+      image: fedora:28
+      run_command: /usr/sbin/init
+      privileged: true
+      provision_command:
+        - dnf install -y python3-pip rsyslog
+        - pip3 install ansible==2.6.0.0
+        - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
+        - sed -i 's/#LogLevel INFO/LogLevel DEBUG/g' /etc/ssh/sshd_config
+        - systemctl enable rsyslog.service
+        - systemctl enable sshd.service
+
   - name: centos-7
     driver_config:
       run_command: /usr/sbin/init
@@ -54,6 +69,17 @@ verifier:
   sudo_path: true
 
 suites:
+  - name: Fedora
+    verifier:
+      patterns:
+        - tests/spec/common/*_spec.rb
+        - tests/spec/redhat/*_spec.rb
+    provisioner:
+      idempotency_test: true
+      playbook: tests/test.yml
+    includes:
+      - fedora-28
+
   - name: Redhat
     verifier:
       patterns:
