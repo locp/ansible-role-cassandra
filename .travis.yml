@@ -29,7 +29,7 @@ script:
   - make lint
   - bundle exec kitchen list
   - bundle exec kitchen create $INSTANCE || true # A minor schlonk to avoid failure during kitchen build.
-  - bundle exec kitchen test $INSTANCE
+  - bundle exec kitchen verify $INSTANCE
   - make install_current_version
 
 notifications:
@@ -41,8 +41,6 @@ matrix:
   - python: 2.7
     env: INSTANCE="ApplyRedhat-centos-7"
   - python: 2.7
-    env: INSTANCE="ApplyFedora-fedora-28"
-  - python: 2.7
     env: INSTANCE="ApplyDebian-debian-9"
   - python: 2.7
     env: INSTANCE="ApplyDebian-ubuntu-1604"
@@ -52,5 +50,7 @@ matrix:
     env: INSTANCE="CheckNonFedora-debian-9"
   - python: 2.7
     env: INSTANCE="CheckNonFedora-ubuntu-1604"
-  - python: 2.7
+  - python: 3.6
+    env: INSTANCE="ApplyFedora-fedora-28"
+  - python: 3.6
     env: INSTANCE="CheckFedora-fedora-28"

@@ -34,7 +34,7 @@ platforms:
       run_command: /usr/sbin/init
       privileged: true
       provision_command:
-        - dnf install -y python3-pip rsyslog iproute yum-utils
+        - dnf install -y python3-pip rsyslog iproute yum-utils initscripts
         - pip3 install ansible==2.6.0.0
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
