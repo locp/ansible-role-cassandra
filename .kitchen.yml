@@ -28,12 +28,13 @@ platforms:
         - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
         - pip install ansible==2.6.0.0
 
-  - name: fedora-28
+  - name: fedora-27
     driver_config:
-      image: fedora:28
+      image: fedora:27
       run_command: /usr/sbin/init
       privileged: true
       provision_command:
+        - mkdir -p /var/run/cassandra
         - dnf install -y python3-pip rsyslog iproute yum-utils initscripts
         - pip3 install ansible==2.6.0.0
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
@@ -54,7 +55,7 @@ provisioner:
   additional_copy_path:
     - tests
   ansible_inventory: tests/inventory
-  ansible_verbose: true
+  ansible_verbose: false
   ansible_verbosity: 1
   hosts: all
   name: ansible_playbook
@@ -89,7 +90,7 @@ suites:
       idempotency_test: true
       playbook: tests/test.yml
     includes:
-      - fedora-28
+      - fedora-27
 
   - name: ApplyDebian
     verifier:
@@ -108,7 +109,7 @@ suites:
       ansible_check: true
       playbook: tests/test.yml
     excludes:
-      - fedora-28
+      - fedora-27
 
   - name: CheckFedora
     provisioner:
@@ -117,4 +118,4 @@ suites:
         ansible_python_interpreter: /usr/bin/python3
       playbook: tests/test.yml
     includes:
-      - fedora-28
+      - fedora-27
