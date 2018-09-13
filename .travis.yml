@@ -29,7 +29,7 @@ script:
   - make lint
   - bundle exec kitchen list
   - bundle exec kitchen create $INSTANCE || true # A minor schlonk to avoid failure during kitchen build.
-  - bundle exec kitchen verify $INSTANCE
+  - bundle exec kitchen test $INSTANCE
   - make install_current_version
 
 notifications:
