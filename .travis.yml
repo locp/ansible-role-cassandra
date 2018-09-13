@@ -51,6 +51,6 @@ matrix:
   - python: 2.7
     env: INSTANCE="CheckNonFedora-ubuntu-1604"
   - python: 3.6
-    env: INSTANCE="ApplyFedora-fedora-28"
+    env: INSTANCE="ApplyFedora-fedora-27"
   - python: 3.6
-    env: INSTANCE="CheckFedora-fedora-28"
+    env: INSTANCE="CheckFedora-fedora-27"
