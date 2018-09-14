@@ -86,16 +86,8 @@ executes this module.
 
 ## Example Playbook
 
-This creates a *very* basic configuration.  Please note that the
-definition of `cassandra_directories` will
-create an alternative directories structure for the Cassandra data.
-In this example, there will be a directory called /data owned by root
-with `rwxr-xr-x` permissions.  It will have a series of sub-directories
-all of which will be defaulted to being owned by the cassandra user
-with `rwx------` permissions.
-
-Have some variables defined (perhaps in `group_vars/cassandra.yml`) that look
-something like this:
+This creates a *very* basic configuration.  Have some variables defined
+(perhaps in `group_vars/cassandra.yml`) that look something like this:
 
 ```YAML
 ---

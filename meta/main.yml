@@ -11,8 +11,6 @@ galaxy_info:
 
   license: GPLv3
 
-  dependencies: []
-
   min_ansible_version: 2.6.0.0
 
   galaxy_tags:
