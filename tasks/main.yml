@@ -1,8 +1,9 @@
+# Standards: 0.1
 ---
 # tasks file for cassandra
 - name: Import the Apache Cassandra Repository Tasks
   include: apache_repo.yml
-  when: cassandra_configure_apache_repo == True
+  when: cassandra_configure_apache_repo
 
 - name: Custom Facts Part 1 of 2
   set_fact:
@@ -17,7 +18,7 @@
         ([ansible_memtotal_mb * 0.25, 8192] | min)
       ] | max | round | int }}"
   when:
-    - ansible_memtotal_mb is defined
+  - ansible_memtotal_mb is defined
 
 - name: Custom Facts Part 2 of 2
   set_fact:
@@ -32,8 +33,8 @@
         ((cassandra_max_heapsize_mb | int) * 0.25)
       ] | min | round | int }}"
   when:
-    - ansible_memtotal_mb is defined
-    - ansible_processor_vcpus is defined
+  - ansible_memtotal_mb is defined
+  - ansible_processor_vcpus is defined
 
 - name: Debug Custom Facts
   debug:
@@ -47,8 +48,8 @@
     }
     verbosity: 1
   when:
-    - ansible_memtotal_mb is defined
-    - ansible_processor_vcpus is defined
+  - ansible_memtotal_mb is defined
+  - ansible_processor_vcpus is defined
 
 - name: Install the Cassandra Package (YUM)
   # Retries are in this as the cache has been seen to still be updating when
@@ -61,18 +62,18 @@
   register: cassandra_yum_install_result
   until: cassandra_yum_install_result is succeeded
   when:
-    - ansible_os_family is defined
-    - ansible_os_family == 'RedHat'
-    - not ansible_check_mode
+  - ansible_os_family is defined
+  - ansible_os_family == 'RedHat'
+  - not ansible_check_mode
 
 - name: Install the Cassandra Package (Apt)
   apt:
     name: "{{ cassandra_package }}"
     cache_valid_time: 600
   when:
-    - ansible_os_family is defined
-    - ansible_os_family == 'Debian'
-    - not ansible_check_mode
+  - ansible_os_family is defined
+  - ansible_os_family == 'Debian'
+  - not ansible_check_mode
 
 - name: Custom Directories
   include: directory.yml
@@ -80,23 +81,23 @@
   loop_control:
     loop_var: cassandra_directory_set
   when:
-    - cassandra_directories is defined
+  - cassandra_directories is defined
 
 - name: Set Default Configuration File Location (Debian)
   set_fact:
     cassandra_configuration_file: /etc/cassandra/cassandra.yaml
   when:
-    - ansible_os_family is defined
-    - ansible_os_family == 'Debian'
-    - cassandra_configuration_file is not defined
+  - ansible_os_family is defined
+  - ansible_os_family == 'Debian'
+  - cassandra_configuration_file is not defined
 
 - name: Set Default Configuration File Location (RedHat)
   set_fact:
     cassandra_configuration_file: /etc/cassandra/default.conf/cassandra.yaml
   when:
-    - ansible_os_family is defined
-    - ansible_os_family == 'RedHat'
-    - cassandra_configuration_file is not defined
+  - ansible_os_family is defined
+  - ansible_os_family == 'RedHat'
+  - cassandra_configuration_file is not defined
 
 - name: Apply Cassandra Configuration
   template:
@@ -106,7 +107,7 @@
     group: root
     mode: 0644
   notify:
-    - cassandra_restart_service
+  - cassandra_restart_service
 
 - name: Set the DC for Cassandra
   lineinfile:
@@ -114,10 +115,10 @@
     regexp: '^dc='
     line: "dc={{ cassandra_dc }}"
   when:
-    - cassandra_dc is defined
-    - not ansible_check_mode
+  - cassandra_dc is defined
+  - not ansible_check_mode
   notify:
-    - cassandra_restart_service
+  - cassandra_restart_service
 
 - name: Set the Rack for Cassandra
   lineinfile:
@@ -125,10 +126,10 @@
     regexp: '^rack='
     line: "rack={{ cassandra_rack }}"
   when:
-    - cassandra_rack is defined
-    - not ansible_check_mode
+  - cassandra_rack is defined
+  - not ansible_check_mode
   notify:
-    - cassandra_restart_service
+  - cassandra_restart_service
 
 - name: Ensure the Service is in the Required State (RedHat)
   systemd:
@@ -137,9 +138,9 @@
     daemon_reload: yes
     state: "{{ cassandra_service_state }}"
   when:
-    - not ansible_check_mode
-    - ansible_os_family is defined
-    - ansible_os_family == 'RedHat'
+  - not ansible_check_mode
+  - ansible_os_family is defined
+  - ansible_os_family == 'RedHat'
 
 - name: Ensure the Service is in the Required State (Debian)
   service:
@@ -147,6 +148,6 @@
     enabled: "{{ cassandra_service_enabled }}"
     state: "{{ cassandra_service_state }}"
   when:
-    - not ansible_check_mode
-    - ansible_os_family is defined
-    - ansible_os_family == 'Debian'
+  - not ansible_check_mode
+  - ansible_os_family is defined
+  - ansible_os_family == 'Debian'

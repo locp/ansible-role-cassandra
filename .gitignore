@@ -1,4 +1,5 @@
 .kitchen/
-*.swp
+*.pyc
 *.rake_tasks~
+*.swp
 Gemfile.lock
