@@ -1,5 +1,22 @@
 # Change Log
 
+## [0.4.4](https://github.com/locp/ansible-role-cassandra/tree/0.4.4) (2018-09-14)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.3...0.4.4)
+
+**Implemented enhancements:**
+
+- Update Tools Versions [\#26](https://github.com/locp/ansible-role-cassandra/issues/26)
+- Test Against Fedora 27 and Python 3 [\#23](https://github.com/locp/ansible-role-cassandra/issues/23)
+
+**Fixed bugs:**
+
+- Ansible Galaxy Import Errors and Warning [\#25](https://github.com/locp/ansible-role-cassandra/issues/25)
+
+**Merged pull requests:**
+
+- Add Ansible Review to the Tests [\#27](https://github.com/locp/ansible-role-cassandra/pull/27) ([dallinb](https://github.com/dallinb))
+- Test Against Fedora 27 and Python 3 [\#24](https://github.com/locp/ansible-role-cassandra/pull/24) ([dallinb](https://github.com/dallinb))
+
 ## [0.4.3](https://github.com/locp/ansible-role-cassandra/tree/0.4.3) (2018-09-12)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.2...0.4.3)
 
