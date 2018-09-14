@@ -1,6 +1,9 @@
 galaxy_info:
+
   author: "Ben Dalling"
+
   description: "Ansible role to install Apache Cassandra."
+
   company:  "League of Crafty Programmers Ltd"
 
   github_branch: master
@@ -14,6 +17,7 @@ galaxy_info:
     - cassandra
     - centos
     - debian
+    - fedora
     - nosql
     - redhat
     - ubuntu
@@ -28,3 +32,6 @@ galaxy_info:
     - name: Debian
       versions:
         - stretch
+    - name: Fedora
+      versions:
+        - 27
