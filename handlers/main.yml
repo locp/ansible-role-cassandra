@@ -7,4 +7,3 @@
   when:
     - cassandra_service_restart
     - not ansible_check_mode
-
