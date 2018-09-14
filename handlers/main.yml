@@ -1,10 +1,10 @@
----
+# Standards: 0.1
 # handlers file for cassandra
+---
 - name: cassandra_restart_service
   service:
     name: cassandra
     state: restarted
   when:
-    - cassandra_service_restart
-    - not ansible_check_mode
-
+  - cassandra_service_restart
+  - not ansible_check_mode

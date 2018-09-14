@@ -1,6 +1,10 @@
+# Standards: 0.1
 galaxy_info:
+
   author: "Ben Dalling"
+
   description: "Ansible role to install Apache Cassandra."
+
   company:  "League of Crafty Programmers Ltd"
 
   github_branch: master
@@ -10,21 +14,27 @@ galaxy_info:
   min_ansible_version: 2.6.0.0
 
   galaxy_tags:
-    - apache
-    - cassandra
-    - centos
-    - debian
-    - nosql
-    - redhat
-    - ubuntu
+  - apache
+  - cassandra
+  - centos
+  - debian
+  - fedora
+  - nosql
+  - redhat
+  - ubuntu
 
   platforms:
-    - name: EL
-      versions:
-        - 7
-    - name: Ubuntu
-      versions:
-        - xenial
-    - name: Debian
-      versions:
-        - stretch
+  - name: EL
+    versions:
+    - 7
+  - name: Ubuntu
+    versions:
+    - xenial
+  - name: Debian
+    versions:
+    - stretch
+  - name: Fedora
+    versions:
+    - 27
+
+  dependencies: []
