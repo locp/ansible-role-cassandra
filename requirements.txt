@@ -1,3 +1,3 @@
-ansible==2.6.0.0
-ansible-lint==3.4.23
-ansible-review==0.13.8
+ansible
+ansible-lint
+ansible-review
