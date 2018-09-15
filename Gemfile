@@ -5,14 +5,9 @@ group :development do
 end
 
 group :test do
-  gem 'kitchen-ansible',
-      '0.48.6'
-  gem 'kitchen-docker',
-      '2.7.0'
-  gem 'kitchen-verifier-serverspec',
-      '0.6.11'
-  gem 'rubocop',
-      '0.59.0'
-  gem 'test-kitchen',
-      '1.23.2'
+  gem 'kitchen-ansible'
+  gem 'kitchen-docker'
+  gem 'kitchen-verifier-serverspec'
+  gem 'rubocop'
+  gem 'test-kitchen'
 end
