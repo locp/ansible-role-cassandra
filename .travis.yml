@@ -18,7 +18,7 @@ addons:
 # Install ansible
 install:
   - bundle install
-  - pip install -r requirements.txt
+  - pip install -Ur requirements.txt
 
   # Check versions
   - ansible --version
