@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.5.0](https://github.com/locp/ansible-role-cassandra/tree/0.5.0) (2018-10-04)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.4...0.5.0)
+
+**Implemented enhancements:**
+
+- Give the Custom Facts Tasks More Meaningful Names [\#29](https://github.com/locp/ansible-role-cassandra/issues/29)
+
+**Fixed bugs:**
+
+- Cassandra Package Not Being Installed on Fedora 27 With Ansible 2.7.0 [\#28](https://github.com/locp/ansible-role-cassandra/issues/28)
+
 ## [0.4.4](https://github.com/locp/ansible-role-cassandra/tree/0.4.4) (2018-09-14)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.3...0.4.4)
 
