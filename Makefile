@@ -1,3 +1,7 @@
+clean:
+	kitchen destroy
+	rm -rf .kitchen
+
 lint:
 	bundle exec rubocop -ES
 	ansible-lint -pv . tests/test.yml

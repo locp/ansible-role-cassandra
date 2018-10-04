@@ -51,6 +51,22 @@
   - ansible_memtotal_mb is defined
   - ansible_processor_vcpus is defined
 
+- name: Install the Cassandra Package (Package)
+  # Retries are in this as the cache has been seen to still be updating when
+  # this task gets to be executed.
+  package:
+    name: "{{ cassandra_package }}"
+  retries: 3
+  delay: 5
+  register: cassandra_pkg_install_result
+  until: cassandra_pkg_install_result is succeeded
+  when:
+  - ansible_os_family is defined
+  - ansible_os_family == 'RedHat'
+  - ansible_pkg_mgr == 'dnf'
+  - not ansible_check_mode
+
+
 - name: Install the Cassandra Package (YUM)
   # Retries are in this as the cache has been seen to still be updating when
   # this task gets to be executed.
@@ -64,6 +80,7 @@
   when:
   - ansible_os_family is defined
   - ansible_os_family == 'RedHat'
+  - ansible_pkg_mgr == 'yum'
   - not ansible_check_mode
 
 - name: Install the Cassandra Package (Apt)
