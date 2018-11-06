@@ -13,7 +13,7 @@ platforms:
       provision_command:
         - yum install -y epel-release
         - yum install -y gcc python2-pip rsyslog initscripts python2-devel
-        - pip install ansible==2.6.0.0
+        - pip install ansible
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
@@ -26,7 +26,7 @@ platforms:
       platform: debian
       provision_command:
         - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
-        - pip install ansible==2.6.0.0
+        - pip install ansible
 
   - name: fedora-27
     driver_config:
@@ -36,7 +36,7 @@ platforms:
       provision_command:
         - mkdir -p /var/run/cassandra
         - dnf install -y python3-pip rsyslog iproute yum-utils initscripts
-        - pip3 install ansible==2.6.0.0
+        - pip3 install ansible
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
@@ -49,7 +49,7 @@ platforms:
       platform: ubuntu
       provision_command:
         - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
-        - pip install ansible==2.6.0.0
+        - pip install ansible
 
   - name: ubuntu-18.04
     driver_config:
