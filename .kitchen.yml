@@ -51,6 +51,14 @@ platforms:
         - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
         - pip install ansible==2.6.0.0
 
+  - name: ubuntu-18.04
+    driver_config:
+      platform: ubuntu
+      provision_command:
+        - mkdir -p /var/run/sshd
+        - apt-get install -y apt-utils iproute2 libffi-dev python-pycparser python-apt python-dev python-pip
+        - pip install ansible==2.6.0.0
+
 provisioner:
   additional_copy_path:
     - tests
@@ -103,6 +111,7 @@ suites:
     includes:
       - debian-9
       - ubuntu-16.04
+      - ubuntu-18.04
 
   - name: CheckNonFedora
     provisioner:
