@@ -40,18 +40,22 @@ matrix:
   fast_finish: true
   include:
   - python: 2.7
+    env: INSTANCE="CheckNonFedora-centos-7"
+  - python: 2.7
+    env: INSTANCE="CheckNonFedora-debian-9"
+  - python: 2.7
+    env: INSTANCE="CheckNonFedora-ubuntu-1604"
+  - python: 2.7
+    env: INSTANCE="CheckNonFedora-ubuntu-1804"
+  - python: 3.6
+    env: INSTANCE="CheckFedora-fedora-27"
+  - python: 2.7
     env: INSTANCE="ApplyRedhat-centos-7"
   - python: 2.7
     env: INSTANCE="ApplyDebian-debian-9"
   - python: 2.7
     env: INSTANCE="ApplyDebian-ubuntu-1604"
   - python: 2.7
-    env: INSTANCE="CheckNonFedora-centos-7"
-  - python: 2.7
-    env: INSTANCE="CheckNonFedora-debian-9"
-  - python: 2.7
-    env: INSTANCE="CheckNonFedora-ubuntu-1604"
+    env: INSTANCE="ApplyDebian-ubuntu-1804"
   - python: 3.6
     env: INSTANCE="ApplyFedora-fedora-27"
-  - python: 3.6
-    env: INSTANCE="CheckFedora-fedora-27"

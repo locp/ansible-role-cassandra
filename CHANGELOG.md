@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.0](https://github.com/locp/ansible-role-cassandra/tree/0.6.0) (2018-11-06)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.5.0...0.6.0)
+
+**Implemented enhancements:**
+
+- Add Support for Ubuntu 18:04 [\#30](https://github.com/locp/ansible-role-cassandra/issues/30)
+
 ## [0.5.0](https://github.com/locp/ansible-role-cassandra/tree/0.5.0) (2018-10-04)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.4.4...0.5.0)
 
