@@ -1,5 +1,3 @@
----
-# .kitchen.yml:  Test Kitchen configuration file.
 driver:
   name: docker
   use_sudo: false
