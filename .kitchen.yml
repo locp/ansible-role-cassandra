@@ -10,8 +10,9 @@ platforms:
       platform: centos
       provision_command:
         - yum install -y epel-release
-        - yum install -y gcc python2-pip rsyslog initscripts python2-devel
-        - pip install ansible==2.6.0.0
+        - yum-config-manager --add-repo https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64 ansible
+        - rpm --import https://releases.ansible.com/keys/RPM-GPG-KEY-ansible-release.pub
+        - yum install -y ansible-2.6.0 initscripts rsyslog
         - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
