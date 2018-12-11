@@ -1,4 +1,5 @@
 .kitchen/
+.python-version
 *.pyc
 *.rake_tasks~
 *.swp
