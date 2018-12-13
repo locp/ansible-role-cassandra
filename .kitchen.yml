@@ -63,7 +63,7 @@ platforms:
 provisioner:
   additional_copy_path:
     - tests
-  ansible_inventory: tests/inventory
+  ansible_inventory: test/inventory
   ansible_verbose: false
   ansible_verbosity: 1
   hosts: all
@@ -82,33 +82,33 @@ suites:
   - name: ApplyRedhat
     verifier:
       patterns:
-        - tests/spec/common/*_spec.rb
-        - tests/spec/redhat/*_spec.rb
+        - test/spec/common/*_spec.rb
+        - test/spec/redhat/*_spec.rb
     provisioner:
       idempotency_test: true
-      playbook: tests/test.yml
+      playbook: test/test.yml
     includes:
       - centos-7
 
   - name: ApplyFedora
     verifier:
       patterns:
-        - tests/spec/common/*_spec.rb
-        - tests/spec/redhat/*_spec.rb
+        - test/spec/common/*_spec.rb
+        - test/spec/redhat/*_spec.rb
     provisioner:
       idempotency_test: true
-      playbook: tests/test.yml
+      playbook: test/test.yml
     includes:
       - fedora-27
 
   - name: ApplyDebian
     verifier:
       patterns:
-        - tests/spec/common/*_spec.rb
-        - tests/spec/debian/*_spec.rb
+        - test/spec/common/*_spec.rb
+        - test/spec/debian/*_spec.rb
     provisioner:
       idempotency_test: true
-      playbook: tests/test.yml
+      playbook: test/test.yml
     includes:
       - debian-9
       - ubuntu-16.04
@@ -117,7 +117,7 @@ suites:
   - name: CheckNonFedora
     provisioner:
       ansible_check: true
-      playbook: tests/test.yml
+      playbook: test/test.yml
     excludes:
       - fedora-27
 
@@ -126,6 +126,6 @@ suites:
       ansible_check: true
       extra_vars:
         ansible_python_interpreter: /usr/bin/python3
-      playbook: tests/test.yml
+      playbook: test/test.yml
     includes:
       - fedora-27

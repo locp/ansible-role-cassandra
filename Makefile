@@ -4,8 +4,8 @@ clean:
 
 lint:
 	bundle exec rubocop -ES
-	ansible-lint -pv . tests/test.yml
-	ansible-review -c ./tests/ansible-review.cfg \
+	ansible-lint -pv . test/test.yml
+	ansible-review -c ./test/ansible-review.cfg \
 	  defaults/main.yml \
 	  handlers/main.yml \
 	  meta/main.yml \
