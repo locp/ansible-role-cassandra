@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Common Check Cluster Name' do
   @script = 'SELECT cluster_name FROM local;'
   @creds = '-u cassandra -p cassandra'

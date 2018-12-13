@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Debian Rack/DC Configuration File' do
   describe file('/etc/cassandra/cassandra-rackdc.properties') do
     it { should be_file }

@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Debian Apt Repo' do
   describe file('/etc/apt/sources.list.d/cassandra.sources.list') do
     it { should exist }

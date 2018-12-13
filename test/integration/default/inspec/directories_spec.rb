@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'Common Directories' do
   describe file('/data') do
     it { should be_directory }

@@ -75,15 +75,10 @@ provisioner:
   role_name: cassandra
 
 verifier:
-  name: serverspec
-  sudo_path: true
+  name: inspec
 
 suites:
   - name: ApplyRedhat
-    verifier:
-      patterns:
-        - test/spec/common/*_spec.rb
-        - test/spec/redhat/*_spec.rb
     provisioner:
       idempotency_test: true
       playbook: test/test.yml
@@ -91,10 +86,6 @@ suites:
       - centos-7
 
   - name: ApplyFedora
-    verifier:
-      patterns:
-        - test/spec/common/*_spec.rb
-        - test/spec/redhat/*_spec.rb
     provisioner:
       idempotency_test: true
       playbook: test/test.yml
@@ -102,10 +93,6 @@ suites:
       - fedora-27
 
   - name: ApplyDebian
-    verifier:
-      patterns:
-        - test/spec/common/*_spec.rb
-        - test/spec/debian/*_spec.rb
     provisioner:
       idempotency_test: true
       playbook: test/test.yml
