@@ -9,8 +9,8 @@ group :test do
       '0.49.0'
   gem 'kitchen-docker',
       '2.7.0'
-  gem 'kitchen-verifier-serverspec',
-      '0.6.11'
+  gem 'kitchen-inspec',
+      '0.25.0'
   gem 'rubocop',
       '0.60.0'
   gem 'test-kitchen',
