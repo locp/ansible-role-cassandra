@@ -78,41 +78,12 @@ verifier:
   name: inspec
 
 suites:
-  - name: ApplyRedhat
+  - name: default
     provisioner:
       idempotency_test: true
       playbook: test/test.yml
-    includes:
-      - centos-7
 
-  - name: ApplyFedora
-    provisioner:
-      idempotency_test: true
-      playbook: test/test.yml
-    includes:
-      - fedora-27
-
-  - name: ApplyDebian
-    provisioner:
-      idempotency_test: true
-      playbook: test/test.yml
-    includes:
-      - debian-9
-      - ubuntu-16.04
-      - ubuntu-18.04
-
-  - name: CheckNonFedora
+  - name: check
     provisioner:
       ansible_check: true
       playbook: test/test.yml
-    excludes:
-      - fedora-27
-
-  - name: CheckFedora
-    provisioner:
-      ansible_check: true
-      extra_vars:
-        ansible_python_interpreter: /usr/bin/python3
-      playbook: test/test.yml
-    includes:
-      - fedora-27
