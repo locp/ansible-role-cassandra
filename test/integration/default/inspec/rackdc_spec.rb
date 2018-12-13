@@ -1,7 +1,7 @@
 rackdc_file = if os.family == 'redhat'
-                '/etc/cassandra/conf/cassandra.yaml'
+                '/etc/cassandra/default.conf/cassandra-rackdc.properties'
               else
-                '/etc/cassandra/cassandra.yaml'
+                '/etc/cassandra/cassandra-rackdc.properties'
               end
 
 describe file(rackdc_file) do
