@@ -62,7 +62,7 @@ platforms:
 
 provisioner:
   additional_copy_path:
-    - tests
+    - test
   ansible_inventory: test/inventory
   ansible_verbose: false
   ansible_verbosity: 1

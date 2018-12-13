@@ -12,7 +12,7 @@ lint:
 	  tasks/apache_repo.yml \
 	  tasks/directory.yml \
 	  tasks/main.yml \
-	  tests/test.yml
+	  test/test.yml
 
 install_current_version:
 	rm -rf /tmp/roles
