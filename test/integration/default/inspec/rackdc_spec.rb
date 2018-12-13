@@ -1,7 +1,7 @@
-rackdc_file = if os.family == 'redhat'
-                '/etc/cassandra/default.conf/cassandra-rackdc.properties'
-              else
+rackdc_file = if os.family == 'debian'
                 '/etc/cassandra/cassandra-rackdc.properties'
+              else
+                '/etc/cassandra/default.conf/cassandra-rackdc.properties'
               end
 
 describe file(rackdc_file) do

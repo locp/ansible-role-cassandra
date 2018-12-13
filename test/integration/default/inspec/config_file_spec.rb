@@ -1,7 +1,7 @@
-config_file = if os.family == 'redhat'
-                '/etc/cassandra/conf/cassandra.yaml'
-              else
+config_file = if os.family == 'debian'
                 '/etc/cassandra/cassandra.yaml'
+              else
+                '/etc/cassandra/conf/cassandra.yaml'
               end
 
 describe file(config_file) do

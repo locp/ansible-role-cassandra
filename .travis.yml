@@ -28,8 +28,9 @@ install:
 
 script:
   - make lint
-  - bundle exec kitchen create $INSTANCE || true # A minor schlonk to avoid failure during kitchen build.
-  - bundle exec kitchen test $INSTANCE
+  - bundle exec kitchen create $PLATFORM || true # A minor schlonk to avoid failure during kitchen build.
+  - bundle exec kitchen test "check-${PLATFORM}"
+  - bundle exec kitchen test "default-${PLATFORM}"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
@@ -38,22 +39,12 @@ matrix:
   fast_finish: true
   include:
   - python: 2.7
-    env: INSTANCE="check-centos-7"
+    env: PLATFORM="centos-7"
   - python: 2.7
-    env: INSTANCE="check-debian-9"
+    env: PLATFORM="debian-9"
   - python: 2.7
-    env: INSTANCE="check-ubuntu-1604"
+    env: PLATFORM="ubuntu-1604"
   - python: 2.7
-    env: INSTANCE="check-ubuntu-1804"
+    env: PLATFORM="ubuntu-1804"
   - python: 3.6
-    env: INSTANCE="check-fedora-27"
-  - python: 2.7
-    env: INSTANCE="default-centos-7"
-  - python: 2.7
-    env: INSTANCE="default-debian-9"
-  - python: 2.7
-    env: INSTANCE="default-ubuntu-1604"
-  - python: 2.7
-    env: INSTANCE="default-ubuntu-1804"
-  - python: 3.6
-    env: INSTANCE="default-fedora-27"
+    env: PLATFORM="fedora-27"
