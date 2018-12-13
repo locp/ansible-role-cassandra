@@ -1,5 +1,5 @@
 if os.family == 'redhat'
-  describe yumrepo('cassandra') do
+  describe yum.repo('cassandra') do
     it { should exist }
     it { should be_enabled }
   end

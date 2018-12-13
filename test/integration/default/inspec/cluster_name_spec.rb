@@ -4,6 +4,5 @@
 @cqlsh = "cqlsh #{@ip} -k system"
 
 describe command("#{@cqlsh} #{@creds} -e '#{@script}'") do
-  its(:stdout) { should match(/MyCassandraCluster/) }
-  its(:stderr) { should match(//) }
+  its('stdout') { should match(/MyCassandraCluster/) }
 end

@@ -6,5 +6,5 @@ config_file = if os.family == 'redhat'
 
 describe file(config_file) do
   it { should be_file }
-  it { should contain 'cluster_name: MyCassandraCluster' }
+  its('content') { should match(/cluster_name: MyCassandraCluster/) }
 end
