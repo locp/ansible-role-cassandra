@@ -27,9 +27,27 @@ platforms:
     - apt-get install -y apt-utils libffi-dev python-pycparser python-apt python-dev python-pip
     - pip install ansible==2.6.0.0
 
-- name: fedora-27
+- name: fedora-28
   driver_config:
-    image: fedora:27
+    image: fedora:28
+    run_command: /usr/sbin/init
+    privileged: true
+    provision_command:
+    - mkdir -p /var/run/cassandra
+    - dnf install -y rsyslog iproute yum-utils initscripts
+    - yum-config-manager --add-repo https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64 ansible
+    - rpm --import https://releases.ansible.com/keys/RPM-GPG-KEY-ansible-release.pub
+    - dnf install -y ansible-2.6.0
+    - sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
+    - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+    - sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
+    - sed -i 's/#LogLevel INFO/LogLevel DEBUG/g' /etc/ssh/sshd_config
+    - systemctl enable rsyslog.service
+    - systemctl enable sshd.service
+
+- name: fedora-29
+  driver_config:
+    image: fedora:29
     run_command: /usr/sbin/init
     privileged: true
     provision_command:
@@ -64,8 +82,8 @@ provisioner:
   additional_copy_path:
   - test
   ansible_inventory: test/inventory
-  ansible_verbose: false
-  ansible_verbosity: 1
+  ansible_verbose: true
+  ansible_verbosity: 3
   hosts: all
   name: ansible_playbook
   require_ansible_repo: false
