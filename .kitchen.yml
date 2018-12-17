@@ -33,7 +33,6 @@ platforms:
     run_command: /usr/sbin/init
     privileged: true
     provision_command:
-    - mkdir -p /var/run/cassandra
     - dnf install -y rsyslog iproute yum-utils initscripts
     - yum-config-manager --add-repo https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64 ansible
     - rpm --import https://releases.ansible.com/keys/RPM-GPG-KEY-ansible-release.pub

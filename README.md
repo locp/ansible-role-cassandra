@@ -84,6 +84,22 @@ executes this module.
   allowing the changes to be made but allow the user to control when the service
   is restarted.
 
+* `cassandra_systemd_enabled` (default: **False**):
+  Should the Cassandra service by enabled via
+  [systemd](https://freedesktop.org/wiki/Software/systemd/)
+  if set to **True** then a unit file will be placed in
+  `cassandra_systemd_path` created from template
+  `cassandra_systemd_template`.
+
+* `cassandra_systemd_path` (default: `/usr/lib/systemd/system/cassandra.service`):
+  The path to a unit file for Cassandra.  This variable is ignored if
+  `cassandra_systemd_enabled` is **False**.
+
+* `cassandra_systemd_template` (default:
+  [`systemd/system/cassandra.service.j2`](templates/systemd/system/cassandra.service.j2)):
+  The path for a template from which to create unit file for Cassandra.  This
+  variable is ignored if `cassandra_systemd_enabled` is **False**.
+
 ## Example Playbook
 
 This creates a *very* basic configuration.  Have some variables defined
