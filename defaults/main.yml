@@ -7,5 +7,5 @@ cassandra_service_enabled: yes
 cassandra_service_restart: True
 cassandra_service_state: started
 cassandra_systemd_enabled: False
-cassandra_systemd_path: "/usr/lib/systemd/system/cassandra.service"
+cassandra_systemd_path: "/etc/systemd/system/cassandra.service"
 cassandra_systemd_template: "systemd/system/cassandra.service.j2"

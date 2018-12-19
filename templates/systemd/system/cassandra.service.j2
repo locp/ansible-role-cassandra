@@ -3,16 +3,15 @@ Description=Cassandra Service
 
 [Service]
 Type=forking
-PIDFile=/var/run/cassandra/PID
-
-ExecStart=/usr/sbin/cassandra -p /var/run/cassandra/PID
-
+User=cassandra
+Group=cassandra
+ExecStart=/usr/sbin/cassandra
 WorkingDirectory=/var/lib/cassandra
 Restart=always
 RestartSec=60
 TimeoutStopSec=60
 TimeoutStartSec=60
-User=cassandra
+SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
