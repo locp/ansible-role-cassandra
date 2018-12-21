@@ -20,12 +20,6 @@ install:
   - bundle install
   - pip install -Ur requirements.txt
 
-  # Check versions
-  - ansible --version
-  - ansible-lint --version
-  - pip show -v ansible-review
-  - rubocop --version
-
 script:
   - make lint
   - bundle exec kitchen create $PLATFORM || true # A minor schlonk to avoid failure during kitchen build.
@@ -47,4 +41,6 @@ matrix:
   - python: 2.7
     env: PLATFORM="ubuntu-1804"
   - python: 3.6
-    env: PLATFORM="fedora-27"
+    env: PLATFORM="fedora-28"
+  - python: 3.6
+    env: PLATFORM="fedora-29"
