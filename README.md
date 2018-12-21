@@ -163,6 +163,12 @@ Then this basic playbook should be enough to configure Cassandra:
 
   remote_user: root
 
+  pre_tasks:
+  - name: Fedora Workaround
+    set_fact:
+      cassandra_systemd_enabled: True
+    when: ansible_facts['distribution'] == 'Fedora'
+
   roles:
   - cassandra
 ```
