@@ -1,5 +1,15 @@
 # Change Log
 
+## [0.7.0](https://github.com/locp/ansible-role-cassandra/tree/0.7.0) (2018-12-21)
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.6.0...0.7.0)
+
+**Implemented enhancements:**
+
+- Fedora 27 is no longer supported [\#35](https://github.com/locp/ansible-role-cassandra/issues/35)
+- Optimise Integration Tests on TravisCI. [\#34](https://github.com/locp/ansible-role-cassandra/pull/34) ([dallinb](https://github.com/dallinb))
+- Feature/centos rpm install [\#33](https://github.com/locp/ansible-role-cassandra/pull/33) ([dallinb](https://github.com/dallinb))
+- Feature/community [\#32](https://github.com/locp/ansible-role-cassandra/pull/32) ([dallinb](https://github.com/dallinb))
+
 ## [0.6.0](https://github.com/locp/ansible-role-cassandra/tree/0.6.0) (2018-11-06)
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.5.0...0.6.0)
 
