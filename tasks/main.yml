@@ -102,6 +102,8 @@
   apt:
     name: "{{ cassandra_package }}"
     cache_valid_time: 600
+  register: cassandra_remote_status
+  until: cassandra_remote_status is succeeded
   when:
   - ansible_os_family is defined
   - ansible_os_family == 'Debian'

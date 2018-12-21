@@ -17,6 +17,8 @@
   apt_key:
     keyserver: pool.sks-keyservers.net
     id: A278B781FE4B2BDA
+  register: cassandra_remote_status
+  until: cassandra_remote_status is succeeded
   when:
   - ansible_os_family is defined
   - ansible_os_family == 'Debian'
