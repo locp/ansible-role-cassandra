@@ -18,20 +18,13 @@ addons:
 # Install ansible
 install:
   - bundle install
-  - pip install -r requirements.txt
-
-  # Check versions
-  - ansible --version
-  - ansible-lint --version
-  - pip show -v ansible-review
-  - rubocop --version
+  - pip install -Ur requirements.txt
 
 script:
   - make lint
-  - bundle exec kitchen list
-  - bundle exec kitchen create $INSTANCE || true # A minor schlonk to avoid failure during kitchen build.
-  - bundle exec kitchen test $INSTANCE
-  - make install_current_version
+  - bundle exec kitchen create $PLATFORM || true # A minor schlonk to avoid failure during kitchen build.
+  - bundle exec kitchen test "check-${PLATFORM}"
+  - bundle exec kitchen test "default-${PLATFORM}"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
@@ -40,22 +33,14 @@ matrix:
   fast_finish: true
   include:
   - python: 2.7
-    env: INSTANCE="CheckNonFedora-centos-7"
+    env: PLATFORM="centos-7"
   - python: 2.7
-    env: INSTANCE="CheckNonFedora-debian-9"
+    env: PLATFORM="debian-9"
   - python: 2.7
-    env: INSTANCE="CheckNonFedora-ubuntu-1604"
+    env: PLATFORM="ubuntu-1604"
   - python: 2.7
-    env: INSTANCE="CheckNonFedora-ubuntu-1804"
+    env: PLATFORM="ubuntu-1804"
   - python: 3.6
-    env: INSTANCE="CheckFedora-fedora-27"
-  - python: 2.7
-    env: INSTANCE="ApplyRedhat-centos-7"
-  - python: 2.7
-    env: INSTANCE="ApplyDebian-debian-9"
-  - python: 2.7
-    env: INSTANCE="ApplyDebian-ubuntu-1604"
-  - python: 2.7
-    env: INSTANCE="ApplyDebian-ubuntu-1804"
+    env: PLATFORM="fedora-28"
   - python: 3.6
-    env: INSTANCE="ApplyFedora-fedora-27"
+    env: PLATFORM="fedora-29"

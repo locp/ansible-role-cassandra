@@ -1,8 +1,0 @@
-# Standards: 0.1
----
-- hosts: cassandra
-
-  remote_user: root
-
-  roles:
-  - cassandra

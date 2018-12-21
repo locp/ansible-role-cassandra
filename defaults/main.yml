@@ -1,8 +1,11 @@
 ---
 # defaults file for cassandra
-cassandra_configuration_templ: cassandra.yaml.j2
+cassandra_configuration_templ: "cassandra.yaml.j2"
 cassandra_configure_apache_repo: False
 cassandra_package: cassandra
 cassandra_service_enabled: yes
 cassandra_service_restart: True
 cassandra_service_state: started
+cassandra_systemd_enabled: False
+cassandra_systemd_path: "/etc/systemd/system/cassandra.service"
+cassandra_systemd_template: "systemd/system/{{ ansible_facts.distribution }}/{{ ansible_facts.distribution_major_version }}/cassandra.service.j2"
