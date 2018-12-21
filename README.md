@@ -96,7 +96,7 @@ executes this module.
   `cassandra_systemd_enabled` is **False**.
 
 * `cassandra_systemd_template` (default:
-  `"systemd/system/{{ ansible_facts['distribution'] }}/{{ ansible_facts[‘distribution_major_version’] }}/cassandra.service.j2"`:
+  `"systemd/system/{{ ansible_facts.distribution }}/{{ ansible_facts.distribution_major_version }}/cassandra.service.j2"`:
   The path for a template from which to create unit file for Cassandra.  This
   variable is ignored if `cassandra_systemd_enabled` is **False**.
 
