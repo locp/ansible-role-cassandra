@@ -3,7 +3,7 @@ clean:
 	rm -rf .kitchen
 
 lint:
-	bundle exec travis lint -x
+	bundle exec travis lint --skip-completion-check --exit-code
 	bundle exec rubocop -ES
 	ansible-lint -pv . test/test.yml
 	ansible-review -c ./test/ansible-review.cfg \
