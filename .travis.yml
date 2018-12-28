@@ -36,5 +36,5 @@ matrix:
     env: PLATFORM="ubuntu-1804"
   - python: 3.6
     env: PLATFORM="fedora-28"
-  - python: 3.6
+  - python: 3.7
     env: PLATFORM="fedora-29"
