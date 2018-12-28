@@ -15,4 +15,6 @@ group :test do
       '0.61.1'
   gem 'test-kitchen',
       '1.23.5'
+  gem 'travis',
+      '1.8.9'
 end
