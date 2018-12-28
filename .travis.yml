@@ -9,12 +9,6 @@ cache:
   - /home/travis/.cache/pip
   - /home/travis/virtualenv
 
-addons:
-  apt:
-    packages:
-    - python-pip
-    - ruby-bundler
-
 # Install ansible
 install:
   - bundle install
