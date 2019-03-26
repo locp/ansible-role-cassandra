@@ -15,8 +15,8 @@ install:
   - pip install -Ur requirements.txt
 
 script:
-  - make lint
-  - bundle exec kitchen create $PLATFORM || true # A minor schlonk to avoid failure during kitchen build.
+  - make script
+  - bundle exec kitchen create $PLATFORM || true
   - bundle exec kitchen test "check-${PLATFORM}"
   - bundle exec kitchen test "default-${PLATFORM}"
 

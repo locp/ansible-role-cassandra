@@ -1,16 +1,18 @@
-clean:
-	kitchen destroy
-	rm -rf .kitchen
-
-lint:
+script:
 	bundle exec travis lint --skip-completion-check --exit-code
-	bundle exec rubocop -ES
-	ansible-lint -pv . test/test.yml
-	ansible-review -c ./test/ansible-review.cfg \
-	  defaults/main.yml \
-	  handlers/main.yml \
-	  meta/main.yml \
-	  tasks/apache_repo.yml \
-	  tasks/directory.yml \
-	  tasks/main.yml \
-	  test/test.yml
+	ansible-review -c ./.ansible-review/ansible-review.cfg \
+		molecule/default/prepare.yml \
+		molecule/default/playbook.yml \
+		*/*.yml
+	pydocstyle -esv .
+	molecule lint
+	molecule destroy
+	molecule dependency
+	molecule syntax
+	molecule create
+	molecule prepare
+	molecule converge -- --check
+	molecule converge
+	molecule idempotence
+	molecule --debug verify
+	molecule destroy

@@ -1,6 +1,6 @@
 # Standards: 0.1
 ---
-- hosts: cassandra
+- hosts: all
 
   remote_user: root
 
@@ -54,4 +54,4 @@
     cassandra_repo_apache_release: 311x
 
   roles:
-  - cassandra
+  - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"

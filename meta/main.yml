@@ -1,11 +1,12 @@
 # Standards: 0.1
+---
 galaxy_info:
 
   author: "Ben Dalling"
 
   description: "Ansible role to install Apache Cassandra."
 
-  company:  "League of Crafty Programmers Ltd"
+  company: "League of Crafty Programmers Ltd"
 
   github_branch: master
 
