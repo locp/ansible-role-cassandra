@@ -15,6 +15,7 @@ install:
   - pip install -Ur requirements.txt
 
 script:
+  - make lint
   - molecule test -s $SCENARIO
 
 notifications:
