@@ -15,10 +15,7 @@ install:
   - pip install -Ur requirements.txt
 
 script:
-  - make script
-  - bundle exec kitchen create $PLATFORM || true
-  - bundle exec kitchen test "check-${PLATFORM}"
-  - bundle exec kitchen test "default-${PLATFORM}"
+  - molecule test -s $SCENARIO
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
@@ -28,14 +25,14 @@ matrix:
   fast_finish: true
   include:
   - python: 2.7
-    env: PLATFORM="centos-7"
+    env: SCENARIO="default"
   - python: 2.7
-    env: PLATFORM="debian-9"
+    env: SCENARIO="debian-9"
   - python: 2.7
-    env: PLATFORM="ubuntu-1604"
+    env: SCENARIO="ubuntu-1604"
   - python: 2.7
-    env: PLATFORM="ubuntu-1804"
+    env: SCENARIO="ubuntu-1804"
   - python: 3.6
-    env: PLATFORM="fedora-28"
+    env: SCENARIO="fedora-28"
   - python: 3.6
-    env: PLATFORM="fedora-29"
+    env: SCENARIO="fedora-29"
