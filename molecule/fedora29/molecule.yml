@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: fedora-29
+- name: fedora29
   command: /usr/sbin/init
   image: fedora:29
   privileged: True

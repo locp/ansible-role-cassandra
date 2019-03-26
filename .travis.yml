@@ -28,12 +28,12 @@ matrix:
   - python: 2.7
     env: SCENARIO="default"
   - python: 2.7
-    env: SCENARIO="debian-9"
+    env: SCENARIO="debian9"
   - python: 2.7
-    env: SCENARIO="ubuntu-1604"
+    env: SCENARIO="ubuntu1604"
   - python: 2.7
-    env: SCENARIO="ubuntu-1804"
+    env: SCENARIO="ubuntu1804"
   - python: 3.6
-    env: SCENARIO="fedora-28"
+    env: SCENARIO="fedora28"
   - python: 3.6
-    env: SCENARIO="fedora-29"
+    env: SCENARIO="fedora29"
