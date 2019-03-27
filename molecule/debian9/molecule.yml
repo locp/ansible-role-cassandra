@@ -6,15 +6,15 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: centos7
-  command: /usr/sbin/init
-  image: centos:7
-  privileged: True
+- name: debian9
+  image: debian:9
 provisioner:
   name: ansible
   log: True
   lint:
     name: ansible-lint
+  playbooks:
+    converge: ../default/playbook.yml
 scenario:
   test_sequence:
     - lint
@@ -31,7 +31,8 @@ scenario:
     - destroy
 verifier:
   name: testinfra
-  options:
-    v: 1
+  directory: ../default/tests
   lint:
     name: flake8
+  options:
+    v: 1
