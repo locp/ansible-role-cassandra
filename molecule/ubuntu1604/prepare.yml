@@ -8,19 +8,12 @@
 
   pre_tasks:
   - name: Install Packages
-    package:
+    apt:
       name: "{{ item }}"
+      cache_valid_time: 600
     register: pkgstatus
     until: pkgstatus is succeeded
     with_items:
-    - initscripts
+    - apt-utils
     - iproute
-    - java-1.8.0-openjdk-headless
-    - rsyslog
-
-  - name: Enable Services
-    service:
-      name: "{{ item }}"
-      state: started
-    with_items:
-    - rsyslog
+    - python-apt

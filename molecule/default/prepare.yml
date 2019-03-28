@@ -4,41 +4,30 @@
 
   remote_user: root
 
+  gather_facts: no
+
   pre_tasks:
-  - name: Set Some Instance Facts
-    set_fact:
-      instance_facts:
-        distribution: "{{ ansible_facts['distribution'] }}"
-        hostname: "{{ ansible_hostname }}"
-        os_family: "{{ ansible_facts['os_family'] }}"
-
-  - name: Show Instance Facts
-    debug:
-      var: instance_facts
-
-  - name: Fedora Workaround
-    set_fact:
-      cassandra_systemd_enabled: True
-    when: ansible_facts['distribution'] == 'Fedora'
-
   - name: Install EPEL
-    package:
+    yum:
       name: epel-release
-    when: ansible_facts['distribution'] == 'CentOS'
+      update_cache: yes
+    register: pkgstatus
+    until: pkgstatus is succeeded
 
-  - name: Install Red Hat Package
-    package:
+  - name: Install Packages
+    yum:
       name: "{{ item }}"
+      update_cache: yes
+    register: pkgstatus
+    until: pkgstatus is succeeded
     with_items:
     - initscripts
     - iproute
     - rsyslog
-    when: ansible_facts['os_family'] == 'RedHat'
 
-  - name: Enable Red Hat Services
+  - name: Enable Services
     service:
       name: "{{ item }}"
       state: started
     with_items:
     - rsyslog
-    when: ansible_facts['os_family'] == 'RedHat'

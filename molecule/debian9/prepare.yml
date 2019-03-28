@@ -4,21 +4,15 @@
 
   remote_user: root
 
+  gather_facts: no
+
   pre_tasks:
-  - name: Set Some Instance Facts
-    set_fact:
-      instance_facts:
-        distribution: "{{ ansible_facts['distribution'] }}"
-        hostname: "{{ ansible_hostname }}"
-        os_family: "{{ ansible_facts['os_family'] }}"
-
-  - name: Show Instance Facts
-    debug:
-      var: instance_facts
-
   - name: Install Packages
-    package:
+    apt:
       name: "{{ item }}"
+      cache_valid_time: 600
+    register: pkgstatus
+    until: pkgstatus is succeeded
     with_items:
     - apt-utils
     - python-apt
