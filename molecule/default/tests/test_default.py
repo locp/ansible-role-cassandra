@@ -52,7 +52,7 @@ def test_custom_directories(host):
     assert d.is_directory
     assert d.user == 'root'
     assert d.group == 'root'
-    assert oct(d.mode) == '0755'
+    assert d.mode == 0o755
 
     directories = ['/data/cassandra/data', '/data/cassandra/hints']
 
@@ -62,7 +62,7 @@ def test_custom_directories(host):
         assert d.is_directory
         assert d.user == 'cassandra'
         assert d.group == 'cassandra'
-        assert oct(d.mode) == '0700'
+        assert d.mode == 0o700
 
 
 def test_cluster_name(host):
