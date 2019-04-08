@@ -15,4 +15,5 @@
     until: pkgstatus is succeeded
     with_items:
     - apt-utils
+    - procps
     - python-apt
