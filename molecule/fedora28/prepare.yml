@@ -8,9 +8,8 @@
 
   pre_tasks:
   - name: Install Packages
-    yum:
+    package:
       name: "{{ item }}"
-      update_cache: yes
     register: pkgstatus
     until: pkgstatus is succeeded
     with_items:

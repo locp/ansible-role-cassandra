@@ -4,12 +4,6 @@
 
   remote_user: root
 
-  pre_tasks:
-  - name: Fedora Workaround
-    set_fact:
-      cassandra_systemd_enabled: True
-    when: ansible_facts['distribution'] == 'Fedora'
-
   vars:
     cassandra_configuration:
       authenticator: PasswordAuthenticator
@@ -53,5 +47,28 @@
     cassandra_rack: RACK1
     cassandra_repo_apache_release: 311x
 
+  pre_tasks:
+  - name: Fedora Workaround
+    set_fact:
+      cassandra_systemd_enabled: True
+    when: ansible_facts['distribution'] == 'Fedora'
+
   roles:
   - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+
+  post_tasks:
+  - name: Get list of services
+    service_facts:
+    register: cassandra_services_facts
+
+  - name: Show services details
+    debug:
+      var: cassandra_services_facts
+
+  - name: Wait for the Cassandra Service to be Running
+    service_facts:
+    retries: 100
+    delay: 3
+    register: cassandra_services_facts
+    until: cassandra_services_facts.ansible_facts.services['cassandra.service'].state == 'running'
+    when: not ansible_check_mode
