@@ -15,5 +15,6 @@
     until: pkgstatus is succeeded
     with_items:
     - apt-utils
+    - lsb-release
     - procps
     - python-apt
