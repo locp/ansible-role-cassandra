@@ -16,7 +16,7 @@ install:
 
 script:
   - make lint
-  - molecule test -s $SCENARIO
+  - molecule --debug test -s $SCENARIO
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
