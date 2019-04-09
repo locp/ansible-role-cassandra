@@ -65,10 +65,22 @@
     debug:
       var: cassandra_services_facts
 
-  - name: Wait for the Cassandra Service to be Running
+  - name: Wait for the Cassandra Service to be Running (Red Hat)
     service_facts:
     retries: 100
     delay: 3
     register: cassandra_services_facts
     until: cassandra_services_facts.ansible_facts.services['cassandra.service'].state == 'running'
-    when: not ansible_check_mode
+    when:
+    - not ansible_check_mode
+    - ansible_os_family == 'RedHat'
+
+  - name: Wait for the Cassandra Service to be Running (Debian)
+    service_facts:
+    retries: 100
+    delay: 3
+    register: cassandra_services_facts
+    until: cassandra_services_facts.ansible_facts.services['cassandra'].state == 'running'
+    when:
+    - not ansible_check_mode
+    - ansible_os_family == 'Debian'
