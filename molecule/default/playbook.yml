@@ -57,11 +57,8 @@
   - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
 
   post_tasks:
-  - name: Wait for the Cassandra Service to be Running
-    command: nodetool status
-    retries: 100
-    delay: 3
-    register: cassandra_nodetool_status
-    until: cassandra_nodetool_status.rc == 0
-    changed_when: false
+  - name: Wait for the Cassandra to Gossip
+    wait_for:
+      host: "{{ ansible_default_ipv4.address }}"
+      port: 9160
     when: not ansible_check_mode
