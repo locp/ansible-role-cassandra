@@ -1,4 +1,3 @@
-# Standards: 0.1
 ---
 - hosts: all
 
@@ -6,28 +5,28 @@
 
   gather_facts: no
 
-  pre_tasks:
-  - name: Install EPEL
-    yum:
-      name: epel-release
-      update_cache: yes
-    register: pkgstatus
-    until: pkgstatus is succeeded
+  tasks:
+    - name: Install EPEL
+      yum:
+        name: epel-release
+        update_cache: yes
+      register: pkgstatus
+      until: pkgstatus is succeeded
 
-  - name: Install Packages
-    yum:
-      name: "{{ item }}"
-      update_cache: yes
-    register: pkgstatus
-    until: pkgstatus is succeeded
-    with_items:
-    - initscripts
-    - iproute
-    - rsyslog
+    - name: Install Packages
+      yum:
+        name: "{{ item }}"
+        update_cache: yes
+      register: pkgstatus
+      until: pkgstatus is succeeded
+      with_items:
+        - initscripts
+        - iproute
+        - rsyslog
 
-  - name: Enable Services
-    service:
-      name: "{{ item }}"
-      state: started
-    with_items:
-    - rsyslog
+    - name: Enable Services
+      service:
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - rsyslog

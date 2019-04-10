@@ -6,10 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: ubuntu1604
-  command: /sbin/init
-  image: ubuntu:16.04
-  privileged: True
+  - name: ubuntu1604
+    command: /sbin/init
+    image: ubuntu:16.04
+    privileged: True
 provisioner:
   name: ansible
   log: True

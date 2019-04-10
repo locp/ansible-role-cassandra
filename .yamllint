@@ -7,6 +7,5 @@ rules:
   brackets:
     max-spaces-inside: 1
     level: error
-  indentation: disable
   line-length: disable
   truthy: disable

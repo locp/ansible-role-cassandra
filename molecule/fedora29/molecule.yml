@@ -6,10 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: fedora29
-  command: /usr/sbin/init
-  image: fedora:29
-  privileged: True
+  - name: fedora29
+    command: /usr/sbin/init
+    image: fedora:29
+    privileged: True
 provisioner:
   name: ansible
   log: True

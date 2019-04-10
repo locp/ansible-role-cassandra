@@ -6,9 +6,9 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: ubuntu1804
-  image: ubuntu:18.04
-  privileged: True
+  - name: ubuntu1804
+    image: ubuntu:18.04
+    privileged: True
 provisioner:
   name: ansible
   log: True

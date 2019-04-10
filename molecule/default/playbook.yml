@@ -1,4 +1,3 @@
-# Standards: 0.1
 ---
 - hosts: all
 
@@ -12,16 +11,16 @@
       commitlog_sync: periodic
       commitlog_sync_period_in_ms: 10000
       data_file_directories:
-      - /data/cassandra/data
+        - /data/cassandra/data
       endpoint_snitch: GossipingPropertyFileSnitch
       hints_directory: "/data/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /data/cassandra/saved_caches
       seed_provider:
-      - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
-        parameters:
-        - seeds: "{{ ansible_default_ipv4.address }}"
+        - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
+          parameters:
+            - seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
     cassandra_dc: DC1
@@ -36,55 +35,57 @@
         mode: "0755"
         owner: root
         paths:
-        - /data
+          - /data
       data:
         paths:
-        - /data/cassandra
-        - /data/cassandra/commitlog
-        - /data/cassandra/data
-        - /data/cassandra/hints
-        - /data/cassandra/saved_caches
+          - /data/cassandra
+          - /data/cassandra/commitlog
+          - /data/cassandra/data
+          - /data/cassandra/hints
+          - /data/cassandra/saved_caches
     cassandra_rack: RACK1
     cassandra_repo_apache_release: 311x
 
   pre_tasks:
-  - name: Fedora Workaround
-    set_fact:
-      cassandra_systemd_enabled: True
-    when: ansible_facts['distribution'] == 'Fedora'
+    - name: Fedora Workaround
+      set_fact:
+        cassandra_systemd_enabled: True
+      when: ansible_facts['distribution'] == 'Fedora'
 
   roles:
-  - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+    # In a real life scenario, replace the line below with:
+    # - role: cassandra
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
 
   post_tasks:
-  - name: Wait for the Cassandra Listener
-    wait_for:
-      host: "{{ ansible_default_ipv4.address }}"
-      port: 9042
-    when: not ansible_check_mode
+    - name: Wait for the Cassandra Listener
+      wait_for:
+        host: "{{ ansible_default_ipv4.address }}"
+        port: 9042
+      when: not ansible_check_mode
 
-  - name: Wait for the Cassandra to Gossip
-    wait_for:
-      host: "{{ ansible_default_ipv4.address }}"
-      port: 9160
-    when: not ansible_check_mode
+    - name: Wait for the Cassandra to Gossip
+      wait_for:
+        host: "{{ ansible_default_ipv4.address }}"
+        port: 9160
+      when: not ansible_check_mode
 
-  - name: Wait for the Cassandra Service to be Running (Red Hat)
-    service_facts:
-    retries: 100
-    delay: 3
-    register: cassandra_services_facts
-    until: cassandra_services_facts.ansible_facts.services['cassandra.service'].state == 'running'
-    when:
-    - not ansible_check_mode
-    - ansible_os_family == 'RedHat'
+    - name: Wait for the Cassandra Service to be Running (Red Hat)
+      service_facts:
+      retries: 100
+      delay: 3
+      register: cassandra_services_facts
+      until: cassandra_services_facts.ansible_facts.services['cassandra.service'].state == 'running'
+      when:
+        - not ansible_check_mode
+        - ansible_os_family == 'RedHat'
 
-  - name: Wait for the Cassandra Service to be Running (Debian)
-    service_facts:
-    retries: 100
-    delay: 3
-    register: cassandra_services_facts
-    until: cassandra_services_facts.ansible_facts.services['cassandra'].state == 'running'
-    when:
-    - not ansible_check_mode
-    - ansible_os_family == 'Debian'
+    - name: Wait for the Cassandra Service to be Running (Debian)
+      service_facts:
+      retries: 100
+      delay: 3
+      register: cassandra_services_facts
+      until: cassandra_services_facts.ansible_facts.services['cassandra'].state == 'running'
+      when:
+        - not ansible_check_mode
+        - ansible_os_family == 'Debian'

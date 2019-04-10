@@ -6,10 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: centos7
-  command: /usr/sbin/init
-  image: centos:7
-  privileged: True
+  - name: centos7
+    command: /usr/sbin/init
+    image: centos:7
+    privileged: True
 provisioner:
   name: ansible
   log: True

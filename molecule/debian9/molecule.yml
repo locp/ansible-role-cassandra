@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-- name: debian9
-  image: debian:9
+  - name: debian9
+    image: debian:9
 provisioner:
   name: ansible
   log: True

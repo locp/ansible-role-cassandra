@@ -102,20 +102,14 @@ executes this module.
 
 ## Example Playbook
 
-Then this basic [playbook](test/test.yml) should be enough to configure
+Then this basic playbook should be enough to configure
 Cassandra with a *very* basic configuration:
 
 ```YAML
 ---
-- hosts: cassandra
+- hosts: all
 
   remote_user: root
-
-  pre_tasks:
-  - name: Fedora Workaround
-    set_fact:
-      cassandra_systemd_enabled: True
-    when: ansible_facts['distribution'] == 'Fedora'
 
   vars:
     cassandra_configuration:
@@ -125,16 +119,16 @@ Cassandra with a *very* basic configuration:
       commitlog_sync: periodic
       commitlog_sync_period_in_ms: 10000
       data_file_directories:
-      - /data/cassandra/data
+        - /data/cassandra/data
       endpoint_snitch: GossipingPropertyFileSnitch
       hints_directory: "/data/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /data/cassandra/saved_caches
       seed_provider:
-      - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
-        parameters:
-        - seeds: "{{ ansible_default_ipv4.address }}"
+        - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
+          parameters:
+            - seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
     cassandra_dc: DC1
@@ -149,19 +143,25 @@ Cassandra with a *very* basic configuration:
         mode: "0755"
         owner: root
         paths:
-        - /data
+          - /data
       data:
         paths:
-        - /data/cassandra
-        - /data/cassandra/commitlog
-        - /data/cassandra/data
-        - /data/cassandra/hints
-        - /data/cassandra/saved_caches
+          - /data/cassandra
+          - /data/cassandra/commitlog
+          - /data/cassandra/data
+          - /data/cassandra/hints
+          - /data/cassandra/saved_caches
     cassandra_rack: RACK1
     cassandra_repo_apache_release: 311x
 
+  pre_tasks:
+    - name: Fedora Workaround
+      set_fact:
+        cassandra_systemd_enabled: True
+      when: ansible_facts['distribution'] == 'Fedora'
+
   roles:
-  - cassandra
+    - cassandra
 ```
 
 ## License

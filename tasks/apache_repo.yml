@@ -10,8 +10,8 @@
     repo_gpgcheck: yes
     gpgkey: https://www.apache.org/dist/cassandra/KEYS
   when:
-  - ansible_os_family is defined
-  - ansible_os_family == 'RedHat'
+    - ansible_os_family is defined
+    - ansible_os_family == 'RedHat'
 
 - name: Add the Apache Apt Key
   apt_key:
@@ -20,8 +20,8 @@
   register: cassandra_remote_status
   until: cassandra_remote_status is succeeded
   when:
-  - ansible_os_family is defined
-  - ansible_os_family == 'Debian'
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'
 
 - name: Configure the Apache Cassandra Apt Repository
   apt_repository:
@@ -29,5 +29,5 @@
     repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_repo_apache_release }} main"
     state: present
   when:
-  - ansible_os_family is defined
-  - ansible_os_family == 'Debian'
+    - ansible_os_family is defined
+    - ansible_os_family == 'Debian'

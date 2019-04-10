@@ -5,9 +5,9 @@ sudo: true
 
 cache:
   directories:
-  - /home/travis/.rvm
-  - /home/travis/.cache/pip
-  - /home/travis/virtualenv
+    - /home/travis/.rvm
+    - /home/travis/.cache/pip
+    - /home/travis/virtualenv
 
 # Install ansible
 install:
@@ -25,15 +25,15 @@ notifications:
 matrix:
   fast_finish: true
   include:
-  - python: 2.7
-    env: SCENARIO="default"
-  - python: 2.7
-    env: SCENARIO="debian9"
-  - python: 2.7
-    env: SCENARIO="ubuntu1604"
-  - python: 2.7
-    env: SCENARIO="ubuntu1804"
-  - python: 3.6
-    env: SCENARIO="fedora28"
-  - python: 3.6
-    env: SCENARIO="fedora29"
+    - python: 2.7
+      env: SCENARIO="default"
+    - python: 2.7
+      env: SCENARIO="debian9"
+    - python: 2.7
+      env: SCENARIO="ubuntu1604"
+    - python: 2.7
+      env: SCENARIO="ubuntu1804"
+    - python: 3.6
+      env: SCENARIO="fedora28"
+    - python: 3.6
+      env: SCENARIO="fedora29"
