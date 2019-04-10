@@ -4,3 +4,4 @@
 *.rake_tasks~
 *.swp
 Gemfile.lock
+pytestdebug.log

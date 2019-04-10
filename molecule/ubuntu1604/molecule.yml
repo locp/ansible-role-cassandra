@@ -1,0 +1,40 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu1604
+    command: /sbin/init
+    image: ubuntu:16.04
+    privileged: True
+provisioner:
+  name: ansible
+  log: True
+  lint:
+    name: ansible-lint
+  playbooks:
+    converge: ../default/playbook.yml
+scenario:
+  test_sequence:
+    - lint
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - verify
+    - cleanup
+    - destroy
+verifier:
+  name: testinfra
+  directory: ../default/tests
+  lint:
+    name: flake8
+  options:
+    v: 1
