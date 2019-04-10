@@ -5,9 +5,9 @@ sudo: true
 
 cache:
   directories:
-  - /home/travis/.rvm
-  - /home/travis/.cache/pip
-  - /home/travis/virtualenv
+    - /home/travis/.rvm
+    - /home/travis/.cache/pip
+    - /home/travis/virtualenv
 
 # Install ansible
 install:
@@ -16,9 +16,7 @@ install:
 
 script:
   - make lint
-  - bundle exec kitchen create $PLATFORM || true # A minor schlonk to avoid failure during kitchen build.
-  - bundle exec kitchen test "check-${PLATFORM}"
-  - bundle exec kitchen test "default-${PLATFORM}"
+  - molecule --debug test -s $SCENARIO
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
@@ -27,15 +25,15 @@ notifications:
 matrix:
   fast_finish: true
   include:
-  - python: 2.7
-    env: PLATFORM="centos-7"
-  - python: 2.7
-    env: PLATFORM="debian-9"
-  - python: 2.7
-    env: PLATFORM="ubuntu-1604"
-  - python: 2.7
-    env: PLATFORM="ubuntu-1804"
-  - python: 3.6
-    env: PLATFORM="fedora-28"
-  - python: 3.6
-    env: PLATFORM="fedora-29"
+    - python: 2.7
+      env: SCENARIO="default"
+    - python: 2.7
+      env: SCENARIO="debian9"
+    - python: 2.7
+      env: SCENARIO="ubuntu1604"
+    - python: 2.7
+      env: SCENARIO="ubuntu1804"
+    - python: 3.6
+      env: SCENARIO="fedora28"
+    - python: 3.6
+      env: SCENARIO="fedora29"

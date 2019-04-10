@@ -8,4 +8,4 @@
     state: directory
   with_items: "{{ cassandra_directories[cassandra_directory_set].paths }}"
   when:
-  - not ansible_check_mode
+    - not ansible_check_mode
