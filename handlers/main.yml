@@ -1,3 +1,4 @@
+
 # Standards: 0.1
 # handlers file for cassandra
 ---
@@ -5,6 +6,7 @@
   service:
     name: cassandra
     state: restarted
+    enabled: "{{ cassandra_service_enabled }}"
   when:
   - cassandra_service_restart
   - not ansible_check_mode
