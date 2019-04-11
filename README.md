@@ -102,12 +102,14 @@ executes this module.
 
 ## Example Playbook
 
-Then this basic playbook should be enough to configure
-Cassandra with a *very* basic configuration:
+This playbook should be enough to configure Cassandra with a *very* basic
+configuration:
 
 ```YAML
 ---
-- hosts: all
+- name: Example Playbook for the locp.cassandra Role
+
+  hosts: cassandra
 
   remote_user: root
 
@@ -161,7 +163,7 @@ Cassandra with a *very* basic configuration:
       when: ansible_facts['distribution'] == 'Fedora'
 
   roles:
-    - cassandra
+    - role: locp.cassandra
 ```
 
 ## License

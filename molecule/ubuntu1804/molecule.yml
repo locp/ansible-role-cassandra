@@ -7,7 +7,10 @@ lint:
   name: yamllint
 platforms:
   - name: ubuntu1804
+    dockerfile: ../default/Dockerfile.j2
     image: ubuntu:18.04
+    groups:
+      - cassandra
     privileged: True
 provisioner:
   name: ansible
@@ -16,11 +19,11 @@ provisioner:
     name: ansible-lint
   playbooks:
     converge: ../default/playbook.yml
+    prepare: ../default/prepare.yml
 scenario:
   test_sequence:
     - lint
     - destroy
-    - dependency
     - syntax
     - create
     - prepare
@@ -28,8 +31,6 @@ scenario:
     - converge
     - idempotence
     - verify
-    - cleanup
-    - destroy
 verifier:
   name: testinfra
   directory: ../default/tests
