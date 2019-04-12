@@ -1,5 +1,7 @@
 ---
-- hosts: all
+- name: Example Playbook for the locp.cassandra Role
+
+  hosts: cassandra
 
   remote_user: root
 
@@ -53,9 +55,7 @@
       when: ansible_facts['distribution'] == 'Fedora'
 
   roles:
-    # In a real life scenario, replace the line below with:
-    # - role: cassandra
-    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+    - role: locp.cassandra
 
   post_tasks:
     - name: Wait for the Cassandra Listener

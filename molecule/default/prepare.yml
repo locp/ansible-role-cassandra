@@ -3,17 +3,41 @@
 
   remote_user: root
 
-  gather_facts: no
+  vars:
+    apt_key: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+    apt_packages:
+      Debian9:
+        - apt-utils
+        - lsb-release
+        - procps
+        - python-apt
+      Ubuntu16:
+        - apt-utils
+        - iproute
+        - python-apt
+      Ubuntu18:
+        - apt-utils
+        - iproute2
+        - python-apt
+    instance_info:
+      ansible_distribution: "{{ ansible_distribution }}"
+      ansible_distribution_major_version: "{{ ansible_distribution_major_version }}"
+      ansible_os_family: "{{ ansible_os_family }}"
 
   tasks:
+    - name: Display Host Information
+      debug:
+        var: instance_info
+
     - name: Install EPEL
       yum:
         name: epel-release
         update_cache: yes
       register: pkgstatus
       until: pkgstatus is succeeded
+      when: ansible_distribution == 'CentOS'
 
-    - name: Install Packages
+    - name: Install Yum Packages
       yum:
         name: "{{ item }}"
         update_cache: yes
@@ -22,11 +46,24 @@
       with_items:
         - initscripts
         - iproute
-        - rsyslog
+      when: ansible_distribution == 'CentOS'
 
-    - name: Enable Services
-      service:
+    - name: Install Fedora Packages
+      package:
         name: "{{ item }}"
-        state: started
+      register: pkgstatus
+      until: pkgstatus is succeeded
       with_items:
-        - rsyslog
+        - initscripts
+        - iproute
+        - java-1.8.0-openjdk-headless
+      when: ansible_distribution == 'Fedora'
+
+    - name: Install Debian Packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      register: pkgstatus
+      until: pkgstatus is succeeded
+      with_items: "{{ apt_packages[apt_key] }}"
+      when: ansible_os_family == 'Debian'

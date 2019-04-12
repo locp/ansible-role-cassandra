@@ -7,6 +7,9 @@ lint:
   name: yamllint
 platforms:
   - name: debian9
+    dockerfile: ../default/Dockerfile.j2
+    groups:
+      - cassandra
     image: debian:9
 provisioner:
   name: ansible
@@ -15,11 +18,11 @@ provisioner:
     name: ansible-lint
   playbooks:
     converge: ../default/playbook.yml
+    prepare: ../default/prepare.yml
 scenario:
   test_sequence:
     - lint
     - destroy
-    - dependency
     - syntax
     - create
     - prepare
@@ -27,8 +30,6 @@ scenario:
     - converge
     - verify
     - idempotence
-    - cleanup
-    - destroy
 verifier:
   name: testinfra
   directory: ../default/tests

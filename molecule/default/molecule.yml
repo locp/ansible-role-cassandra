@@ -8,6 +8,8 @@ lint:
 platforms:
   - name: centos7
     command: /usr/sbin/init
+    groups:
+      - cassandra
     image: centos:7
     privileged: True
 provisioner:
@@ -19,7 +21,6 @@ scenario:
   test_sequence:
     - lint
     - destroy
-    - dependency
     - syntax
     - create
     - prepare
@@ -27,8 +28,6 @@ scenario:
     - converge
     - idempotence
     - verify
-    - cleanup
-    - destroy
 verifier:
   name: testinfra
   options:

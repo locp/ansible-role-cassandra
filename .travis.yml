@@ -11,12 +11,12 @@ cache:
 
 # Install ansible
 install:
+  - ln -s $( basename $PWD ) ../locp.cassandra
   - bundle install
   - pip install -Ur requirements.txt
 
 script:
-  - make lint
-  - molecule --debug test -s $SCENARIO
+  - make
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

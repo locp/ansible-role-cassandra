@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.2](https://github.com/locp/ansible-role-cassandra/tree/0.7.2) (2019-04-12)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.1...0.7.2)
+
+**Fixed bugs:**
+
+- Example Playbook May Confuse Users [\#48](https://github.com/locp/ansible-role-cassandra/issues/48)
+
 ## [0.7.1](https://github.com/locp/ansible-role-cassandra/tree/0.7.1) (2019-04-10)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.0...0.7.1)
