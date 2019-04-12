@@ -6,11 +6,19 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu1804
+  - name: fedora28
+    command: /usr/sbin/init
     dockerfile: ../default/Dockerfile.j2
-    image: ubuntu:18.04
     groups:
       - cassandra
+    image: fedora:28
+    privileged: True
+  - name: fedora29
+    command: /usr/sbin/init
+    dockerfile: ../default/Dockerfile.j2
+    groups:
+      - cassandra
+    image: fedora:29
     privileged: True
 provisioner:
   name: ansible

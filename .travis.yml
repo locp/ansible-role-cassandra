@@ -30,10 +30,6 @@ matrix:
     - python: 2.7
       env: SCENARIO="debian9"
     - python: 2.7
-      env: SCENARIO="ubuntu1604"
-    - python: 2.7
-      env: SCENARIO="ubuntu1804"
+      env: SCENARIO="ubuntu"
     - python: 3.6
-      env: SCENARIO="fedora28"
-    - python: 3.6
-      env: SCENARIO="fedora29"
+      env: SCENARIO="fedora"
