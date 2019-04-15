@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.3](https://github.com/locp/ansible-role-cassandra/tree/0.7.3) (2019-04-15)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.2...0.7.3)
+
+**Ansible Version**
+
+The minimum Ansible version has been bumped from 2.6.2 to 2.6.14 due to CVE-2019-3828 (#50).
+
+**Fixed bugs:**
+
+- CVE-2019-3828 [\#50](https://github.com/locp/ansible-role-cassandra/issues/50)
+
 ## [0.7.2](https://github.com/locp/ansible-role-cassandra/tree/0.7.2) (2019-04-12)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.1...0.7.2)
