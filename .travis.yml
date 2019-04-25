@@ -21,15 +21,14 @@ script:
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
 
-# Fedora 29 uses Python 3.7 but this is not available on TravisCI yet.
 matrix:
   fast_finish: true
   include:
-    - python: 2.7
+    - python: 3.6
       env: SCENARIO="default"
-    - python: 2.7
+    - python: 3.6
       env: SCENARIO="debian9"
-    - python: 2.7
+    - python: 3.6
       env: SCENARIO="ubuntu"
     - python: 3.6
       env: SCENARIO="fedora"

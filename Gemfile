@@ -14,6 +14,8 @@ group :development do
 end
 
 group :test do
+  gem 'rubocop',
+      '0.67.2'
   gem 'travis',
       '1.8.9'
 end
