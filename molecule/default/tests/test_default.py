@@ -7,8 +7,9 @@ import os
 import re
 import testinfra.utils.ansible_runner
 
+hosts = os.environ['HOSTS']
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts(hosts)
 
 
 def test_nodetool_status(host):
