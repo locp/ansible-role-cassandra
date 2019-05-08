@@ -4,13 +4,24 @@
   remote_user: root
 
   vars:
-    apt_key: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
-    apt_packages:
+    instance_key: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+    packages:
+      CentOS7:
+        - initscripts
+        - iproute
       Debian9:
         - apt-utils
         - lsb-release
         - procps
         - python-apt
+      Fedora28:
+        - initscripts
+        - iproute
+        - java-1.8.0-openjdk-headless
+      Fedora29:
+        - initscripts
+        - iproute
+        - java-1.8.0-openjdk-headless
       Ubuntu16:
         - apt-utils
         - iproute
@@ -39,33 +50,25 @@
 
     - name: Install Yum Packages
       yum:
-        name: "{{ item }}"
+        name: "{{ packages[instance_key] }}"
         update_cache: yes
       register: pkgstatus
       until: pkgstatus is succeeded
-      with_items:
-        - initscripts
-        - iproute
       when: ansible_distribution == 'CentOS'
 
     - name: Install Fedora Packages
       package:
-        name: "{{ item }}"
+        name: "{{ packages[instance_key] }}"
       register: pkgstatus
       until: pkgstatus is succeeded
-      with_items:
-        - initscripts
-        - iproute
-        - java-1.8.0-openjdk-headless
       when: ansible_distribution == 'Fedora'
 
     - name: Install Debian Packages
       apt:
-        name: "{{ item }}"
+        name: "{{ packages[instance_key] }}"
         update_cache: yes
       delay: 10
       register: pkgstatus
       retries: 5
       until: pkgstatus is succeeded
-      with_items: "{{ apt_packages[apt_key] }}"
       when: ansible_os_family == 'Debian'
