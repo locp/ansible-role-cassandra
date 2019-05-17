@@ -16,7 +16,12 @@ group :development do
 end
 
 group :test do
-  gem 'rubocop'
-  gem 'rubocop-performance'
-  gem 'travis'
+  gem 'rubocop',
+      '0.71.0'
+  gem 'rubocop-performance',
+      '1.3.0'
+  gem 'rubocop-rails',
+      '2.0.0'
+  gem 'travis',
+      '1.8.10'
 end
