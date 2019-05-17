@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 group :development do
@@ -15,7 +17,9 @@ end
 
 group :test do
   gem 'rubocop',
-      '0.67.2'
+      '0.69.0'
+  gem 'rubocop-performance',
+      '1.3.0'
   gem 'travis',
       '1.8.10'
 end
