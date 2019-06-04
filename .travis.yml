@@ -14,6 +14,7 @@ install:
   - ln -s $( basename $PWD ) ../locp.cassandra
   - bundle install
   - pip install -Ur requirements.txt
+  - pip freeze
 
 script:
   - make
