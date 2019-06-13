@@ -14,6 +14,7 @@ install:
   - ln -s $( basename $PWD ) ../locp.cassandra
   - bundle install
   - pip install -Ur requirements.txt
+  - pip freeze
 
 script:
   - make
@@ -21,19 +22,14 @@ script:
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
 
-# Fedora 29 uses Python 3.7 but this is not available on TravisCI yet.
 matrix:
   fast_finish: true
   include:
-    - python: 2.7
-      env: SCENARIO="default"
-    - python: 2.7
-      env: SCENARIO="debian9"
-    - python: 2.7
-      env: SCENARIO="ubuntu1604"
-    - python: 2.7
-      env: SCENARIO="ubuntu1804"
     - python: 3.6
-      env: SCENARIO="fedora28"
+      env: HOSTS="centos" SCENARIO="default"
     - python: 3.6
-      env: SCENARIO="fedora29"
+      env: HOSTS="debian" SCENARIO="default"
+    - python: 3.6
+      env: HOSTS="fedora" SCENARIO="default"
+    - python: 3.6
+      env: HOSTS="ubuntu" SCENARIO="default"

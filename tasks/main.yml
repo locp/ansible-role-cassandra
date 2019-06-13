@@ -80,7 +80,6 @@
     - ansible_pkg_mgr == 'dnf'
     - not ansible_check_mode
 
-
 - name: Install the Cassandra Package (YUM)
   # Retries are in this as the cache has been seen to still be updating when
   # this task gets to be executed.

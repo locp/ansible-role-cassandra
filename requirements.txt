@@ -1,5 +1,20 @@
+# When installing these packages, we get the following warnings:
+#
+#  ERROR: molecule 2.20.1 has requirement Jinja2==2.10, but you'll have jinja2 2.10.1 which is incompatible.
+#  ERROR: molecule 2.20.1 has requirement PyYAML==3.13, but you'll have pyyaml 5.1 which is incompatible.
+#  ERROR: molecule 2.20.1 has requirement six==1.11.0, but you'll have six 1.12.0 which is incompatible.
+#
+# Whilst these "errors" appear somewhat alarming, Molecule still runs fine.  When we tried pinning to
+# the specified versions, GitHub warned that we were at risk from the following security alerts:
+#
+#  https://nvd.nist.gov/vuln/detail/CVE-2019-10906
+#  https://nvd.nist.gov/vuln/detail/CVE-2017-18342
+#
+# Basically we're choosing the messages are install time rather than security
+# alerts fron GitHub.
 ansible==2.6.14.0
-ansible-lint==4.1.0
-docker==3.7.1
-molecule==2.20.0
+docker==4.0.1
+molecule==2.20.1
 pydocstyle==3.0.0
+testinfra==1.19.0
+yq==2.7.2

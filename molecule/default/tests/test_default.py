@@ -7,8 +7,9 @@ import os
 import re
 import testinfra.utils.ansible_runner
 
+hosts = os.environ['HOSTS']
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts(hosts)
 
 
 def test_nodetool_status(host):
@@ -20,7 +21,7 @@ def test_nodetool_status(host):
     """
     # Get the IP address
     ipaddr = host.interface('eth0').addresses[0]
-    cmd = host.run("nodetool status")
+    cmd = host.run('nodetool status')
     assert cmd.rc == 0
     pattern = 'UN.*%s.*RACK1' % ipaddr
     matches = re.findall(pattern, cmd.stdout)
@@ -67,7 +68,7 @@ def test_custom_directories(host):
 
 def test_cluster_name(host):
     """Test that the cluster name has been set correctly."""
-    cmd = host.run("nodetool describecluster")
+    cmd = host.run('nodetool describecluster')
     assert cmd.rc == 0
     matches = re.findall('Name: MyCassandraCluster', cmd.stdout)
     assert len(matches) >= 1
@@ -75,7 +76,7 @@ def test_cluster_name(host):
 
 def test_package(host):
     """Test that the package is installed."""
-    assert host.package("cassandra").is_installed
+    assert host.package('cassandra').is_installed
 
 
 def test_service(host):
