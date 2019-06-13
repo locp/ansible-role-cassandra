@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.7.4](https://github.com/locp/ansible-role-cassandra/tree/0.7.4) (2019-06-13)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.3...0.7.4)
+
+**Implemented enhancements:**
+
+- Fedora 30 scheduled for release 2019-04-30 [\#42](https://github.com/locp/ansible-role-cassandra/issues/42)
+
+**Fixed bugs:**
+
+- Security alerts CVE-2019-10906 and CVE-2017-18342 [\#58](https://github.com/locp/ansible-role-cassandra/issues/58)
+- Molecule Tests Failing [\#56](https://github.com/locp/ansible-role-cassandra/issues/56)
+- Rubocop 0.69.0 dislikes our code [\#55](https://github.com/locp/ansible-role-cassandra/issues/55)
+- \[DEPRECATION WARNING\]: Invoking "apt" only once while using a loop via  squash\_actions is deprecated. [\#54](https://github.com/locp/ansible-role-cassandra/issues/54)
+- \[DEPRECATION WARNING\]: Invoking "yum" only once while using a loop via  squash\_actions is deprecated. [\#53](https://github.com/locp/ansible-role-cassandra/issues/53)
+- Retire Python 2.7 Support [\#52](https://github.com/locp/ansible-role-cassandra/issues/52)
+
+**Merged pull requests:**
+
+- Bugfix/56 tests failing [\#57](https://github.com/locp/ansible-role-cassandra/pull/57) ([dallinb](https://github.com/dallinb))
+
 ## [0.7.3](https://github.com/locp/ansible-role-cassandra/tree/0.7.3) (2019-04-15)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.2...0.7.3)
