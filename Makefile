@@ -1,4 +1,4 @@
-all: lint test
+all: lint config test
 
 lint:
 	bundle exec travis lint --skip-completion-check --exit-code
@@ -7,9 +7,11 @@ lint:
 
 # Filter the platforms to speed up tests.
 # https://jqplay.org/s/oHABeI4TYx
-test:
+config:
 	test "$(HOSTS)"
 	yq -y \
 	  "{dependency: .dependency, driver: .driver, lint: .lint, platforms: [.platforms[] | select(.name | contains(\"$(HOSTS)\"))], provisioner: .provisioner, scenario: .scenario, verifier: .verifier}" \
 	  molecule/default/molecule-config.yml | tee molecule/default/molecule.yml
-	molecule test -s $(SCENARIO)
+
+test:
+	molecule test

@@ -26,10 +26,10 @@ matrix:
   fast_finish: true
   include:
     - python: 3.6
-      env: HOSTS="centos" SCENARIO="default"
+      env: HOSTS="centos"
     - python: 3.6
-      env: HOSTS="debian" SCENARIO="default"
+      env: HOSTS="debian"
     - python: 3.6
-      env: HOSTS="fedora" SCENARIO="default"
+      env: HOSTS="fedora"
     - python: 3.6
-      env: HOSTS="ubuntu" SCENARIO="default"
+      env: HOSTS="ubuntu"

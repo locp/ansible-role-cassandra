@@ -12,6 +12,16 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts(hosts)
 
 
+def get_config_path(host):
+    """Return the config path, depending on the distribution."""
+    distribution = host.system_info.distribution
+
+    if distribution == 'centos' or distribution == 'fedora':
+        return '/etc/cassandra/default.conf'
+
+    return '/etc/cassandra'
+
+
 def test_nodetool_status(host):
     """Test that 'nodetool status' contains UN for the node.
 
@@ -33,14 +43,7 @@ def test_nodetool_status(host):
 
 def test_config_file(host):
     """Test that the Cassandra cluster name has been set correctly."""
-    distribution = host.system_info.distribution
-
-    if distribution == 'centos' or distribution == 'fedora':
-        config_file = '/etc/cassandra/conf/cassandra.yaml'
-    else:
-        config_file = '/etc/cassandra/cassandra.yaml'
-
-    f = host.file(config_file)
+    f = host.file('%s/cassandra.yaml' % get_config_path(host))
     assert f.exists
     assert f.is_file
     assert f.contains('cluster_name: MyCassandraCluster')
@@ -79,8 +82,25 @@ def test_package(host):
     assert host.package('cassandra').is_installed
 
 
-def test_service(host):
+def test_service_enabled(host):
+    """Ensure that the service is enabled and running."""
+    s = host.service('cassandra')
+    assert s.is_enabled
+
+
+def test_service_running(host):
     """Ensure that the service is enabled and running."""
     s = host.service('cassandra')
     assert s.is_running
-    assert s.is_enabled
+
+
+def test_rack(host):
+    """Test that the rack and data center have been set correctly."""
+    f = host.file('%s/cassandra-rackdc.properties' % get_config_path(host))
+    assert f.contains('rack=RACK1')
+
+
+def test_rack_dc(host):
+    """Test that the rack and data center have been set correctly."""
+    f = host.file('%s/cassandra-rackdc.properties' % get_config_path(host))
+    assert f.contains('dc=DC1')
