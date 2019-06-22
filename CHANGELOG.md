@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/locp/ansible-role-cassandra/tree/1.0.0) (2019-06-22)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.4...1.0.0)
+
+**Implemented enhancements:**
+
+- Enrich Testing [\#44](https://github.com/locp/ansible-role-cassandra/issues/44)
+
+**Fixed bugs:**
+
+- Drop in Metadata Score \(5.0 to 4.8\) [\#59](https://github.com/locp/ansible-role-cassandra/issues/59)
+
 ## [0.7.4](https://github.com/locp/ansible-role-cassandra/tree/0.7.4) (2019-06-13)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.3...0.7.4)
