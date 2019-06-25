@@ -33,6 +33,7 @@ galaxy_info:
         - xenial
     - name: Debian
       versions:
+        - buster
         - stretch
     - name: Fedora
       versions:

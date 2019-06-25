@@ -14,6 +14,11 @@
         - lsb-release
         - procps
         - python-apt
+      Debian10:
+        - apt-utils
+        - lsb-release
+        - procps
+        - python-apt
       Fedora29:
         - initscripts
         - iproute
