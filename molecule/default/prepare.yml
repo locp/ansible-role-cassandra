@@ -19,7 +19,6 @@
         - lsb-release
         - procps
         - python-apt
-        - zulu-8
       Fedora29:
         - initscripts
         - iproute
@@ -45,25 +44,6 @@
     - name: Display Host Information
       debug:
         var: instance_info
-
-    - name: Debian 10 Add Azul Key
-      apt_key:
-        keyserver: hkp://keyserver.ubuntu.com:80
-        id: B1998361219BD9C9
-      register: cassandra_remote_status
-      until: cassandra_remote_status is succeeded
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
-
-    - name: Debian 10 Configure Azul Repository
-      apt_repository:
-        filename: /etc/apt/sources.list.d/zulu.sources
-        repo: "deb http://repos.azulsystems.com/debian stable main"
-        state: present
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
 
     - name: Install EPEL
       yum:
@@ -97,3 +77,34 @@
       retries: 5
       until: pkgstatus is succeeded
       when: ansible_os_family == 'Debian'
+
+    - name: Debian 10 Add Azul Key
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: B1998361219BD9C9
+      register: cassandra_remote_status
+      until: cassandra_remote_status is succeeded
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version == '10'
+
+    - name: Debian 10 Configure Azul Repository
+      apt_repository:
+        filename: /etc/apt/sources.list.d/zulu.sources
+        repo: "deb http://repos.azulsystems.com/debian stable main"
+        state: present
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version == '10'
+
+    - name: Debian 10 Install Zulu Java
+      apt:
+        name: "zulu-8"
+        update_cache: yes
+      delay: 10
+      register: pkgstatus
+      retries: 5
+      until: pkgstatus is succeeded
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version == '10'
