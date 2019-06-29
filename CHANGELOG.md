@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.1](https://github.com/locp/ansible-role-cassandra/tree/1.0.1) (2019-06-29)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.0...1.0.1)
+
+Working on this release have brought the following problems to light:
+
+* Our testing doesn't like PyTest 5 (released halfway through the development of this release).  Suspect that this will be rather easy to fix/workaround though.
+* https://issues.apache.org/jira/browse/CASSANDRA-15099 has been raised as a bug for the service implementation on Debian 10 (Buster).  In our test playbook, we have set `cassandra_service_restart` to `False` for that platform.
+
+**Implemented enhancements:**
+
+- Debian 10 \(Buster\) [\#61](https://github.com/locp/ansible-role-cassandra/issues/61)
+
 ## [1.0.0](https://github.com/locp/ansible-role-cassandra/tree/1.0.0) (2019-06-22)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/0.7.4...1.0.0)
