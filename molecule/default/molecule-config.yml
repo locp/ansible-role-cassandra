@@ -26,6 +26,12 @@ platforms:
       - debian
     image: debian:9
 
+  - name: debian10
+    groups:
+      - cassandra
+      - debian
+    image: debian:buster
+
   - name: fedora29
     command: /usr/sbin/init
     groups:
