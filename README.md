@@ -157,10 +157,17 @@ configuration:
     cassandra_repo_apache_release: 311x
 
   pre_tasks:
-    - name: Fedora Workaround
+    - name: Enable Systemd
       set_fact:
         cassandra_systemd_enabled: True
       when: ansible_facts['distribution'] == 'Fedora'
+
+    - name: Disable Cassandra Restart
+      set_fact:
+        cassandra_service_restart: False
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version == '10'
 
   roles:
     - role: locp.cassandra
