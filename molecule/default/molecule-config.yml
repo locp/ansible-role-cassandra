@@ -102,7 +102,7 @@ verifier:
 
   options:
     connection: docker
-    duration: 3
+    durations: 3
     v: 1
 
   lint:
