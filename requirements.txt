@@ -16,6 +16,5 @@ ansible==2.6.14.0
 docker==4.0.2
 molecule==2.20.1
 pydocstyle==3.0.0
-pytest==4.6.3
 testinfra==3.0.5
 yq==2.7.2
