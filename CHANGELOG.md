@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.2](https://github.com/locp/ansible-role-cassandra/tree/1.0.2) (2019-07-31)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.1...1.0.2)
+
+**Fixed bugs:**
+
+- Ansible CVE-2019-10156 \(moderate severity\) [\#64](https://github.com/locp/ansible-role-cassandra/issues/64)
+- Tests failing with pytest \>= 5.0.0 [\#63](https://github.com/locp/ansible-role-cassandra/issues/63)
+
 ## [1.0.1](https://github.com/locp/ansible-role-cassandra/tree/1.0.1) (2019-06-29)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.0...1.0.1)
