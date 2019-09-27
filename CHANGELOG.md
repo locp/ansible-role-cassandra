@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/locp/ansible-role-cassandra/tree/1.0.3)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.2...1.0.3)
+
+**Fixed bugs:**
+
+- Cassandra startup not waiting for network.target when configured with systemd [\#66](https://github.com/locp/ansible-role-cassandra/issues/66)
+
 ## [1.0.2](https://github.com/locp/ansible-role-cassandra/tree/1.0.2) (2019-07-31)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.1...1.0.2)
