@@ -100,6 +100,18 @@ executes this module.
   The path for a template from which to create unit file for Cassandra.  This
   variable is ignored if `cassandra_systemd_enabled` is **False**.
 
+* `cassandra_task_delay` (default: 10):
+  Ansible tasks that rely on network connectivity (i.e. `apt`, `apt_key`,
+  `apt_repository`, `package` and `yum`) may be affected by high latency
+  so those tasks are configured to retry.  This parameter is how long to
+  wait between attempts.  See also `cassandra_task_retries`.
+
+* `cassandra_task_retries` (default: 5):
+  Ansible tasks that rely on network connectivity (i.e. `apt`, `apt_key`,
+  `apt_repository`, `package` and `yum`) may be affected by high latency
+  so those tasks are configured to retry.  This parameter is how many
+  attempts should be made.  See also `cassandra_task_delay`.
+
 ## Example Playbook
 
 This playbook should be enough to configure Cassandra with a *very* basic

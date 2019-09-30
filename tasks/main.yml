@@ -70,8 +70,8 @@
   # this task gets to be executed.
   package:
     name: "{{ cassandra_package }}"
-  retries: 3
-  delay: 5
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
   register: cassandra_pkg_install_result
   until: cassandra_pkg_install_result is succeeded
   when:
@@ -86,8 +86,8 @@
   yum:
     name: "{{ cassandra_package }}"
     update_cache: yes
-  retries: 3
-  delay: 5
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
   register: cassandra_yum_install_result
   until: cassandra_yum_install_result is succeeded
   when:
@@ -102,6 +102,8 @@
     cache_valid_time: 600
   register: cassandra_remote_status
   until: cassandra_remote_status is succeeded
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
