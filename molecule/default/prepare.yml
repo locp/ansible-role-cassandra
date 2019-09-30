@@ -9,6 +9,10 @@
       CentOS7:
         - initscripts
         - iproute
+      CentOS8:
+        - initscripts
+        - iproute
+        - java-1.8.0-openjdk-headless
       Debian9:
         - apt-utils
         - lsb-release
@@ -45,36 +49,28 @@
       debug:
         var: instance_info
 
-    - name: Install EPEL
-      yum:
+    - name: Install EPEL for CentOS 7
+      package:
         name: epel-release
-        update_cache: yes
       register: pkgstatus
       until: pkgstatus is succeeded
-      when: ansible_distribution == 'CentOS'
+      when:
+        - ansible_distribution == 'CentOS'
+        - ansible_distribution_major_version == '7'
 
-    - name: Install Yum Packages
-      yum:
-        name: "{{ packages[instance_key] }}"
-        update_cache: yes
-      register: pkgstatus
-      until: pkgstatus is succeeded
-      when: ansible_distribution == 'CentOS'
-
-    - name: Install Fedora Packages
+    - name: Install RedHat Packages
       package:
         name: "{{ packages[instance_key] }}"
       register: pkgstatus
       until: pkgstatus is succeeded
-      when: ansible_distribution == 'Fedora'
+      notify: Reinstall iproute and libmnl
+      when: ansible_os_family == 'RedHat'
 
     - name: Install Debian Packages
       apt:
         name: "{{ packages[instance_key] }}"
         update_cache: yes
-      delay: 10
       register: pkgstatus
-      retries: 5
       until: pkgstatus is succeeded
       when: ansible_os_family == 'Debian'
 
@@ -101,10 +97,20 @@
       apt:
         name: "zulu-8"
         update_cache: yes
-      delay: 10
       register: pkgstatus
-      retries: 5
       until: pkgstatus is succeeded
       when:
         - ansible_os_family == 'Debian'
         - ansible_distribution_major_version == '10'
+
+  handlers:
+    - name: Reinstall iproute and libmnl
+      # A hack that only seems to be required on CentOS8.  If this is not
+      # called, ansible_default_ipv4 is not populated as a fact (iproute
+      # and libmnl) or enable the Cassandra service (initscripts).
+      command: dnf reinstall -y initscripts iproute libmnl 
+      register: pkgstatus
+      until: pkgstatus is succeeded
+      when:
+        - ansible_distribution == 'CentOS'
+        - ansible_distribution_major_version == '8'

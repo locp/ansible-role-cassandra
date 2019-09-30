@@ -20,6 +20,18 @@ platforms:
     image: centos:7
     privileged: True
 
+  - name: centos8
+    command: /usr/sbin/init
+    dockerfile: Dockerfile-centos8.j2
+    groups:
+      - cassandra
+      - centos
+      - python3
+    image: generic/centos8:latest
+    privileged: True
+    registry:
+      url: quay.io
+
   - name: debian9
     groups:
       - cassandra
@@ -37,6 +49,7 @@ platforms:
     groups:
       - cassandra
       - fedora
+      - python3
     image: fedora:29
     privileged: True
 
@@ -45,6 +58,7 @@ platforms:
     groups:
       - cassandra
       - fedora
+      - python3
     image: fedora:30
     privileged: True
 
@@ -72,8 +86,8 @@ provisioner:
 
   inventory:
     group_vars:
-      fedora:
-        ansible_python_interpreter: /usr/bin/python3
+      python3:
+        ansible_python_interpreter: python3
 
   log: True
 

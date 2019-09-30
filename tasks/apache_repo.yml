@@ -19,6 +19,8 @@
     id: A278B781FE4B2BDA
   register: cassandra_remote_status
   until: cassandra_remote_status is succeeded
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'

@@ -1,0 +1,11 @@
+# Molecule managed
+
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+RUN yum install -y dnf && yum clean all
+RUN rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo
+RUN dnf makecache && dnf --assumeyes install sudo python3-devel python3-dnf bash && dnf clean all
