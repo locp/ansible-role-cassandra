@@ -69,9 +69,7 @@
       apt:
         name: "{{ packages[instance_key] }}"
         update_cache: yes
-      delay: 10
       register: pkgstatus
-      retries: 5
       until: pkgstatus is succeeded
       when: ansible_os_family == 'Debian'
 
@@ -98,9 +96,7 @@
       apt:
         name: "zulu-8"
         update_cache: yes
-      delay: 10
       register: pkgstatus
-      retries: 5
       until: pkgstatus is succeeded
       when:
         - ansible_os_family == 'Debian'
@@ -112,6 +108,8 @@
       # called, ansible_default_ipv4 is not populated as a fact (iproute
       # and libmnl) or enable the Cassandra service (initscripts).
       command: dnf reinstall -y initscripts iproute libmnl 
+      register: pkgstatus
+      until: pkgstatus is succeeded
       when:
         - ansible_distribution == 'CentOS'
         - ansible_distribution_major_version == '8'
