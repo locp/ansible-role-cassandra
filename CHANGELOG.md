@@ -1,8 +1,19 @@
 # Changelog
 
-## [1.0.3](https://github.com/locp/ansible-role-cassandra/tree/1.0.3)
+## [1.1.0](https://github.com/locp/ansible-role-cassandra/tree/1.1.0) (2019-09-30)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.3...1.1.0)
+
+**Implemented enhancements:**
+
+- Allow the user to specify retry parameters [\#67](https://github.com/locp/ansible-role-cassandra/issues/67)
+- Support for CentOS 8 [\#60](https://github.com/locp/ansible-role-cassandra/issues/60)
+
+## [1.0.3](https://github.com/locp/ansible-role-cassandra/tree/1.0.3) (2019-09-27)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.2...1.0.3)
+
+Many thanks to @tkazmierczak-tt for their assistance, clear problem description and prompt replies while fixing #66.
 
 **Fixed bugs:**
 

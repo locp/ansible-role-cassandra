@@ -15,3 +15,6 @@ config:
 
 test:
 	molecule test
+
+changelog:
+	bundle exec rake changelog
