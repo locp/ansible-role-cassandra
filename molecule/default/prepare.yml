@@ -49,15 +49,14 @@
       debug:
         var: instance_info
 
-    - name: Install EPEL for CentOS
+    - name: Install EPEL for CentOS 7
       package:
         name: epel-release
       register: pkgstatus
       until: pkgstatus is succeeded
-      retries: 300
-      delay: 1
       when:
         - ansible_distribution == 'CentOS'
+        - ansible_distribution_major_version == '7'
 
     - name: Install RedHat Packages
       package:
