@@ -27,10 +27,8 @@ platforms:
       - cassandra
       - centos
       - python3
-    image: generic/centos8:latest
+    image: centos:8
     privileged: True
-    registry:
-      url: quay.io
 
   - name: debian9
     groups:

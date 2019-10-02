@@ -14,7 +14,6 @@
 # alerts fron GitHub.
 ansible==2.6.18.0
 docker==4.0.2
-molecule==2.20.2
-pydocstyle==4.0.0
-testinfra==3.0.6
+molecule==2.22
+testinfra==3.2.0
 yq==2.7.2

@@ -2,7 +2,6 @@ all: lint config test
 
 lint:
 	bundle exec travis lint --skip-completion-check --exit-code
-	pydocstyle -esv .
 	bundle exec rubocop -ES
 
 # Filter the platforms to speed up tests.
