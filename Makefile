@@ -1,5 +1,8 @@
 all: lint config test
 
+distro_check:
+	molecule test -s distro_check
+
 lint:
 	bundle exec travis lint --skip-completion-check --exit-code
 	bundle exec rubocop -ES

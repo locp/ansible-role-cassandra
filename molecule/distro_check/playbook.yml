@@ -1,0 +1,35 @@
+---
+- name: Converge
+
+  hosts: all
+
+  vars:
+    instance_info:
+      ansible_distribution: "{{ ansible_distribution }}"
+      ansible_distribution_major_version: "{{ ansible_distribution_major_version }}"
+      ansible_os_family: "{{ ansible_os_family }}"
+    latest_version:
+      CentOS: 8
+      Debian: 10
+      Fedora: 30
+      Ubuntu: 18
+
+  tasks:
+    - name: Get Distro Minor Version
+      set_fact:
+        ansible_distribution_minor_version: "{{ ansible_distribution_version.split('.')[1] }}"
+      when: instance_info['ansible_distribution'] != 'Fedora'
+
+    - name: Populate Instance Information
+      set_fact:
+        instance_info: "{{ instance_info | combine({'ansible_distribution_minor_version': ansible_distribution_minor_version}) }}"
+      when: ansible_distribution_minor_version is defined
+
+    - name: Display Host Information
+      debug:
+        var: instance_info
+
+    - name: Test Latest Distribution Version
+      assert:
+        that: latest_version[ansible_distribution] >= (ansible_distribution_major_version | int)
+        msg: "There is a newer version of {{ ansible_distribution }} available."
