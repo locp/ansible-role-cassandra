@@ -23,11 +23,12 @@
         - lsb-release
         - procps
         - python-apt
-      Fedora29:
+      Fedora30:
         - initscripts
         - iproute
         - java-1.8.0-openjdk-headless
-      Fedora30:
+      Fedora31:
+        - chkconfig
         - initscripts
         - iproute
         - java-1.8.0-openjdk-headless
