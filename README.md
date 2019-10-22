@@ -174,7 +174,7 @@ configuration:
     - name: Enable Systemd
       set_fact:
         cassandra_systemd_enabled: True
-      when: ansible_facts['distribution'] == 'Fedora'
+      when: ansible_os_family == 'RedHat'
 
     - name: Disable Cassandra Restart
       set_fact:
