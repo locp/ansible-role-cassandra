@@ -38,7 +38,7 @@ galaxy_info:
         - stretch
     - name: Fedora
       versions:
-        - 29
         - 30
+        - 31
 
   dependencies: []
