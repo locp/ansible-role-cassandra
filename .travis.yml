@@ -7,6 +7,8 @@ cache:
     - /home/travis/.cache/pip
     - /home/travis/virtualenv
 
+python: 3.6
+
 # Install ansible
 install:
   - ln -s $( basename $PWD ) ../locp.cassandra
