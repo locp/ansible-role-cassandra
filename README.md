@@ -1,5 +1,6 @@
 # ansible-role-cassandra
 
+[![Build Status](https://travis-ci.com/locp/ansible-role-cassandra.svg?branch=develop)](https://travis-ci.com/locp/ansible-role-cassandra)
 [![Gitter](https://badges.gitter.im/ansible-role-cassandra/community.svg)](https://gitter.im/ansible-role-cassandra/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Ansible role to install and configure Apache Cassandra.

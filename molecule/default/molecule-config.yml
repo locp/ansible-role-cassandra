@@ -42,15 +42,6 @@ platforms:
       - debian
     image: debian:buster
 
-  - name: fedora29
-    command: /usr/sbin/init
-    groups:
-      - cassandra
-      - fedora
-      - python3
-    image: fedora:29
-    privileged: True
-
   - name: fedora30
     command: /usr/sbin/init
     groups:
@@ -58,6 +49,15 @@ platforms:
       - fedora
       - python3
     image: fedora:30
+    privileged: True
+
+  - name: fedora31
+    command: /usr/sbin/init
+    groups:
+      - cassandra
+      - fedora
+      - python3
+    image: fedora:31
     privileged: True
 
   - name: ubuntu1604
