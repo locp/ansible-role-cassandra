@@ -38,6 +38,9 @@ galaxy_info:
         - stretch
     - name: Fedora
       versions:
+        - 27
+        - 28
+        - 29
         - 30
         - 31
 
