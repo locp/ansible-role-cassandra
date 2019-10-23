@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/locp/ansible-role-cassandra/tree/1.2.0) (2019-10-23)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.1.0...1.2.0)
+
+**Implemented enhancements:**
+
+- Fedora 31 Scheduled for 2019-10-22 [\#65](https://github.com/locp/ansible-role-cassandra/issues/65)
+- Drop support for Fedora 29 and add support for Fedora 31.  Fixes \#65. [\#71](https://github.com/locp/ansible-role-cassandra/pull/71) ([dallinb](https://github.com/dallinb))
+
+**Fixed bugs:**
+
+- Builds failing on TravisCI [\#70](https://github.com/locp/ansible-role-cassandra/issues/70)
+- As a CentOS 8 system test... [\#68](https://github.com/locp/ansible-role-cassandra/issues/68)
+
 ## [1.1.0](https://github.com/locp/ansible-role-cassandra/tree/1.1.0) (2019-09-30)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.0.3...1.1.0)
