@@ -63,7 +63,6 @@
         name: "{{ packages[instance_key] }}"
       register: pkgstatus
       until: pkgstatus is succeeded
-      notify: Reinstall iproute and libmnl
       when: ansible_os_family == 'RedHat'
 
     - name: Install Debian Packages
@@ -102,15 +101,3 @@
       when:
         - ansible_os_family == 'Debian'
         - ansible_distribution_major_version == '10'
-
-  handlers:
-    - name: Reinstall iproute and libmnl
-      # A hack that only seems to be required on CentOS8.  If this is not
-      # called, ansible_default_ipv4 is not populated as a fact (iproute
-      # and libmnl) or enable the Cassandra service (initscripts).
-      command: dnf reinstall -y initscripts iproute libmnl 
-      register: pkgstatus
-      until: pkgstatus is succeeded
-      when:
-        - ansible_distribution == 'CentOS'
-        - ansible_distribution_major_version == '8'

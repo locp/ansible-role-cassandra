@@ -1,8 +1,10 @@
 all: lint config test
 
+distro_check:
+	molecule test -s distro_check
+
 lint:
 	bundle exec travis lint --skip-completion-check --exit-code
-	pydocstyle -esv .
 	bundle exec rubocop -ES
 
 # Filter the platforms to speed up tests.

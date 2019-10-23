@@ -1,13 +1,13 @@
 ---
 language: python
 
-sudo: true
-
 cache:
   directories:
     - /home/travis/.rvm
     - /home/travis/.cache/pip
     - /home/travis/virtualenv
+
+python: 3.6
 
 # Install ansible
 install:

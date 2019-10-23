@@ -8,4 +8,4 @@ FROM {{ item.image }}
 
 RUN yum install -y dnf && yum clean all
 RUN rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo
-RUN dnf makecache && dnf --assumeyes install python36 sudo python36-devel python*-dnf bash iproute && dnf clean all
+RUN dnf makecache && dnf --assumeyes install python3 sudo python3-devel python*-dnf bash iproute && dnf clean all
