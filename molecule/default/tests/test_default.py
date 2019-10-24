@@ -5,6 +5,7 @@ of modules available in TestInfra.
 """
 import os
 import re
+import pytest
 import testinfra.utils.ansible_runner
 
 hosts = os.environ['HOSTS']
@@ -49,24 +50,19 @@ def test_config_file(host):
     assert f.contains('cluster_name: MyCassandraCluster')
 
 
-def test_custom_directories(host):
+@pytest.mark.parametrize('dirname,user,group,mode', [
+    ('/data',                 'root',      'root',      0o755),
+    ('/data/cassandra/data',  'cassandra', 'cassandra', 0o700),
+    ('/data/cassandra/hints', 'cassandra', 'cassandra', 0o700),
+])
+def test_custom_directories(host, dirname, user, group, mode):
     """Test that custom directories have been created."""
-    d = host.file('/data')
+    d = host.file(dirname)
     assert d.exists
     assert d.is_directory
-    assert d.user == 'root'
-    assert d.group == 'root'
-    assert d.mode == 0o755
-
-    directories = ['/data/cassandra/data', '/data/cassandra/hints']
-
-    for dirname in directories:
-        d = host.file(dirname)
-        assert d.exists
-        assert d.is_directory
-        assert d.user == 'cassandra'
-        assert d.group == 'cassandra'
-        assert d.mode == 0o700
+    assert d.user == user
+    assert d.group == group
+    assert d.mode == mode
 
 
 def test_cluster_name(host):
