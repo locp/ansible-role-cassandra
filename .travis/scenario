@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SCENARIO=default
+
+if [ "$TRAVIS_PULL_REQUEST" = "false" -a ! -z "$TRAVIS_BRANCH" ]; then
+  dirname="molecule/$( basename $TRAVIS_BRANCH )"
+  [[ -d $dirname ]] && SCENARIO=$( basename $dirname )
+fi
+
+echo
+echo "Scenario: ${SCENARIO}"
+echo
+export SCENARIO

@@ -1,5 +1,22 @@
 #!/bin/sh
+
+source ./.travis/scenario
+
+GEMFILE="Gemfile-${SCENARIO}"
+REQUIREMENTS="requirements-${SCENARIO}.txt"
+
 ln -s $( basename $PWD ) ../locp.cassandra
-bundle install
-pip install -Ur requirements.txt
+
+if [ -f "$GEMFILE" ]; then
+  bundle install --gemfile $GEMFILE
+else
+  bundle install
+fi
+
+if [ -f "$REQUIREMENTS" ]; then
+  pip install -Ur $REQUIREMENTS
+else
+  pip install -Ur requirements.txt
+fi
+
 pip freeze
