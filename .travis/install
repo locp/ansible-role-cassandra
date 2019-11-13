@@ -8,12 +8,14 @@ REQUIREMENTS="requirements-${SCENARIO}.txt"
 ln -s $( basename $PWD ) ../locp.cassandra
 
 if [ -f "$GEMFILE" ]; then
+  echo "Installing from $GEMFILE"
   bundle install --gemfile $GEMFILE
 else
   bundle install
 fi
 
 if [ -f "$REQUIREMENTS" ]; then
+  echo "Installing from $REQUIREMENTS"
   pip install -Ur $REQUIREMENTS
 else
   pip install -Ur requirements.txt
