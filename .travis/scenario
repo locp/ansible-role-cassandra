@@ -4,7 +4,10 @@ SCENARIO=default
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" -a ! -z "$TRAVIS_BRANCH" ]; then
   dirname="molecule/$( basename $TRAVIS_BRANCH )"
-  [[ -d $dirname ]] && SCENARIO=$( basename $dirname )
+
+  if [ -d $dirname ]; then
+    SCENARIO="$( basename $dirname )"
+  fi
 fi
 
 echo
