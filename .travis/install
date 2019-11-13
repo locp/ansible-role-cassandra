@@ -6,3 +6,12 @@ ln -s $( basename $PWD ) ../locp.cassandra
 bundle install --gemfile $GEMFILE
 pip install -Ur $REQUIREMENTS
 pip freeze
+
+SRC_CONFIG="molecule/${SCENARIO}/molecule-config.yml"
+DST_CONFIG="molecule/${SCENARIO}/molecule.yml"
+
+echo "Generating $DST_FILE FROM $SRC_FILE for $HOSTS."
+
+yq -y \
+  "{dependency: .dependency, driver: .driver, lint: .lint, platforms: [.platforms[] | select(.name | contains(\"${HOSTS}\"))], provisioner: .provisioner, scenario: .scenario, verifier: .verifier}" \
+  $SRC_CONFIG | tee $DST_CONFIG
