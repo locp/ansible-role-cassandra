@@ -19,4 +19,4 @@ test:
 	molecule test -s "$(SCENARIO)"
 
 changelog:
-	bundle exec rake changelog
+	bundle exec --gemfile="$(GEMFILE)" rake changelog
