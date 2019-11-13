@@ -1,5 +1,5 @@
 #!/bin/sh
 
-source ./.travis/scenario
+. ./.travis/scenario
 
 make

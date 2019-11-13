@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./.travis/scenario
+. ./.travis/scenario
 
 GEMFILE="Gemfile-${SCENARIO}"
 REQUIREMENTS="requirements-${SCENARIO}.txt"
