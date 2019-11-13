@@ -16,7 +16,7 @@ config:
 	  molecule/default/molecule-config.yml | tee molecule/default/molecule.yml
 
 test:
-	molecule -s "$(SCENARIO)" test
+	molecule test -s "$(SCENARIO)"
 
 changelog:
 	bundle exec rake changelog
