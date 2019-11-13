@@ -4,8 +4,8 @@ distro_check:
 	molecule test -s distro_check
 
 lint:
-	bundle exec travis lint --skip-completion-check --exit-code
-	bundle exec rubocop -ES
+	bundle exec --gemfile="$(GEMFILE)" travis lint --skip-completion-check --exit-code
+	bundle exec --gemfile="$(GEMFILE)" rubocop -ES
 
 # Filter the platforms to speed up tests.
 # https://jqplay.org/s/oHABeI4TYx
