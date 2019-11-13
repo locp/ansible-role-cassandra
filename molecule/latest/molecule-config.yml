@@ -1,0 +1,90 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint:
+  name: yamllint
+  options:
+    config-data:
+      ignore: molecule/default/molecule.yml
+
+platforms:
+  - name: centos
+    command: /usr/sbin/init
+    dockerfile: Dockerfile-centos8.j2
+    groups:
+      - cassandra
+      - centos
+      - python3
+    image: centos:latest
+    privileged: True
+
+  - name: debian
+    groups:
+      - cassandra
+      - debian
+    image: debian:latest
+
+  - name: fedora
+    command: /usr/sbin/init
+    groups:
+      - cassandra
+      - fedora
+      - python3
+    image: fedora:latest
+    privileged: True
+
+  - name: ubuntu
+    image: ubuntu:latest
+    groups:
+      - cassandra
+      - ubuntu
+    privileged: True
+
+provisioner:
+  name: ansible
+
+  config_options:
+    defaults:
+      callback_whitelist: "profile_tasks,timer"
+
+  inventory:
+    group_vars:
+      python3:
+        ansible_python_interpreter: python3
+
+  log: True
+
+  lint:
+    name: ansible-lint
+
+  options:
+    limit: ${HOSTS}
+    v: 1
+
+scenario:
+  test_sequence:
+    - lint
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - verify
+
+verifier:
+
+  name: testinfra
+
+  options:
+    connection: docker
+    durations: 3
+    v: 1
+
+  lint:
+    name: flake8
