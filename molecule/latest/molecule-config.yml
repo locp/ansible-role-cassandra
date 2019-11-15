@@ -14,7 +14,7 @@ lint:
 platforms:
   - name: centos
     command: /usr/sbin/init
-    dockerfile: Dockerfile-centos8.j2
+    dockerfile: ../default/Dockerfile-centos8.j2
     groups:
       - cassandra
       - centos
@@ -65,6 +65,10 @@ provisioner:
     limit: ${HOSTS}
     v: 1
 
+  playbooks:
+    converge: ../default/playbook.yml
+    prepare: ../default/prepare.yml
+
 scenario:
   test_sequence:
     - lint
@@ -80,6 +84,8 @@ scenario:
 verifier:
 
   name: testinfra
+
+  directory: ../default/tests
 
   options:
     connection: docker
