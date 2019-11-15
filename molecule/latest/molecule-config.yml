@@ -23,6 +23,7 @@ platforms:
     privileged: True
 
   - name: debian
+    dockerfile: ../default/Dockerfile.j2
     groups:
       - cassandra
       - debian
@@ -30,6 +31,7 @@ platforms:
 
   - name: fedora
     command: /usr/sbin/init
+    dockerfile: ../default/Dockerfile.j2
     groups:
       - cassandra
       - fedora
@@ -38,6 +40,7 @@ platforms:
     privileged: True
 
   - name: ubuntu
+    dockerfile: ../default/Dockerfile.j2
     image: ubuntu:latest
     groups:
       - cassandra
