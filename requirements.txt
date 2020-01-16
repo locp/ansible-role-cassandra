@@ -15,5 +15,5 @@
 ansible==2.6.18.0
 docker==4.1.0
 molecule==2.22
-testinfra==3.2.0
-yq==2.9.2
+testinfra==3.4.0
+yq==2.10.0
