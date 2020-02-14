@@ -15,7 +15,7 @@ def test_os_version_supported(host):
     with open('../../meta/main.yml', 'r') as meta_file:
         meta_data = yaml.load(meta_file)
 
-    galaxy_distribution_names =
+    galaxy_distribution_names = {
         'centos': 'EL',
         'debian': 'Debian',
         'fedora': 'Fedora',
