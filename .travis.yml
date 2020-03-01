@@ -11,13 +11,10 @@ python: 3.6
 
 # Install ansible
 install:
-  - ln -s $( basename $PWD ) ../locp.cassandra
-  - bundle install
-  - pip install -Ur requirements.txt
-  - pip freeze
+  - ./.travis/install
 
 script:
-  - make
+  - ./.travis/script
 
 notifications:
   webhooks:
@@ -28,14 +25,9 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: never     # options: [always|never|change] default: always
 
-matrix:
-  fast_finish: true
+jobs:
   include:
-    - python: 3.6
-      env: HOSTS="centos"
-    - python: 3.6
-      env: HOSTS="debian"
-    - python: 3.6
-      env: HOSTS="fedora"
-    - python: 3.6
-      env: HOSTS="ubuntu"
+    - env: HOSTS="centos"
+    - env: HOSTS="debian"
+    - env: HOSTS="fedora"
+    - env: HOSTS="ubuntu"

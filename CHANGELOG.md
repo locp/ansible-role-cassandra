@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.1](https://github.com/locp/ansible-role-cassandra/tree/1.2.1) (2020-03-01)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.2.0...1.2.1)
+
+**Implemented enhancements:**
+
+- Improve how we test against new distros and versions [\#72](https://github.com/locp/ansible-role-cassandra/issues/72)
+
+**Fixed bugs:**
+
+- Builds against latest Ruby Gems and Python Packages Failing [\#75](https://github.com/locp/ansible-role-cassandra/issues/75)
+- Drop in Metadata Score at Ansible Galaxy [\#73](https://github.com/locp/ansible-role-cassandra/issues/73)
+
+**Merged pull requests:**
+
+- Bump ansible from 2.8.0 to 2.8.8 [\#76](https://github.com/locp/ansible-role-cassandra/pull/76) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [1.2.0](https://github.com/locp/ansible-role-cassandra/tree/1.2.0) (2019-10-23)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.1.0...1.2.0)

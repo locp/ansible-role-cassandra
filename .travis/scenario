@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Set some defaults.
+GEMFILE="Gemfile"
+REQUIREMENTS="requirements.txt"
+SCENARIO=default
+
+if [ "$TRAVIS_PULL_REQUEST" = "false" -a ! -z "$TRAVIS_BRANCH" ]; then
+  dirname="molecule/$( basename $TRAVIS_BRANCH )"
+
+  if [ -d $dirname ]; then
+    SCENARIO="$( basename $dirname )"
+    gfile="Gemfile-${SCENARIO}"
+
+    if [ -f $gfile ]; then
+      GEMFILE=$gfile
+    fi
+
+    rfile="requirements-${SCENARIO}.txt"
+
+    if [ -f $rfile ]; then
+      REQUIREMENTS=$rfile
+    fi
+  fi
+fi
+
+echo
+echo "Gemfile:      ${GEMFILE}"
+echo "Requirements: ${REQUIREMENTS}"
+echo "Scenario:     ${SCENARIO}"
+echo
+export GEMFILE REQUIREMENTS SCENARIO

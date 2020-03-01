@@ -2,7 +2,7 @@
 # tasks file for cassandra
 - name: Import the Apache Cassandra Repository Tasks
   include: apache_repo.yml
-  when: cassandra_configure_apache_repo
+  when: cassandra_configure_apache_repo|bool
 
 - name: Calculate cassandra_cms_max_heapsize_mb
   set_fact:
@@ -116,7 +116,7 @@
     owner: root
     group: root
     mode: 0644
-  when: cassandra_systemd_enabled
+  when: cassandra_systemd_enabled|bool
   notify:
     - cassandra_restart_service
 

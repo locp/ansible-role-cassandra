@@ -12,64 +12,36 @@ lint: |
   flake8
 
 platforms:
-  - name: centos7
+  - name: centos
     command: /usr/sbin/init
-    groups:
-      - cassandra
-      - centos
-    image: centos:7
-    privileged: True
-
-  - name: centos8
-    command: /usr/sbin/init
-    dockerfile: Dockerfile-centos8.j2
+    dockerfile: ../default/Dockerfile-centos8.j2
     groups:
       - cassandra
       - centos
       - python3
-    image: centos:8
+    image: centos:latest
     privileged: True
 
-  - name: debian9
+  - name: debian
+    dockerfile: ../default/Dockerfile.j2
     groups:
       - cassandra
       - debian
-    image: debian:9
+    image: debian:latest
 
-  - name: debian10
-    groups:
-      - cassandra
-      - debian
-    image: debian:buster
-
-  - name: fedora30
+  - name: fedora
     command: /usr/sbin/init
+    dockerfile: ../default/Dockerfile.j2
     groups:
       - cassandra
       - fedora
       - python3
-    image: fedora:30
+    image: fedora:latest
     privileged: True
 
-  - name: fedora31
-    command: /usr/sbin/init
-    groups:
-      - cassandra
-      - fedora
-      - python3
-    image: fedora:31
-    privileged: True
-
-  - name: ubuntu1604
-    command: /sbin/init
-    groups:
-      - cassandra
-      - ubuntu
-    image: ubuntu:16.04
-    privileged: True
-
-  - name: ubuntu1804
-    image: ubuntu:18.04
+  - name: ubuntu
+    dockerfile: ../default/Dockerfile.j2
+    image: ubuntu:latest
     groups:
       - cassandra
       - ubuntu
@@ -93,6 +65,10 @@ provisioner:
     limit: ${HOSTS}
     v: 1
 
+  playbooks:
+    converge: ../default/converge.yml
+    prepare: ../default/prepare.yml
+
 scenario:
   test_sequence:
     - lint
@@ -108,6 +84,8 @@ scenario:
 verifier:
 
   name: testinfra
+
+  directory: ../default/tests
 
   options:
     connection: docker

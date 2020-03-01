@@ -11,7 +11,7 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: 2.6.18.0
+  min_ansible_version: 2.8.8
 
   galaxy_tags:
     - apache
@@ -38,7 +38,10 @@ galaxy_info:
         - stretch
     - name: Fedora
       versions:
+        - 27
+        - 28
         - 29
         - 30
+        - 31
 
   dependencies: []
