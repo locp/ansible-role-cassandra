@@ -13,14 +13,17 @@
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
 
-- name: Add the Apache Apt Key
+- name: Add the Apache Apt Keys
   apt_key:
     keyserver: pool.sks-keyservers.net
-    id: A278B781FE4B2BDA
+    id: "{{ item }}"
   register: cassandra_remote_status
   until: cassandra_remote_status is succeeded
   delay: "{{ cassandra_task_delay }}"
   retries: "{{ cassandra_task_retries }}"
+  with_items:
+    - A278B781FE4B2BDA
+    - E91335D77E3E87CB
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
