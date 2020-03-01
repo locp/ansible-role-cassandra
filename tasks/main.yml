@@ -116,7 +116,7 @@
     owner: root
     group: root
     mode: 0644
-  when: cassandra_systemd_enabled
+  when: cassandra_systemd_enabled|bool
   notify:
     - cassandra_restart_service
 
