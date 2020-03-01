@@ -30,7 +30,7 @@ def test_os_version_supported(host):
         if platform['name'] == galaxy_distribution_names[distribution]:
             versions = platform['versions']
 
-    assert versions is not None, f"Unknown platform for {distribution}"
+    assert versions is not None, f'Unknown platform for {distribution}'
 
     if distribution in ['debian', 'ubuntu']:
         version = host.system_info.codename
@@ -38,4 +38,4 @@ def test_os_version_supported(host):
         version = int(host.system_info.release.split('.')[0])
 
     assert version in versions, \
-        "Unsupported version ({version}) for {distribution}"
+        'Unsupported version ({version}) for {distribution}'

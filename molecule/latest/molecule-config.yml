@@ -5,11 +5,11 @@ dependency:
 driver:
   name: docker
 
-lint:
-  name: yamllint
-  options:
-    config-data:
-      ignore: molecule/default/molecule.yml
+lint: |
+  set -e
+  yamllint -s .
+  ansible-lint
+  flake8
 
 platforms:
   - name: centos
@@ -61,15 +61,12 @@ provisioner:
 
   log: True
 
-  lint:
-    name: ansible-lint
-
   options:
     limit: ${HOSTS}
     v: 1
 
   playbooks:
-    converge: ../default/playbook.yml
+    converge: ../default/converge.yml
     prepare: ../default/prepare.yml
 
 scenario:
@@ -94,6 +91,3 @@ verifier:
     connection: docker
     durations: 3
     v: 1
-
-  lint:
-    name: flake8
