@@ -75,6 +75,7 @@
   register: cassandra_pkg_install_result
   until: cassandra_pkg_install_result is succeeded
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
     - ansible_pkg_mgr == 'dnf'
@@ -91,6 +92,7 @@
   register: cassandra_yum_install_result
   until: cassandra_yum_install_result is succeeded
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
     - ansible_pkg_mgr == 'yum'
@@ -105,6 +107,7 @@
   delay: "{{ cassandra_task_delay }}"
   retries: "{{ cassandra_task_retries }}"
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
     - not ansible_check_mode
