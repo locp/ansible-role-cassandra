@@ -60,13 +60,13 @@ platforms:
     image: fedora:31
     privileged: True
 
-  - name: ubuntu1604
-    command: /sbin/init
-    groups:
-      - cassandra
-      - ubuntu
-    image: ubuntu:16.04
-    privileged: True
+  # - name: ubuntu1604
+  #   command: /sbin/init
+  #   groups:
+  #     - cassandra
+  #     - ubuntu
+  #   image: ubuntu:16.04
+  #   privileged: True
 
   - name: ubuntu1804
     image: ubuntu:18.04
