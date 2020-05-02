@@ -75,6 +75,13 @@ platforms:
       - ubuntu
     privileged: True
 
+  - name: ubuntu2004
+    image: ubuntu:20.04
+    groups:
+      - cassandra
+      - ubuntu
+    privileged: True
+
 provisioner:
   name: ansible
 
