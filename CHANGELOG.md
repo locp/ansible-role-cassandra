@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/locp/ansible-role-cassandra/tree/1.2.2) (2020-05-02)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.2.1...1.2.2)
+
+**Implemented enhancements:**
+
+- Ubuntu 20:04 \(Focal\) LTS is Available [\#77](https://github.com/locp/ansible-role-cassandra/issues/77)
+
 ## [1.2.1](https://github.com/locp/ansible-role-cassandra/tree/1.2.1) (2020-03-01)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.2.0...1.2.1)

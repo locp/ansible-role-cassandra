@@ -1,14 +1,37 @@
 # Molecule managed
 
-{% if item.registry is defined %}
-FROM {{ item.registry.url }}/{{ item.image }}
-{% else %}
 FROM {{ item.image }}
-{% endif %}
 
-RUN if [ $(command -v apt-get) ]; then apt-get clean && apt-get update && apt-get install -y apt-transport-https python sudo bash ca-certificates && apt-get clean; \
-    elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes install python sudo python-devel python*-dnf bash && dnf clean all; \
-    elif [ $(command -v yum) ]; then yum makecache fast && yum install -y python sudo yum-plugin-ovl bash && sed -i 's/plugins=0/plugins=1/g' /etc/yum.conf && yum clean all; \
-    elif [ $(command -v zypper) ]; then zypper refresh && zypper install -y python sudo bash python-xml && zypper clean -a; \
-    elif [ $(command -v apk) ]; then apk update && apk add --no-cache python sudo bash ca-certificates; \
-    elif [ $(command -v xbps-install) ]; then xbps-install -Syu && xbps-install -y python sudo bash ca-certificates && xbps-remove -O; fi
+{% if item.image == 'centos:7' %}
+RUN yum makecache fast \
+  && yum install -y python sudo yum-plugin-ovl bash epel-release \
+  && yum install -y iproute initscripts \
+  && yum clean all
+{% elif item.image == 'centos:8' %}
+RUN yum install -y dnf \
+  && yum clean all \
+  && rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo \
+  && dnf makecache \
+  && dnf --assumeyes install python36 sudo python36-devel python*-dnf bash iproute initscripts \
+  && dnf clean all
+{% elif item.image == 'debian:10' %}
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get update --fix-missing
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt sudo bash ca-certificates \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt sudo bash ca-certificates
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+RUN echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
+RUN apt-get clean
+{% elif item.image == 'fedora:30' or item.image == 'fedora:31' %}
+RUN dnf makecache \
+  && dnf --assumeyes install python sudo python-devel python*-dnf bash \
+  && dnf clean all
+{% else %}
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get update --fix-missing
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt sudo bash ca-certificates \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt sudo bash ca-certificates
+RUN apt-get clean
+{% endif %}
