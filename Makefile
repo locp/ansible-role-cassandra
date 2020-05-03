@@ -16,4 +16,4 @@ test:
 	molecule test -s "$(SCENARIO)" --parallel
 
 changelog:
-	bundle exec --gemfile="$(GEMFILE)" rake changelog
+	bundle exec rake changelog
