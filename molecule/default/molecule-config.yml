@@ -17,16 +17,17 @@ platforms:
     groups:
       - cassandra
       - centos
+      - redhat_family
     image: centos:7
     privileged: True
 
   - name: centos8
     command: /usr/sbin/init
-    dockerfile: Dockerfile-centos8.j2
     groups:
       - cassandra
       - centos
       - python3
+      - redhat_family
     image: centos:8
     privileged: True
 
@@ -40,6 +41,7 @@ platforms:
     groups:
       - cassandra
       - debian
+      - no_restart
     image: debian:buster
 
   - name: fedora30
@@ -48,6 +50,7 @@ platforms:
       - cassandra
       - fedora
       - python3
+      - redhat_family
     image: fedora:30
     privileged: True
 
@@ -57,21 +60,22 @@ platforms:
       - cassandra
       - fedora
       - python3
+      - redhat_family
     image: fedora:31
-    privileged: True
-
-  - name: ubuntu1604
-    command: /sbin/init
-    groups:
-      - cassandra
-      - ubuntu
-    image: ubuntu:16.04
     privileged: True
 
   - name: ubuntu1804
     image: ubuntu:18.04
     groups:
       - cassandra
+      - ubuntu
+    privileged: True
+
+  - name: ubuntu2004
+    image: ubuntu:20.04
+    groups:
+      - cassandra
+      - no_restart
       - ubuntu
     privileged: True
 
@@ -84,8 +88,12 @@ provisioner:
 
   inventory:
     group_vars:
+      no_restart:
+        cassandra_service_restart: False
       python3:
         ansible_python_interpreter: python3
+      redhat_family:
+        cassandra_systemd_enabled: True
 
   log: True
 

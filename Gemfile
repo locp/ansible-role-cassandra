@@ -9,11 +9,11 @@ end
 
 group :test do
   gem 'rubocop',
-      '0.80.0'
+      '0.82.0'
   gem 'rubocop-performance',
       '1.5.2'
   gem 'rubocop-rails',
-      '2.4.2'
+      '2.5.2'
   gem 'travis',
-      '1.8.10'
+      '1.8.13'
 end

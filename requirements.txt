@@ -2,6 +2,6 @@ ansible==2.8.8
 ansible-lint==4.2.0
 docker==4.2.0
 flake8==3.7.9
-molecule==3.0.2
-testinfra==4.1.0
+molecule==3.0.4
+testinfra==5.0.0
 yq==2.10.0
