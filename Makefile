@@ -13,7 +13,7 @@ config:
 	  "molecule/$(SCENARIO)/molecule-config.yml" | tee "molecule/$(SCENARIO)/molecule.yml"
 
 test:
-	molecule test -s "$(SCENARIO)"
+	molecule test -s "$(SCENARIO)" --parallel
 
 changelog:
 	bundle exec --gemfile="$(GEMFILE)" rake changelog
