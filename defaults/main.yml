@@ -2,6 +2,7 @@
 # defaults file for cassandra
 cassandra_configuration_templ: "cassandra.yaml.j2"
 cassandra_configure_apache_repo: False
+cassandra_install_packages: True
 cassandra_package: cassandra
 cassandra_service_enabled: yes
 cassandra_service_restart: True

@@ -65,6 +65,12 @@ executes this module.
   for more details.  Requires the `ansible_memtotal_mb` and
   `ansible_processor_vcpus` facts to be set.
 
+* `cassandra_install_packages` (default: **True**):
+  A boolean value indicating if this Ansible role should attempt to install
+  packages or not.  If set to **False** it allows a user to use this role to
+  configure Cassandra but does not attempt to install it (e.g. they have
+  installed from source code).
+
 * `cassandra_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   MAX_HEAP_SIZE.  See
