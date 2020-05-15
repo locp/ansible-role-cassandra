@@ -157,6 +157,24 @@
   notify:
     - cassandra_restart_service
 
+- name: Configure cassandra settings.
+  lineinfile:
+    dest: "{{ cassandra_env_file }}"
+    regexp: "^#?{{ item.name }}.+$"
+    line: "{{ item.name }}='{{ item.value }}'"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ cassandra_env_configuration }}"
+  notify:
+    - cassandra_restart_service
+
+- name: set cassandra log level
+  lineinfile:
+    dest: "{{ cassandra_log_config_file }}"
+    regexp: ^\s+<logger\sname="org.apache.cassandra"\slevel=".*"/>\s+$
+    line: <logger name="org.apache.cassandra" level="{{ cassandra_log_level }}"/>
+  notify:
+    - cassandra_restart_service
+
 - name: Set the DC for Cassandra
   lineinfile:
     dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
