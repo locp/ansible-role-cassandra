@@ -11,10 +11,15 @@ python: 3.6
 
 # Install ansible
 install:
-  - ./.travis/install
+  - ln -s $( basename $PWD ) ../locp.cassandra
+  - bundle install
+  - pip install -Ur requirements.txt
+  - pip freeze
 
 script:
-  - ./.travis/script
+  - bundle exec travis lint --skip-completion-check --exit-code
+  - bundle exec rubocop -ES
+  - molecule test --parallel
 
 notifications:
   webhooks:
@@ -27,7 +32,17 @@ notifications:
 
 jobs:
   include:
-    - env: HOSTS="centos"
-    - env: HOSTS="debian"
-    - env: HOSTS="fedora"
-    - env: HOSTS="ubuntu"
+    - env: DOCKER_COMMAND="/usr/sbin/init"
+           DOCKER_IMAGE="centos"
+           DOCKER_TAG_1="7"
+           DOCKER_TAG_2="8"
+    - env: DOCKER_IMAGE="debian"
+           DOCKER_TAG_1="9"
+           DOCKER_TAG_2="10"
+    - env: DOCKER_COMMAND="/usr/sbin/init"
+           DOCKER_IMAGE="fedora"
+           DOCKER_TAG_1="30"
+           DOCKER_TAG_2="31"
+    - env: DOCKER_IMAGE="ubuntu"
+           DOCKER_TAG_1="18.04"
+           DOCKER_TAG_2="20.04"

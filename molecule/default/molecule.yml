@@ -1,0 +1,83 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint: |
+  set -e
+  yamllint -s .
+  ansible-lint
+  flake8
+
+platforms:
+  - name: ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
+    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    groups:
+      - cassandra
+      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
+    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
+    privileged: True
+
+  - name: ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
+    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    groups:
+      - cassandra
+      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
+    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_2:-10}
+    privileged: True
+
+provisioner:
+  name: ansible
+
+  config_options:
+    defaults:
+      callback_whitelist: "profile_tasks,timer"
+
+  inventory:
+    group_vars:
+      centos7:
+        cassandra_systemd_enabled: True
+      centos8:
+        cassandra_systemd_enabled: True
+        ansible_python_interpreter: python3
+      debian9:
+      debian10:
+        cassandra_service_restart: False
+      fedora30:
+        ansible_python_interpreter: python3
+        cassandra_systemd_enabled: True
+      fedora31:
+        ansible_python_interpreter: python3
+        cassandra_systemd_enabled: True
+      ubuntu18.04:
+      ubuntu20.04:
+        cassandra_service_restart: False
+
+  log: True
+
+  options:
+    v: 1
+
+scenario:
+  test_sequence:
+    # Pretty much the default test sequence, just added the check step.
+    - lint
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - verify
+
+verifier:
+
+  name: testinfra
+
+  options:
+    connection: docker
+    durations: 3
+    v: 1

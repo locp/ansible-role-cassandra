@@ -45,9 +45,12 @@
         - iproute2
         - python-apt
     instance_info:
+      ansible_python_interpreter: "{{ ansible_python_interpreter | default('python') }}"
       ansible_distribution: "{{ ansible_distribution }}"
       ansible_distribution_major_version: "{{ ansible_distribution_major_version }}"
       ansible_os_family: "{{ ansible_os_family }}"
+      cassandra_service_restart: "{{ cassandra_service_restart | default(True) }}"
+      cassandra_systemd_enabled: "{{ cassandra_systemd_enabled | default(False) }}"
 
   tasks:
     - name: Display Host Information
