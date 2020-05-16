@@ -133,6 +133,7 @@
 
 - name: Set Default Configuration File Location (Debian)
   set_fact:
+    cassandra_configuration_directory: /etc/cassandra
     cassandra_configuration_file: /etc/cassandra/cassandra.yaml
   when:
     - ansible_os_family is defined
@@ -141,6 +142,7 @@
 
 - name: Set Default Configuration File Location (RedHat)
   set_fact:
+    cassandra_configuration_directory: /etc/cassandra/default.conf
     cassandra_configuration_file: /etc/cassandra/default.conf/cassandra.yaml
   when:
     - ansible_os_family is defined
@@ -154,6 +156,17 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - cassandra_restart_service
+
+- name: Apply Regular Expression Updates to the Configuration
+  lineinfile:
+    line: "{{ item.line }}"
+    path: "{{ cassandra_configuration_directory }}/{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+  loop: "{{ cassandra_regex_replacements }}"
+  when:
+    - not ansible_check_mode
   notify:
     - cassandra_restart_service
 

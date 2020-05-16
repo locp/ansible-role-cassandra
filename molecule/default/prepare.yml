@@ -23,6 +23,7 @@
         - lsb-release
         - procps
         - python-apt
+        - zulu-8
       Fedora30:
         - initscripts
         - iproute
@@ -57,35 +58,13 @@
       debug:
         var: instance_info
 
-    - name: Install EPEL for CentOS 7
-      package:
-        name: epel-release
-      register: pkgstatus
-      until: pkgstatus is succeeded
-      when:
-        - ansible_distribution == 'CentOS'
-        - ansible_distribution_major_version == '7'
-
-    - name: Install RedHat Packages
-      package:
-        name: "{{ packages[instance_key] }}"
-      register: pkgstatus
-      until: pkgstatus is succeeded
-      when: ansible_os_family == 'RedHat'
-
-    - name: Install Debian Packages
-      apt:
-        name: "{{ packages[instance_key] }}"
-        update_cache: yes
-      register: pkgstatus
-      until: pkgstatus is succeeded
-      when: ansible_os_family == 'Debian'
-
     - name: Debian 10 Add Azul Key
       apt_key:
         keyserver: hkp://keyserver.ubuntu.com:80
         id: B1998361219BD9C9
+      delay: 10
       register: cassandra_remote_status
+      retries: 5
       until: cassandra_remote_status is succeeded
       when:
         - ansible_os_family == 'Debian'
@@ -100,12 +79,32 @@
         - ansible_os_family == 'Debian'
         - ansible_distribution_major_version == '10'
 
-    - name: Debian 10 Install Zulu Java
-      apt:
-        name: "zulu-8"
-        update_cache: yes
+    - name: Install EPEL for CentOS 7
+      package:
+        name: epel-release
+      delay: 10
       register: pkgstatus
+      retries: 5
       until: pkgstatus is succeeded
       when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
+        - ansible_distribution == 'CentOS'
+        - ansible_distribution_major_version == '7'
+
+    - name: Install RedHat Packages
+      package:
+        name: "{{ packages[instance_key] }}"
+      delay: 10
+      register: pkgstatus
+      retries: 5
+      until: pkgstatus is succeeded
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install Debian Packages
+      apt:
+        name: "{{ packages[instance_key] }}"
+        update_cache: yes
+      delay: 10
+      register: pkgstatus
+      retries: 5
+      until: pkgstatus is succeeded
+      when: ansible_os_family == 'Debian'

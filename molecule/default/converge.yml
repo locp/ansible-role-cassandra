@@ -25,7 +25,6 @@
             - seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
-    cassandra_dc: DC1
     # Create an alternative directories structure for the Cassandra data.
     # In this example, the will be a directory called /data owned by root
     # with rwxr-xr-x permissions.  It will have a series of sub-directories
@@ -45,7 +44,19 @@
           - /data/cassandra/data
           - /data/cassandra/hints
           - /data/cassandra/saved_caches
-    cassandra_rack: RACK1
+    cassandra_regex_replacements:
+      - path: cassandra-env.sh
+        line: 'MAX_HEAP_SIZE="512M"'
+        regexp: '^#MAX_HEAP_SIZE="4G"'
+      - path: cassandra-env.sh
+        line: 'HEAP_NEWSIZE="100M"'
+        regexp: '^#HEAP_NEWSIZE="800M"'
+      - path: cassandra-rackdc.properties
+        line: 'dc=DC1'
+        regexp: '^dc='
+      - path: cassandra-rackdc.properties
+        line: 'rack=RACK1'
+        regexp: '^rack='
     cassandra_repo_apache_release: 311x
 
   roles:
