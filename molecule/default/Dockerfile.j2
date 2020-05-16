@@ -22,7 +22,10 @@ RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt su
   || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt sudo bash ca-certificates
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 RUN echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
-RUN apt-get clean
+RUN apt-get clean \
+    && apt-get update \
+    && apt-get install -y --fix-missing zulu-8 \
+    || apt-get install -y --fix-missing zulu-8
 {% elif item.image == 'fedora:30' or item.image == 'fedora:31' %}
 RUN dnf makecache \
   && dnf --assumeyes install python sudo python-devel python*-dnf bash \
