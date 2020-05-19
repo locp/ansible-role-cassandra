@@ -123,6 +123,15 @@
   notify:
     - cassandra_restart_service
 
+- name: CASSANDRA-15770 Workaround
+  lineinfile:
+    line: '    start-stop-daemon -K -u cassandra -p "$PIDFILE" -R TERM/30/KILL/5 >/dev/null'
+    path: /etc/init.d/cassandra
+    regexp: '^.*start-stop-daemon -K.*$'
+  when:
+    - cassandra_15770_workaround | bool
+    - not ansible_check_mode
+
 - name: Custom Directories
   include: directory.yml
   with_items: "{{ cassandra_directories.keys() | list }}"
