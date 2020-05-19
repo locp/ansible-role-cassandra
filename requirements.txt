@@ -1,4 +1,4 @@
-ansible==2.9.1
+ansible==2.9.2
 ansible-lint==4.2.0
 docker==4.2.0
 flake8==3.8.1
