@@ -24,6 +24,12 @@ executes this module.
 
 ## Role Variables
 
+* `cassandra_15770_workaround`: (default: *False*)
+  [CASSANDRA-15770](https://issues.apache.org/jira/browse/CASSANDRA-15770)
+  affected Debian 10 and Ubuntu 20.04 it was subsequently fixed in versions
+  3.0.21, 3.11.7, 4.0.  As we are running our tests against 3.11.6 at the
+  moment, this applies the fix to `/etc/init.d/cassandra` if set to True.
+
 * `cassandra_cms_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See

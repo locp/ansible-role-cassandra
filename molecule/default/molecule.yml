@@ -44,7 +44,7 @@ provisioner:
         ansible_python_interpreter: python3
       debian9:
       debian10:
-        cassandra_service_restart: False
+        cassandra_15770_workaround: True
       fedora30:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
@@ -53,7 +53,7 @@ provisioner:
         cassandra_systemd_enabled: True
       ubuntu18.04:
       ubuntu20.04:
-        cassandra_service_restart: False
+        cassandra_15770_workaround: True
 
   log: True
 
