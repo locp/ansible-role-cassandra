@@ -4,4 +4,3 @@ docker
 flake8
 molecule
 testinfra
-yq

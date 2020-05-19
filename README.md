@@ -24,6 +24,12 @@ executes this module.
 
 ## Role Variables
 
+* `cassandra_15770_workaround`: (default: *False*)
+  [CASSANDRA-15770](https://issues.apache.org/jira/browse/CASSANDRA-15770)
+  affected Debian 10 and Ubuntu 20.04 it was subsequently fixed in versions
+  3.0.21, 3.11.7, 4.0.  As we are running our tests against 3.11.6 at the
+  moment, this applies the fix to `/etc/init.d/cassandra` if set to True.
+
 * `cassandra_cms_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
@@ -40,6 +46,11 @@ executes this module.
 * `cassandra_configuration` (default: *none*):
   The configuration for Cassandra.  See the example play book below.
 
+* `cassandra_configuration_directory` (default:
+  `/etc/cassandra/default.conf` on RedHat and
+  `/etc/cassandra` in Debian):
+  The directory of the Cassandra configuration.
+
 * `cassandra_configuration_file` (default:
   `/etc/cassandra/default.conf/cassandra.yaml` on RedHat and
   `/etc/cassandra/cassandra.yaml` on Debian):
@@ -53,6 +64,12 @@ executes this module.
 
   **SEE ALSO:** `cassandra_repo_apache_release`.
 
+* `cassandra_dc`:
+  If defined will set the Datacenter in `cassandra-rackdc.properties`.
+
+  This option is deprecated and will be removed in a future release.  Please
+  use `cassandra_regex_replacements` instead.
+
 * `cassandra_directories`:
   If defined, this will create directories after the package has been
   installed (therefore when the cassandra user is available) but before
@@ -65,6 +82,12 @@ executes this module.
   for more details.  Requires the `ansible_memtotal_mb` and
   `ansible_processor_vcpus` facts to be set.
 
+* `cassandra_install_packages` (default: **True**):
+  A boolean value indicating if this Ansible role should attempt to install
+  packages or not.  If set to **False** it allows a user to use this role to
+  configure Cassandra but does not attempt to install it (e.g. they have
+  installed from source code).
+
 * `cassandra_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   MAX_HEAP_SIZE.  See
@@ -73,6 +96,18 @@ executes this module.
 
 * `cassandra_package` (default: `cassandra`):
   The name of the package to be installed to provide Cassandra.
+
+* `cassandra_rack`:
+  If defined will set the rack in `cassandra-rackdc.properties`.
+
+  This option is deprecated and will be removed in a future release.  Please
+  use `cassandra_regex_replacements` instead.
+
+* `cassandra_regex_replacements` (default: []):
+  A list of hashes describing a `path` which is relative to
+  `cassandra_configuration_directory`, `regexp` which is a regular
+  expression to find in a file and `line` is the replacement within the
+  file.  See the example playbook for more details.
 
 * `cassandra_repo_apache_release` (default: *None*):
   The name of the release series (can be one of 311x, 30x, 22x, or 21x).  This
@@ -149,7 +184,6 @@ configuration:
             - seeds: "{{ ansible_default_ipv4.address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
-    cassandra_dc: DC1
     # Create an alternative directories structure for the Cassandra data.
     # In this example, the will be a directory called /data owned by root
     # with rwxr-xr-x permissions.  It will have a series of sub-directories
@@ -169,21 +203,20 @@ configuration:
           - /data/cassandra/data
           - /data/cassandra/hints
           - /data/cassandra/saved_caches
-    cassandra_rack: RACK1
+    cassandra_regex_replacements:
+      - path: cassandra-env.sh
+        line: 'MAX_HEAP_SIZE="512M"'
+        regexp: '^#MAX_HEAP_SIZE="4G"'
+      - path: cassandra-env.sh
+        line: 'HEAP_NEWSIZE="100M"'
+        regexp: '^#HEAP_NEWSIZE="800M"'
+      - path: cassandra-rackdc.properties
+        line: 'dc=DC1'
+        regexp: '^dc='
+      - path: cassandra-rackdc.properties
+        line: 'rack=RACK1'
+        regexp: '^rack='
     cassandra_repo_apache_release: 311x
-
-  pre_tasks:
-    - name: Enable Systemd
-      set_fact:
-        cassandra_systemd_enabled: True
-      when: ansible_os_family == 'RedHat'
-
-    - name: Disable Cassandra Restart
-      set_fact:
-        cassandra_service_restart: False
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
 
   roles:
     - role: locp.cassandra

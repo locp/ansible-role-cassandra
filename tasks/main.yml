@@ -75,6 +75,7 @@
   register: cassandra_pkg_install_result
   until: cassandra_pkg_install_result is succeeded
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
     - ansible_pkg_mgr == 'dnf'
@@ -91,6 +92,7 @@
   register: cassandra_yum_install_result
   until: cassandra_yum_install_result is succeeded
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'RedHat'
     - ansible_pkg_mgr == 'yum'
@@ -105,6 +107,7 @@
   delay: "{{ cassandra_task_delay }}"
   retries: "{{ cassandra_task_retries }}"
   when:
+    - cassandra_install_packages|bool
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
     - not ansible_check_mode
@@ -120,6 +123,15 @@
   notify:
     - cassandra_restart_service
 
+- name: CASSANDRA-15770 Workaround
+  lineinfile:
+    line: '    start-stop-daemon -K -u cassandra -p "$PIDFILE" -R TERM/30/KILL/5 >/dev/null'
+    path: /etc/init.d/cassandra
+    regexp: '^.*start-stop-daemon -K.*$'
+  when:
+    - cassandra_15770_workaround | bool
+    - not ansible_check_mode
+
 - name: Custom Directories
   include: directory.yml
   with_items: "{{ cassandra_directories.keys() | list }}"
@@ -130,6 +142,7 @@
 
 - name: Set Default Configuration File Location (Debian)
   set_fact:
+    cassandra_configuration_directory: /etc/cassandra
     cassandra_configuration_file: /etc/cassandra/cassandra.yaml
   when:
     - ansible_os_family is defined
@@ -138,6 +151,7 @@
 
 - name: Set Default Configuration File Location (RedHat)
   set_fact:
+    cassandra_configuration_directory: /etc/cassandra/default.conf
     cassandra_configuration_file: /etc/cassandra/default.conf/cassandra.yaml
   when:
     - ansible_os_family is defined
@@ -151,6 +165,17 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - cassandra_restart_service
+
+- name: Apply Regular Expression Updates to the Configuration
+  lineinfile:
+    line: "{{ item.line }}"
+    path: "{{ cassandra_configuration_directory }}/{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+  loop: "{{ cassandra_regex_replacements }}"
+  when:
+    - not ansible_check_mode
   notify:
     - cassandra_restart_service
 

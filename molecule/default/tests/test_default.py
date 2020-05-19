@@ -8,9 +8,8 @@ import re
 import pytest
 import testinfra.utils.ansible_runner
 
-hosts = os.environ['HOSTS']
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts(hosts)
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts()
 
 
 def get_config_path(host):
@@ -21,6 +20,14 @@ def get_config_path(host):
         return '/etc/cassandra/default.conf'
 
     return '/etc/cassandra'
+
+
+def test_heap_new_size(host):
+    """Test that the Cassandra cluster name has been set correctly."""
+    f = host.file('%s/cassandra-env.sh' % get_config_path(host))
+    assert f.exists
+    assert f.is_file
+    assert f.contains('MAX_HEAP_SIZE="512M"')
 
 
 def test_nodetool_status(host):
