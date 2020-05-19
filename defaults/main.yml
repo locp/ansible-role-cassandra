@@ -13,3 +13,4 @@ cassandra_systemd_path: "/etc/systemd/system/cassandra.service"
 cassandra_systemd_template: "systemd/system/{{ ansible_facts.distribution }}/{{ ansible_facts.distribution_major_version }}/cassandra.service.j2"
 cassandra_task_delay: 10
 cassandra_task_retries: 5
+cassandra_join_cluster: false

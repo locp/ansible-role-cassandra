@@ -4,6 +4,38 @@
   include: apache_repo.yml
   when: cassandra_configure_apache_repo|bool
 
+- name: Get current node count
+  shell: |
+    set -o pipefail
+    nodetool status | awk '/^(U|D)(N|L|J|M)/{print $2}' | wc -l
+  register: nodetool_output
+  changed_when: false
+  check_mode: no
+
+- name: Store current node count
+  set_fact:
+    cassandra_node_count: "{{ nodetool_output.stdout }}"
+  when:
+    - not ansible_check_mode
+
+- name: stop cassandra
+  systemd:
+    name: cassandra
+    state: stopped
+  when:
+    - cassandra_join_cluster | bool
+    - cassandra_node_count is defined
+    - cassandra_node_count == '1'
+
+- name: Clean cassandra data directory if changing from single node to cluster
+  file:
+    state: absent
+    path: "{{ cassandra_path }}/"
+  when:
+    - cassandra_join_cluster | bool
+    - cassandra_node_count is defined
+    - cassandra_node_count == '1'
+
 - name: Calculate cassandra_cms_max_heapsize_mb
   set_fact:
     cassandra_cms_max_heapsize_mb: "{{
