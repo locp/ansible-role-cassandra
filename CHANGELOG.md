@@ -1,13 +1,21 @@
 # Changelog
 
+## [1.4.0](https://github.com/locp/ansible-role-cassandra/tree/1.4.0) (2020-06-22)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.3.0...1.4.0)
+
+**Implemented enhancements:**
+
+- Changes for joining an existing cluster [\#79](https://github.com/locp/ansible-role-cassandra/pull/79) ([DEvil0000](https://github.com/DEvil0000))
+
 ## [1.3.0](https://github.com/locp/ansible-role-cassandra/tree/1.3.0) (2020-05-19)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.2.2...1.3.0)
 
 **Implemented enhancements:**
 
-- Add the cassandra\_regex\_replacements variable. [\#83](https://github.com/locp/ansible-role-cassandra/pull/83) ([dallinb](https://github.com/dallinb))
 - Make package installation optional [\#80](https://github.com/locp/ansible-role-cassandra/pull/80) ([DEvil0000](https://github.com/DEvil0000))
+- Add the cassandra\_regex\_replacements variable. [\#83](https://github.com/locp/ansible-role-cassandra/pull/83) ([dallinb](https://github.com/dallinb))
 
 **Fixed bugs:**
 

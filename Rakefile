@@ -5,5 +5,5 @@ require 'github_changelog_generator/task'
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   config.user = 'locp'
   config.project = 'ansible-role-cassandra'
-  config.future_release = '1.3.0'
+  config.future_release = '1.4.0'
 end
