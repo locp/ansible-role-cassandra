@@ -5,12 +5,6 @@ dependency:
 driver:
   name: docker
 
-lint: |
-  set -ex
-  yamllint -s .
-  ansible-lint
-  flake8
-
 platforms:
   - name: node0
     command: ${DOCKER_COMMAND:-"sleep infinity"}
@@ -34,7 +28,7 @@ platforms:
     command: ${DOCKER_COMMAND:-"sleep infinity"}
     groups:
       - cassandra
-      - standalone
+      - clustered
       - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
     image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
     privileged: True
@@ -80,14 +74,11 @@ provisioner:
   options:
     v: 1
 
+  playbooks:
+    converge: ../default/converge.yml
+
 scenario:
   test_sequence:
-    # Pretty much the default test sequence, just added the check step.
-    - lint
-    - destroy
-    - syntax
-    - create
-    - prepare
     - check
     - converge
     - idempotence
@@ -96,6 +87,8 @@ scenario:
 verifier:
 
   name: testinfra
+
+  directory: ../default/tests
 
   options:
     connection: docker

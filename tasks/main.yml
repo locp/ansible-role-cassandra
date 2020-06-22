@@ -4,6 +4,10 @@
   include: apache_repo.yml
   when: cassandra_configure_apache_repo|bool
 
+- name: Import Join Cluster Tasks
+  include: join_cluster.yml
+  when: cassandra_join_cluster | bool
+
 - name: Calculate cassandra_cms_max_heapsize_mb
   set_fact:
     cassandra_cms_max_heapsize_mb: "{{
@@ -133,7 +137,7 @@
     - not ansible_check_mode
 
 - name: Custom Directories
-  include: directory.yml
+  include: create_custom_directory.yml
   with_items: "{{ cassandra_directories.keys() | list }}"
   loop_control:
     loop_var: cassandra_directory_set

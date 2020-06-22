@@ -88,11 +88,25 @@ executes this module.
   configure Cassandra but does not attempt to install it (e.g. they have
   installed from source code).
 
+* `cassandra_join_cluster` (default: **False**):
+  This is an experimental feature, use with extreme caution!  If set to true
+  and the `cassandra_node_count` is found to be 1 on a node, the following
+  actions will take place on that node before the node is configured:
+  - Cassandra will be stopped
+  - The Cassandra data directory/directories will be cleared of all data.
+
+  When that has been done, the node will be reconfigured and join a cluster
+  (which should be larger in size than one node).
+
 * `cassandra_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   MAX_HEAP_SIZE.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
   for more details.  Requires the `ansible_memtotal_mb` fact to be set.
+
+* `cassandra_node_count`:
+  A read-only variable that attempts to contain the number of nodes in the
+  cluster.  Will only be set if `cassandra_join_cluster` is set to `True`.
 
 * `cassandra_package` (default: `cassandra`):
   The name of the package to be installed to provide Cassandra.
