@@ -28,7 +28,7 @@ RUN apt-get clean \
     || apt-get install -y --fix-missing zulu-8
 {% elif item.image == 'fedora:30' or item.image == 'fedora:31' %}
 RUN dnf makecache \
-  && dnf --assumeyes install python sudo python-devel python*-dnf bash \
+  && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd \
   && dnf clean all
 {% else %}
 RUN apt-get clean
