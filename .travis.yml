@@ -20,8 +20,7 @@ script:
   - bundle exec travis lint --skip-completion-check --exit-code
   - bundle exec rubocop -ES
   - molecule test --destroy never
-  - molecule test --destroy=never --scenario-name node_2_join_cluster
-  - molecule test --parallel --scenario-name node_3_join_cluster
+  - molecule test --scenario-name combine_cluster --destroy never
 
 notifications:
   webhooks:
