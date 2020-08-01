@@ -89,14 +89,6 @@
         port: 9160
       when: not ansible_check_mode
 
-    - name: Gather Details of the Running Services
-      service_facts:
-      register: cassandra_services_facts
-
-    - name: Show the Running Services
-      debug:
-        var: cassandra_services_facts
-
     - name: Wait for the Cassandra Service to be Running (Red Hat)
       service_facts:
       retries: 100
@@ -106,6 +98,9 @@
       when:
         - not ansible_check_mode
         - ansible_os_family == 'RedHat'
+        # service_facts broken for Fedora 32, fixed in Ansible 2.9.9
+        # see https://bugzilla.redhat.com/show_bug.cgi?id=1832625
+        - ansible_distribution_major_version != 32
 
     - name: Wait for the Cassandra Service to be Running (Debian)
       service_facts:
