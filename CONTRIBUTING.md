@@ -87,16 +87,16 @@ COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test \
 
 ### Ubuntu 18.04
 ```
-COMMAND="/usr/sbin/init" DISTRO="ubuntu" TAG=18.04 molecule test \
+DISTRO="ubuntu" TAG=18.04 molecule test \
   --destroy never
-COMMAND="/usr/sbin/init" DISTRO="ubuntu" TAG=18.04 molecule test \
+DISTRO="ubuntu" TAG=18.04 molecule test \
   --scenario-name combine_cluster --destroy never
 ```
 
 ### Ubuntu 20.04
 ```
-COMMAND="/usr/sbin/init" DISTRO="ubuntu" TAG=20.04 molecule test \
+DISTRO="ubuntu" TAG=20.04 molecule test \
   --destroy never
-COMMAND="/usr/sbin/init" DISTRO="ubuntu" TAG=20.04 molecule test \
+DISTRO="ubuntu" TAG=20.04 molecule test \
   --scenario-name combine_cluster --destroy never
 ```
