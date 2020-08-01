@@ -13,7 +13,7 @@ jobs:
       - run:
           command: |
             pyenv versions
-            pyenv version 3.5.2
+            pyenv local 3.5.2
             pyenv versions
             python --version
             type python
