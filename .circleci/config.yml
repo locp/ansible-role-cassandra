@@ -12,8 +12,8 @@ jobs:
       - python/load-cache
       - run:
           command: |
-            pyenv install 3.8.5
-            pyenv version 3.8.5
+            pyenv versions
+            pyenv version 3.5.2
             pip install -r requirements --user
           name: Install Python Packages
       - run:
