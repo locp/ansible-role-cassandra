@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/locp/ansible-role-cassandra/tree/1.5.0) (2020-08-01)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.4.0...1.5.0)
+
+**Implemented enhancements:**
+
+- Support Fedora 32 [\#88](https://github.com/locp/ansible-role-cassandra/issues/88)
+
+**Fixed bugs:**
+
+- Previously Working Molecule Tests Now Failing [\#89](https://github.com/locp/ansible-role-cassandra/issues/89)
+
+**Merged pull requests:**
+
+- Fix broken CI tests and add support for Fedora 32. [\#90](https://github.com/locp/ansible-role-cassandra/pull/90) ([dallinb](https://github.com/dallinb))
+
 ## [1.4.0](https://github.com/locp/ansible-role-cassandra/tree/1.4.0) (2020-06-22)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.3.0...1.4.0)
