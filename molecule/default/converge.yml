@@ -89,6 +89,14 @@
         port: 9160
       when: not ansible_check_mode
 
+    - name: Gather Details of the Running Services
+      service_facts:
+      register: cassandra_services_facts
+
+    - name: Show the Running Services
+      debug:
+        var: cassandra_services_facts
+
     - name: Wait for the Cassandra Service to be Running (Red Hat)
       service_facts:
       retries: 100
