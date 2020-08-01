@@ -10,7 +10,9 @@ jobs:
     steps:
       - checkout
       - python/load-cache
-      - python/install-deps
+      - run:
+        command: pip3 install -r requirements.txt
+        name: Install Python Packages
       - python/save-cache
       - run:
           command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
