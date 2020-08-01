@@ -1,0 +1,25 @@
+---
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    machine: true
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
+          name: Default Scenario
+      - run:
+          command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never --scenario-name combine_cluster
+          name: Combine Cluster Scenario
+
+workflows:
+  main:
+    jobs:
+      - build-and-test

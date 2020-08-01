@@ -39,9 +39,6 @@ jobs:
   include:
     - env: COMMAND="/usr/sbin/init"
            DISTRO="centos"
-           TAG=7
-    - env: COMMAND="/usr/sbin/init"
-           DISTRO="centos"
            TAG=8
     - env: DISTRO="debian"
            TAG=9
