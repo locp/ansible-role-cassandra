@@ -14,6 +14,10 @@ jobs:
           command: |
             pyenv versions
             pyenv version 3.5.2
+            pyenv versions
+            python --version
+            type python
+            type pip
             pip install -r requirements.txt --user
           name: Install Python Packages
       - run:
