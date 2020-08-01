@@ -71,7 +71,7 @@ provisioner:
 scenario:
   test_sequence:
     - converge
-    - idempotence
+    - verify
 
 verifier:
 
