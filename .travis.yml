@@ -24,7 +24,6 @@ script:
   - docker top node0
   - docker top node1
   - docker top node2
-  - docker top node3
   - molecule test --scenario-name combine_cluster --destroy never
 
 notifications:
@@ -38,23 +37,15 @@ notifications:
 
 jobs:
   include:
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="centos"
-           DOCKER_TAG="7"
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="centos"
-           DOCKER_TAG="8"
-    - env: DOCKER_IMAGE="debian"
-           DOCKER_TAG="9"
-    - env: DOCKER_IMAGE="debian"
-           DOCKER_TAG="10"
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="fedora"
-           DOCKER_TAG="30"
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="fedora"
-           DOCKER_TAG="31"
-    - env: DOCKER_IMAGE="ubuntu"
-           DOCKER_TAG="18.04"
-    - env: DOCKER_IMAGE="ubuntu"
-           DOCKER_TAG="20.04"
+    - env: COMMAND="/usr/sbin/init"
+           IMAGE="centos:7"
+    - env: COMMAND="/usr/sbin/init"
+           IMAGE="centos:8"
+    - env: IMAGE="debian:9"
+    - env: IMAGE="debian:10"
+    - env: COMMAND="/usr/sbin/init"
+           IMAGE="fedora:30"
+    - env: COMMAND="/usr/sbin/init"
+           IMAGE="fedora:31"
+    - env: IMAGE="ubuntu:18.04"
+    - env: IMAGE="ubuntu:20.04"

@@ -1,3 +1,2 @@
-export DOCKER_COMMAND="/usr/sbin/init"
-export DOCKER_IMAGE="fedora"
-export DOCKER_TAG="31"
+export COMMAND="/usr/sbin/init"
+export IMAGE="fedora:31"

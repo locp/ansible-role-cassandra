@@ -1,3 +1,2 @@
-unset DOCKER_COMMAND
-export DOCKER_IMAGE="ubuntu"
-export DOCKER_TAG="20.04"
+unset COMMAND
+export IMAGE="ubuntu:20.04"

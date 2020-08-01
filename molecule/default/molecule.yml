@@ -13,30 +13,30 @@ lint: |
 
 platforms:
   - name: node0
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian:10}
+    image: ${IMAGE:-debian:10}
     privileged: True
 
   - name: node1
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian:10}
+    image: ${IMAGE:-debian:10}
     privileged: True
 
   - name: node2
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - standalone
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian:10}
+    image: ${IMAGE:-debian:10}
     privileged: True
 
 provisioner:
