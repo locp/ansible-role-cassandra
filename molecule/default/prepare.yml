@@ -4,47 +4,6 @@
   remote_user: root
 
   vars:
-    instance_key: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
-    packages:
-      CentOS7:
-        - initscripts
-        - iproute
-      CentOS8:
-        - initscripts
-        - iproute
-        - java-1.8.0-openjdk-headless
-      Debian9:
-        - apt-utils
-        - lsb-release
-        - procps
-        - python-apt
-      Debian10:
-        - apt-utils
-        - lsb-release
-        - procps
-        - python-apt
-        - zulu-8
-      Fedora31:
-        - initscripts
-        - iproute
-        - java-1.8.0-openjdk-headless
-      Fedora32:
-        - chkconfig
-        - initscripts
-        - iproute
-        - java-1.8.0-openjdk-headless
-      Ubuntu16:
-        - apt-utils
-        - iproute
-        - python-apt
-      Ubuntu18:
-        - apt-utils
-        - iproute2
-        - python-apt
-      Ubuntu20:
-        - apt-utils
-        - iproute2
-        - python-apt
     instance_info:
       ansible_python_interpreter: "{{ ansible_python_interpreter | default('python') }}"
       ansible_distribution: "{{ ansible_distribution }}"
@@ -58,42 +17,6 @@
       debug:
         var: instance_info
 
-    - name: Debian 10 Add Azul Key
-      apt_key:
-        keyserver: hkp://keyserver.ubuntu.com:80
-        id: B1998361219BD9C9
-      delay: 10
-      register: cassandra_remote_status
-      retries: 5
-      until: cassandra_remote_status is succeeded
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
-
-    - name: Debian 10 Configure Azul Repository
-      apt_repository:
-        filename: /etc/apt/sources.list.d/zulu.sources
-        repo: "deb http://repos.azulsystems.com/debian stable main"
-        state: present
-      when:
-        - ansible_os_family == 'Debian'
-        - ansible_distribution_major_version == '10'
-
-    - name: Install RedHat Packages
-      package:
-        name: "{{ packages[instance_key] }}"
-      delay: 10
-      register: pkgstatus
-      retries: 5
-      until: pkgstatus is succeeded
-      when: ansible_os_family == 'RedHat'
-
-    - name: Install Debian Packages
-      apt:
-        name: "{{ packages[instance_key] }}"
-        update_cache: yes
-      delay: 10
-      register: pkgstatus
-      retries: 5
-      until: pkgstatus is succeeded
-      when: ansible_os_family == 'Debian'
+    - name: Display Ansible Facts
+      debug:
+        var: ansible_facts
