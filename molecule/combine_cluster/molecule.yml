@@ -11,8 +11,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
   - name: node1
@@ -20,8 +20,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
   - name: node2
@@ -29,8 +29,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
 provisioner:
@@ -70,7 +70,9 @@ provisioner:
 
 scenario:
   test_sequence:
+    - check
     - converge
+    - idempotence
     - verify
 
 verifier:

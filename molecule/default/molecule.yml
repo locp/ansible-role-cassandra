@@ -17,8 +17,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${IMAGE:-debian:10}
-    image: ${IMAGE:-debian:10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
   - name: node1
@@ -26,8 +26,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${IMAGE:-debian:10}
-    image: ${IMAGE:-debian:10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
   - name: node2
@@ -35,8 +35,8 @@ platforms:
     groups:
       - cassandra
       - standalone
-      - ${IMAGE:-debian:10}
-    image: ${IMAGE:-debian:10}
+      - ${IMAGE:-debian$TAG:-10}
+    image: ${IMAGE:-debian:$TAG:-10}
     privileged: True
 
 provisioner:

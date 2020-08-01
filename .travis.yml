@@ -38,14 +38,22 @@ notifications:
 jobs:
   include:
     - env: COMMAND="/usr/sbin/init"
-           IMAGE="centos:7"
+           IMAGE="centos"
+           TAG=7
     - env: COMMAND="/usr/sbin/init"
-           IMAGE="centos:8"
-    - env: IMAGE="debian:9"
-    - env: IMAGE="debian:10"
+           IMAGE="centos"
+           TAG=8
+    - env: IMAGE="debian"
+           TAG=9
+    - env: IMAGE="debian"
+           TAG=10
     - env: COMMAND="/usr/sbin/init"
-           IMAGE="fedora:30"
+           IMAGE="fedora"
+           TAG=31
     - env: COMMAND="/usr/sbin/init"
-           IMAGE="fedora:31"
-    - env: IMAGE="ubuntu:18.04"
-    - env: IMAGE="ubuntu:20.04"
+           IMAGE="fedora"
+           TAG=32
+    - env: IMAGE="ubuntu"
+           TAG=18.04
+    - env: IMAGE="ubuntu"
+           TAG=20.04
