@@ -14,7 +14,7 @@ jobs:
           command: |
             pyenv versions
             pyenv version 3.5.2
-            pip install -r requirements --user
+            pip install -r requirements.txt --user
           name: Install Python Packages
       - run:
           command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
