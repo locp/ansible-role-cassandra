@@ -11,15 +11,15 @@ jobs:
       - checkout
       - python/load-cache
       - run:
-        command: pip3 install -r requirements.txt
-        name: Install Python Packages
-      - python/save-cache
+          command: pip3 install -r requirements.txt
+          name: Install Python Packages
       - run:
           command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
           name: Default Scenario
       - run:
           command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never --scenario-name combine_cluster
           name: Combine Cluster Scenario
+      - python/save-cache
 
 workflows:
   main:
