@@ -1,0 +1,39 @@
+---
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    machine: true
+    steps:
+      - checkout
+      - python/load-cache
+      - run:
+          command: |
+            pyenv versions
+            pyenv local 3.5.2
+            pyenv versions
+            python --version
+            type python
+            type pip
+            pip install --upgrade pip
+            pip install -r requirements.txt --user
+          name: Install Python Packages
+      - run:
+          command: |
+            export COMMAND="/usr/sbin/init"
+            export DISTRO="centos"
+            export TAG=8
+            export PATH="/home/circleci/.local/bin:$PATH"
+            ln -s $( basename $PWD ) ../locp.cassandra
+            molecule test --destroy never
+            molecule test --destroy never --scenario-name combine_cluster
+          name: Molecule Tests
+      - python/save-cache
+
+workflows:
+  main:
+    jobs:
+      - build-and-test

@@ -13,39 +13,30 @@ lint: |
 
 platforms:
   - name: node0
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
+      - ${DISTRO:-debian}${TAG:-10}
+    image: ${DISTRO:-debian}:${TAG:-10}
     privileged: True
 
   - name: node1
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_2:-10}
+      - ${DISTRO:-debian}${TAG:-10}
+    image: ${DISTRO:-debian}:${TAG:-10}
     privileged: True
 
   - name: node2
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - standalone
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
-    privileged: True
-
-  - name: node3
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
-    groups:
-      - cassandra
-      - standalone
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_2:-10}
+      - ${DISTRO:-debian}${TAG:-10}
+    image: ${DISTRO:-debian}:${TAG:-10}
     privileged: True
 
 provisioner:
@@ -65,10 +56,10 @@ provisioner:
       debian9:
       debian10:
         cassandra_15770_workaround: True
-      fedora30:
+      fedora31:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
-      fedora31:
+      fedora32:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
       ubuntu18.04:

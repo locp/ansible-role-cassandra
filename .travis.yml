@@ -17,11 +17,9 @@ install:
   - pip freeze
 
 script:
-  - bundle exec travis lint --skip-completion-check --exit-code
   - bundle exec rubocop -ES
   - molecule test --destroy never
-  - molecule test --destroy=never --scenario-name node_2_join_cluster
-  - molecule test --destroy=never --scenario-name node_3_join_cluster
+  - molecule test --scenario-name combine_cluster --destroy never
 
 notifications:
   webhooks:
@@ -34,17 +32,23 @@ notifications:
 
 jobs:
   include:
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="centos"
-           DOCKER_TAG_1="7"
-           DOCKER_TAG_2="8"
-    - env: DOCKER_IMAGE="debian"
-           DOCKER_TAG_1="9"
-           DOCKER_TAG_2="10"
-    - env: DOCKER_COMMAND="/usr/sbin/init"
-           DOCKER_IMAGE="fedora"
-           DOCKER_TAG_1="30"
-           DOCKER_TAG_2="31"
-    - env: DOCKER_IMAGE="ubuntu"
-           DOCKER_TAG_1="18.04"
-           DOCKER_TAG_2="20.04"
+    - env: COMMAND="/usr/sbin/init"
+           DISTRO="centos"
+           TAG=7
+    - env: COMMAND="/usr/sbin/init"
+           DISTRO="centos"
+           TAG=8
+    - env: DISTRO="debian"
+           TAG=9
+    - env: DISTRO="debian"
+           TAG=10
+    - env: COMMAND="/usr/sbin/init"
+           DISTRO="fedora"
+           TAG=31
+    - env: COMMAND="/usr/sbin/init"
+           DISTRO="fedora"
+           TAG=32
+    - env: DISTRO="ubuntu"
+           TAG=18.04
+    - env: DISTRO="ubuntu"
+           TAG=20.04
