@@ -12,7 +12,7 @@ jobs:
       - python/load-cache
       - run:
           command: |
-            python --version
+            apt-get install -y python3
             pip3 install -r requirements.txt
           name: Install Python Packages
       - run:
