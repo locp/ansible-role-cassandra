@@ -27,6 +27,7 @@ jobs:
             export DISTRO="centos"
             export TAG=8
             export PATH="/home/circleci/.local/bin:$PATH"
+            ln -s $( basename $PWD ) ../locp.cassandra
             molecule test --destroy never
             molecule test --destroy never --scenario-name combine_cluster
           name: Molecule Tests
