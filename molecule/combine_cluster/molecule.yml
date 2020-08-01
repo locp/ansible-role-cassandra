@@ -11,8 +11,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
+      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
+    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
     privileged: True
 
   - name: node1
@@ -20,8 +20,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_2:-10}
+      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
+    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
     privileged: True
 
   - name: node2
@@ -29,17 +29,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_1:-9}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_1:-9}
-    privileged: True
-
-  - name: node3
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
-    groups:
-      - cassandra
-      - clustered
-      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG_2:-10}
-    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG_2:-10}
+      - ${DOCKER_IMAGE:-debian}${DOCKER_TAG:-10}
+    image: ${DOCKER_IMAGE:-debian}:${DOCKER_TAG:-10}
     privileged: True
 
 provisioner:

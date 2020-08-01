@@ -79,17 +79,6 @@
         - ansible_os_family == 'Debian'
         - ansible_distribution_major_version == '10'
 
-    - name: Install EPEL for CentOS 7
-      package:
-        name: epel-release
-      delay: 10
-      register: pkgstatus
-      retries: 5
-      until: pkgstatus is succeeded
-      when:
-        - ansible_distribution == 'CentOS'
-        - ansible_distribution_major_version == '7'
-
     - name: Install RedHat Packages
       package:
         name: "{{ packages[instance_key] }}"
