@@ -17,13 +17,8 @@ install:
   - pip freeze
 
 script:
-  - bundle exec travis lint --skip-completion-check --exit-code
   - bundle exec rubocop -ES
   - molecule test --destroy never
-  - docker stats --no-stream
-  - docker top node0
-  - docker top node1
-  - docker top node2
   - molecule test --scenario-name combine_cluster --destroy never
 
 notifications:
@@ -37,6 +32,9 @@ notifications:
 
 jobs:
   include:
+    - env: COMMAND="/usr/sbin/init"
+           DISTRO="centos"
+           TAG=7
     - env: COMMAND="/usr/sbin/init"
            DISTRO="centos"
            TAG=8

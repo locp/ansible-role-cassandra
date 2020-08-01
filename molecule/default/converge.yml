@@ -100,7 +100,7 @@
         - ansible_os_family == 'RedHat'
         # service_facts broken for Fedora 32, fixed in Ansible 2.9.9
         # see https://bugzilla.redhat.com/show_bug.cgi?id=1832625
-        - ansible_distribution_major_version != 32
+        - ansible_distribution_major_version != "32"
 
     - name: Wait for the Cassandra Service to be Running (Debian)
       service_facts:
