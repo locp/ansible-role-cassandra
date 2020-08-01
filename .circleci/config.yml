@@ -22,11 +22,14 @@ jobs:
             pip install -r requirements.txt --user
           name: Install Python Packages
       - run:
-          command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
-          name: Default Scenario
-      - run:
-          command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never --scenario-name combine_cluster
-          name: Combine Cluster Scenario
+          command: |
+            export COMMAND="/usr/sbin/init"
+            export DISTRO="centos"
+            export TAG=8
+            export PATH="/home/circleci/.local/bin:$PATH"
+            molecule test --destroy never
+            molecule test --destroy never --scenario-name combine_cluster
+          name: Molecule Tests
       - python/save-cache
 
 workflows:
