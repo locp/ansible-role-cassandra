@@ -12,7 +12,9 @@ jobs:
       - python/load-cache
       - run:
           command: |
-            pyenv versions
+            pyenv install 3.8.5
+            pyenv version 3.8.5
+            pip install -r requirements --user
           name: Install Python Packages
       - run:
           command: COMMAND="/usr/sbin/init" DISTRO="centos" TAG="8" molecule test --destroy never
