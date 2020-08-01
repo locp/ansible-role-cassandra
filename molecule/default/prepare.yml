@@ -24,11 +24,11 @@
         - procps
         - python-apt
         - zulu-8
-      Fedora30:
+      Fedora31:
         - initscripts
         - iproute
         - java-1.8.0-openjdk-headless
-      Fedora31:
+      Fedora32:
         - chkconfig
         - initscripts
         - iproute
