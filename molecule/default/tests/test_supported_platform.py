@@ -55,7 +55,7 @@ class TestSupportedPlatform(unittest.TestCase):
         supported_versions = platform['versions']
 
         if platform_name == 'EL' or platform_name == 'Fedora':
-            version = host.system_info.release.split('.')[0]
+            version = int(host.system_info.release.split('.')[0])
         else:
             version = host.system_info.codename
 
