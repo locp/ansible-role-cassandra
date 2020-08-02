@@ -1,4 +1,4 @@
-.kitchen/
+.idea/
 .python-version
 *.pyc
 *.rake_tasks~
