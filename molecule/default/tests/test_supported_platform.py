@@ -15,6 +15,7 @@ hosts = []
 for host in testinfra_hosts:
     hosts.append((host,))
 
+
 @parameterized_class(
     'container_name',
     hosts
