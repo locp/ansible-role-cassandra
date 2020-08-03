@@ -42,6 +42,8 @@ provisioner:
 
   inventory:
     group_vars:
+      all:
+        cassandra_join_cluster: True
       centos7:
         cassandra_systemd_enabled: True
       centos8:
@@ -64,9 +66,6 @@ provisioner:
 
   options:
     v: 1
-
-  playbooks:
-    converge: ../default/converge.yml
 
 scenario:
   test_sequence:
