@@ -1,4 +1,7 @@
 ---
+AllCops:
+  NewCops: enable
+
 require:
   - rubocop-performance
   - rubocop-rails

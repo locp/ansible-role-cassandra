@@ -4,6 +4,9 @@
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.5.0...1.5.1)
 
+Many thanks to @aijanai for raising #93 and for his suggestions to improve the documentation to resolve the issue.
+
+
 **Implemented enhancements:**
 
 - Reintroduce Regular Builds Against Latest Versions [\#87](https://github.com/locp/ansible-role-cassandra/issues/87)
