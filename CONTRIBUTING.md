@@ -37,66 +37,76 @@ If you add a new configuration option, please try to do all of these things:
 All branch pushes and pull requests are tested on
 [Travis CI ](https://travis-ci.com/github/locp/ansible-role-cassandra).  The
 primary test framework is
-[Ansible Molecule](https://molecule.readthedocs.io/en/latest/).  To run the
-tests manually, select which operating system you want to test against from
-the following list:
+[Ansible Molecule](https://molecule.readthedocs.io/en/latest/).
 
-### CentOS 7
+There are two scenarios tested against, each one involves three nodes
+(node0, node1 and node2).  In the
+[first scenario](molecule/default),
+nodes 0 and 1 create a cluster called *MyCassandraCluster* with node0 as the
+seed node.  Node 2 creates a separate cluster called *Standalone* seeding
+against itself.  In the
+[second scenario](molecule/combine_cluster), node2 is migrated from the
+*Standalone* to the *MyCassandraCluster* with node0 remaining as the solitary
+seed.
+
+|**Node** | **Scenario 1** | **Scenario 2** |
+|----|-------------------|--------------------|
+|**node0**|MyCassandraCluster (seed)| MyCassandraCluster (seed)|
+|**node1**|MyCassandraCluster | MyCassandraCluster |
+|**node2**|Standalone (seed)|MyCassandraCluster|
+
+The verification tests ensure that each node is in the correct cluster
+depending on which scenario is being executed.
+
+### Running the Tests Manually
+
+To run the tests manually, select which operating system you want to test
+against from the following list:
+
+- CentOS 7
 ```
-COMMAND="/usr/sbin/init" DISTRO="centos" TAG=7 molecule test \
-  --destroy never
-COMMAND="/usr/sbin/init" DISTRO="centos" TAG=7 molecule test \
-  --scenario-name combine_cluster --destroy never
+COMMAND="/usr/sbin/init" DISTRO="centos" TAG=7 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="centos" TAG=7 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### CentOS 8
+- CentOS 8
 ```
-COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test \
-  --destroy never
-COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test \
-  --scenario-name combine_cluster --destroy never
+COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Debian 9
+- Debian 9
 ```
 TAG=9 molecule test --destroy never
 TAG=9 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Debian 10
+- Debian 10
 ```
 molecule test --destroy never
 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Fedora 31
+- Fedora 31
 ```
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test \
-  --destroy never
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test \
-  --scenario-name combine_cluster --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Fedora 32
+- Fedora 32
 ```
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test \
-  --destroy never
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test \
-  --scenario-name combine_cluster --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Ubuntu 18.04
+- Ubuntu 18.04
 ```
-DISTRO="ubuntu" TAG=18.04 molecule test \
-  --destroy never
-DISTRO="ubuntu" TAG=18.04 molecule test \
-  --scenario-name combine_cluster --destroy never
+DISTRO="ubuntu" TAG=18.04 molecule test --destroy never
+DISTRO="ubuntu" TAG=18.04 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-### Ubuntu 20.04
+- Ubuntu 20.04
 ```
-DISTRO="ubuntu" TAG=20.04 molecule test \
-  --destroy never
-DISTRO="ubuntu" TAG=20.04 molecule test \
-  --scenario-name combine_cluster --destroy never
+DISTRO="ubuntu" TAG=20.04 molecule test --destroy never
+DISTRO="ubuntu" TAG=20.04 molecule test --scenario-name combine_cluster --destroy never
 ```

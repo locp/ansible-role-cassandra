@@ -8,7 +8,7 @@
   vars:
     cassandra_configuration:
       authenticator: PasswordAuthenticator
-      cluster_name: "{{ cassandra_cluster_name }}"
+      cluster_name: MyCassandraCluster
       commitlog_directory: /data/cassandra/commitlog
       commitlog_sync: periodic
       commitlog_sync_period_in_ms: 10000
@@ -25,7 +25,9 @@
       seed_provider:
         - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
           parameters:
-            - seeds: "{{ cassandra_seed }}"
+            # This sets the seed to the first node in the Ansible group called
+            # cassandra.
+            - seeds: "{{ hostvars[groups['cassandra'][0]]['ansible_default_ipv4'].address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
     # Create an alternative directories structure for the Cassandra data.
@@ -61,20 +63,6 @@
         line: 'rack=RACK1'
         regexp: '^rack='
     cassandra_repo_apache_release: 311x
-
-  pre_tasks:
-    - name: Set Variables for Clustered Nodes
-      set_fact:
-        cassandra_cluster_name: MyCassandraCluster
-        cassandra_join_cluster: True
-        cassandra_seed: "{{ hostvars[groups['cassandra'][0]]['ansible_default_ipv4'].address }}"
-      when: "'clustered' in group_names"
-
-    - name: Set Variables for Standalone Nodes
-      set_fact:
-        cassandra_cluster_name: Standalone
-        cassandra_seed: "{{ ansible_default_ipv4.address }}"
-      when: "'standalone' is in group_names"
 
   roles:
     - role: locp.cassandra
