@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.5.1](https://github.com/locp/ansible-role-cassandra/tree/1.5.1) (2020-08-04)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.5.0...1.5.1)
+
+**Implemented enhancements:**
+
+- Reintroduce Regular Builds Against Latest Versions [\#87](https://github.com/locp/ansible-role-cassandra/issues/87)
+- Improve Testing Against Latest Versions. [\#92](https://github.com/locp/ansible-role-cassandra/pull/92) ([dallinb](https://github.com/dallinb))
+
+**Fixed bugs:**
+
+- Sample playbook makes nodes seed onto themselves only and cluster never forms [\#93](https://github.com/locp/ansible-role-cassandra/issues/93)
+
+**Merged pull requests:**
+
+- Example Playbook Update [\#94](https://github.com/locp/ansible-role-cassandra/pull/94) ([dallinb](https://github.com/dallinb))
+
 ## [1.5.0](https://github.com/locp/ansible-role-cassandra/tree/1.5.0) (2020-08-01)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.4.0...1.5.0)

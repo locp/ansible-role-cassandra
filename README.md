@@ -168,7 +168,7 @@ executes this module.
 ## Example Playbook
 
 This playbook should be enough to configure Cassandra with a *very* basic
-configuration:
+[configuration](https://cassandra.apache.org/doc/latest/getting_started/configuring.html):
 
 ```YAML
 ---
@@ -190,12 +190,17 @@ configuration:
       endpoint_snitch: GossipingPropertyFileSnitch
       hints_directory: "/data/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
+      # For a sensible value to set num_tokens to, please see
+      # https://cassandra.apache.org/doc/latest/getting_started/production.html#tokens
+      num_tokens: 4
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /data/cassandra/saved_caches
       seed_provider:
         - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
           parameters:
-            - seeds: "{{ ansible_default_ipv4.address }}"
+            # This sets the seed to the first node in the Ansible group called
+            # cassandra.
+            - seeds: "{{ hostvars[groups['cassandra'][0]]['ansible_default_ipv4'].address }}"
       start_native_transport: true
     cassandra_configure_apache_repo: true
     # Create an alternative directories structure for the Cassandra data.
@@ -219,7 +224,7 @@ configuration:
           - /data/cassandra/saved_caches
     cassandra_regex_replacements:
       - path: cassandra-env.sh
-        line: 'MAX_HEAP_SIZE="512M"'
+        line: 'MAX_HEAP_SIZE="256M"'
         regexp: '^#MAX_HEAP_SIZE="4G"'
       - path: cassandra-env.sh
         line: 'HEAP_NEWSIZE="100M"'
@@ -235,6 +240,12 @@ configuration:
   roles:
     - role: locp.cassandra
 ```
+
+To see the playbooks that are used for
+[testing](CONTRIBUTING.md#testing) see
+[molecule/default/converge.yml](molecule/default/converge.yml)
+and
+[molecule/combine_cluster/converge.yml](molecule/combine_cluster/converge.yml).
 
 ## License
 

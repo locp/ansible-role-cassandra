@@ -17,9 +17,6 @@
       endpoint_snitch: GossipingPropertyFileSnitch
       hints_directory: "/data/cassandra/hints"
       listen_address: "{{ ansible_default_ipv4.address }}"
-      # For a sensible value to set num_tokens to, please see
-      # https://cassandra.apache.org/doc/latest/getting_started/production.html#tokens
-      num_tokens: 4
       partitioner: org.apache.cassandra.dht.Murmur3Partitioner
       saved_caches_directory: /data/cassandra/saved_caches
       seed_provider:
@@ -66,7 +63,7 @@
     - name: Set Variables for Clustered Nodes
       set_fact:
         cassandra_cluster_name: MyCassandraCluster
-        cassandra_join_cluster: True
+        cassandra_join_cluster: False
         cassandra_seed: "{{ hostvars[groups['cassandra'][0]]['ansible_default_ipv4'].address }}"
       when: "'clustered' in group_names"
 

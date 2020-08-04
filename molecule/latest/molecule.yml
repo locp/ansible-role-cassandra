@@ -5,32 +5,20 @@ dependency:
 driver:
   name: docker
 
+lint: |
+  set -ex
+  yamllint -s .
+  ansible-lint
+  flake8
+
 platforms:
   - name: node0
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
-    privileged: True
-
-  - name: node1
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
-    groups:
-      - cassandra
-      - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
-    privileged: True
-
-  - name: node2
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
-    groups:
-      - cassandra
-      - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
+      - ${DISTRO:-debian}${TAG:-stable}
+    image: ${DISTRO:-debian}:${TAG:-stable}
     privileged: True
 
 provisioner:
@@ -42,15 +30,12 @@ provisioner:
 
   inventory:
     group_vars:
-      all:
-        cassandra_join_cluster: True
       centos7:
         cassandra_systemd_enabled: True
       centos8:
         cassandra_systemd_enabled: True
         ansible_python_interpreter: python3
-      debian9:
-      debian10:
+      debianstable:
         cassandra_15770_workaround: True
       fedora31:
         ansible_python_interpreter: python3
@@ -69,14 +54,20 @@ provisioner:
 
 scenario:
   test_sequence:
+    # Pretty much the default test sequence, just added the check step.
+    - lint
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - check
     - converge
+    - idempotence
     - verify
 
 verifier:
 
   name: testinfra
-
-  directory: ../default/tests
 
   options:
     connection: docker
