@@ -1,6 +1,6 @@
 # ansible-role-cassandra
 
-[![Build Status](https://travis-ci.com/locp/ansible-role-cassandra.svg?branch=develop)](https://travis-ci.com/locp/ansible-role-cassandra)
+[![Build Status](https://travis-ci.com/locp/ansible-role-cassandra.svg?branch=master)](https://travis-ci.com/locp/ansible-role-cassandra)
 [![Gitter](https://badges.gitter.im/ansible-role-cassandra/community.svg)](https://gitter.im/ansible-role-cassandra/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Ansible role to install and configure
@@ -34,14 +34,14 @@ executes this module.
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
-  for more details.  Requires the `ansible_memtotal_mb` and
-  `ansible_processor_vcpus` facts to be set.
+  for more details.  Requires the `cassandra_memtotal_mb` and
+  `cassandra_processor_vcpus` facts to be set.
 
 * `cassandra_cms_max_heapsize_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   MAX_HEAP_SIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
-  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
+  for more details.  Requires the `cassandra_memtotal_mb` fact to be set.
 
 * `cassandra_configuration` (default: *none*):
   The configuration for Cassandra.  See the example play book below.
@@ -79,8 +79,8 @@ executes this module.
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
-  for more details.  Requires the `ansible_memtotal_mb` and
-  `ansible_processor_vcpus` facts to be set.
+  for more details.  Requires the `cassandra_memtotal_mb` and
+  `cassandra_processor_vcpus` facts to be set.
 
 * `cassandra_install_packages` (default: **True**):
   A boolean value indicating if this Ansible role should attempt to install
@@ -102,7 +102,12 @@ executes this module.
   A custom fact that returns a value (MB) that might be suitable to set the
   MAX_HEAP_SIZE.  See
   [Tuning Java resources](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tune_jvm_c.html)
-  for more details.  Requires the `ansible_memtotal_mb` fact to be set.
+  for more details.  Requires the `cassandra_memtotal_mb` fact to be set.
+
+* `cassandra_memtotal_mb` (default: `ansible_memtotal_mb` if set):
+  Is used to calculate
+  `cassandra_cms_max_heapsize_mb`, `cassandra_max_heapsize_mb`,
+  `cassandra_cms_heap_new_size_mb` and `cassandra_heap_new_size_mb`.
 
 * `cassandra_node_count`:
   A read-only variable that attempts to contain the number of nodes in the
@@ -110,6 +115,10 @@ executes this module.
 
 * `cassandra_package` (default: `cassandra`):
   The name of the package to be installed to provide Cassandra.
+
+* `cassandra_processor_vcpus` (default: `ansible_processor_vcpus` if set):
+  Is used to calculate `cassandra_cms_heap_new_size_mb` and
+  `cassandra_heap_new_size_mb`.
 
 * `cassandra_rack`:
   If defined will set the rack in `cassandra-rackdc.properties`.
@@ -224,10 +233,10 @@ This playbook should be enough to configure Cassandra with a *very* basic
           - /data/cassandra/saved_caches
     cassandra_regex_replacements:
       - path: cassandra-env.sh
-        line: 'MAX_HEAP_SIZE="256M"'
+        line: 'MAX_HEAP_SIZE="{{ cassandra_max_heapsize_mb }}M"'
         regexp: '^#MAX_HEAP_SIZE="4G"'
       - path: cassandra-env.sh
-        line: 'HEAP_NEWSIZE="100M"'
+        line: 'HEAP_NEWSIZE="{{ cassandra_heap_new_size_mb }}M"'
         regexp: '^#HEAP_NEWSIZE="800M"'
       - path: cassandra-rackdc.properties
         line: 'dc=DC1'
@@ -249,7 +258,7 @@ and
 
 ## License
 
-[GPLv3](https://github.com/locp/ansible-role-cassandra/blob/develop/LICENSE)
+[GPLv3](https://github.com/locp/ansible-role-cassandra/blob/master/LICENSE)
 
 ## Author Information
 

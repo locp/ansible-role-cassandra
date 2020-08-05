@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/locp/ansible-role-cassandra/tree/1.6.0) (2020-08-05)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.5.1...1.6.0)
+
+**Implemented enhancements:**
+
+- Add New Variables For Memory Usage and CPU Utilisation [\#91](https://github.com/locp/ansible-role-cassandra/issues/91)
+
 ## [1.5.1](https://github.com/locp/ansible-role-cassandra/tree/1.5.1) (2020-08-04)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.5.0...1.5.1)
