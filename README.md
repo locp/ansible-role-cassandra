@@ -4,7 +4,9 @@
 [![Gitter](https://badges.gitter.im/ansible-role-cassandra/community.svg)](https://gitter.im/ansible-role-cassandra/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Ansible role to install and configure
-[Apache Cassandra](http://cassandra.apache.org/).
+[Apache Cassandra](http://cassandra.apache.org/).  After version 1.6.0 this
+role was [renamed](https://github.com/locp/ansible-role-cassandra/issues/98)
+from `locp.cassandra` to `locp.ansible_role_cassandra` in Ansible Galaxy.
 
 ## Requirements
 
