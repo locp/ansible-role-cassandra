@@ -42,8 +42,10 @@ provisioner:
 
   inventory:
     group_vars:
-      all:
+      cassandra:
         cassandra_join_cluster: True
+        cassandra_memtotal_mb: 1280
+        cassandra_processor_vcpus: 1
       centos7:
         cassandra_systemd_enabled: True
       centos8:

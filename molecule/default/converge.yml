@@ -49,10 +49,10 @@
           - /data/cassandra/saved_caches
     cassandra_regex_replacements:
       - path: cassandra-env.sh
-        line: 'MAX_HEAP_SIZE="256M"'
+        line: 'MAX_HEAP_SIZE="{{ cassandra_max_heapsize_mb }}M"'
         regexp: '^#MAX_HEAP_SIZE="4G"'
       - path: cassandra-env.sh
-        line: 'HEAP_NEWSIZE="100M"'
+        line: 'HEAP_NEWSIZE="{{ cassandra_heap_new_size_mb }}M"'
         regexp: '^#HEAP_NEWSIZE="800M"'
       - path: cassandra-rackdc.properties
         line: 'dc=DC1'

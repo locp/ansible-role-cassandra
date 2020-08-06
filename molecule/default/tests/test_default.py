@@ -27,7 +27,7 @@ def test_heap_new_size(host):
     f = host.file('%s/cassandra-env.sh' % get_config_path(host))
     assert f.exists
     assert f.is_file
-    assert f.contains('MAX_HEAP_SIZE="256M"')
+    assert f.contains('MAX_HEAP_SIZE="640M"')
 
 
 def test_nodetool_status(host):

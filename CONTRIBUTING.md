@@ -7,11 +7,11 @@ The general process for working on ansible-role-cassandra is:
 
 - Fork the project on Github
 - Clone your fork to your local machine
-- Create a feature branch from `develop` (e.g.
+- Create a feature branch from `master` (e.g.
   `git branch delete_all_the_code`)
 - Write code, commit often
 - Write test cases for all changed functionality
-- Submit a pull request against `develop` on Github
+- Submit a pull request against `master` on Github
 - Wait for code review!
 
 Things that will make your branch more likely to be pulled:
