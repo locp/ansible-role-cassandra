@@ -7,6 +7,8 @@ galaxy_info:
 
   company: "League of Crafty Programmers Ltd"
 
+  role_name: cassandra
+
   github_branch: master
 
   license: GPLv3

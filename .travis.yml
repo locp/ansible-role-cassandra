@@ -1,6 +1,9 @@
 ---
 language: python
 
+# Skip builds on tag pushes
+if: tag IS blank
+
 cache:
   directories:
     - /home/travis/.rvm
