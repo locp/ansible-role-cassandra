@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.1](https://github.com/locp/ansible-role-cassandra/tree/1.6.1) (2020-08-06)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.0...1.6.1)
+
+**Fixed bugs:**
+
+- Reimport of Role to Ansible Galaxy Has Renamed the Role [\#98](https://github.com/locp/ansible-role-cassandra/issues/98)
+
 ## [1.6.0](https://github.com/locp/ansible-role-cassandra/tree/1.6.0) (2020-08-05)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.5.1...1.6.0)
@@ -7,6 +15,7 @@
 **Implemented enhancements:**
 
 - Add New Variables For Memory Usage and CPU Utilisation [\#91](https://github.com/locp/ansible-role-cassandra/issues/91)
+- Add New Variables For Memory Usage and CPU Utilisation v1.6.0 [\#96](https://github.com/locp/ansible-role-cassandra/pull/96) ([dallinb](https://github.com/dallinb))
 
 ## [1.5.1](https://github.com/locp/ansible-role-cassandra/tree/1.5.1) (2020-08-04)
 
