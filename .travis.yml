@@ -11,7 +11,7 @@ python: 3.6
 
 # Install ansible
 install:
-  - ln -s $( basename $PWD ) ../locp.cassandra
+  - ln -s $( basename $PWD ) ../locp.ansible_role_cassandra
   - bundle install
   - pip install -Ur requirements.txt
   - pip freeze

@@ -1,5 +1,5 @@
 ---
-- name: Example Playbook for the locp.cassandra Role
+- name: Example Playbook for the locp.ansible_role_cassandra Role
 
   hosts: cassandra
 
@@ -65,7 +65,7 @@
     cassandra_repo_apache_release: 311x
 
   roles:
-    - role: locp.cassandra
+    - role: locp.ansible_role_cassandra
 
   post_tasks:
     - name: Wait for the Cassandra Listener

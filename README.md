@@ -181,7 +181,7 @@ This playbook should be enough to configure Cassandra with a *very* basic
 
 ```YAML
 ---
-- name: Example Playbook for the locp.cassandra Role
+- name: Example Playbook for the locp.ansible_role_cassandra Role
 
   hosts: cassandra
 
@@ -247,7 +247,7 @@ This playbook should be enough to configure Cassandra with a *very* basic
     cassandra_repo_apache_release: 311x
 
   roles:
-    - role: locp.cassandra
+    - role: locp.ansible_role_cassandra
 ```
 
 To see the playbooks that are used for
