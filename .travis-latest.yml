@@ -1,9 +1,6 @@
 ---
 language: python
 
-# Skip builds on tag pushes
-if: tag IS blank
-
 cache:
   directories:
     - /home/travis/.rvm
@@ -15,13 +12,13 @@ python: 3.6
 # Install ansible
 install:
   - bundle install
-  - pip install -Ur requirements.txt
+  - pip uninstall --yes ansible
+  - pip install -Ur requirements-latest.txt
   - pip freeze
 
 script:
   - bundle exec rubocop -ES
-  - molecule test --destroy never
-  - molecule test --scenario-name combine_cluster --destroy never
+  - molecule test --scenario-name latest --destroy never
 
 notifications:
   webhooks:
@@ -36,21 +33,11 @@ jobs:
   include:
     - env: COMMAND="/usr/sbin/init"
            DISTRO="centos"
-           TAG=7
-    - env: COMMAND="/usr/sbin/init"
-           DISTRO="centos"
-           TAG=8
+           TAG=latest
     - env: DISTRO="debian"
-           TAG=9
-    - env: DISTRO="debian"
-           TAG=10
+           TAG=stable
     - env: COMMAND="/usr/sbin/init"
            DISTRO="fedora"
-           TAG=31
-    - env: COMMAND="/usr/sbin/init"
-           DISTRO="fedora"
-           TAG=32
+           TAG=latest
     - env: DISTRO="ubuntu"
-           TAG=18.04
-    - env: DISTRO="ubuntu"
-           TAG=20.04
+           TAG=latest
