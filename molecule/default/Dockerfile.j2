@@ -20,6 +20,16 @@ RUN yum install -y dnf \
   && dnf makecache \
   && dnf --assumeyes install python36 sudo python36-devel python*-dnf bash iproute initscripts java-1.8.0-openjdk-headless \
   && dnf clean all
+{% elif item.image == 'centos:latest' %}
+#
+# CentOS (latest)
+#
+RUN yum install -y dnf \
+  && yum clean all \
+  && rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo \
+  && dnf makecache \
+  && dnf --assumeyes install python36 sudo python36-devel python*-dnf bash iproute initscripts java-1.8.0-openjdk-headless \
+  && dnf clean all
 {% elif item.image == 'debian:9' %}
 #
 # Debian 9
@@ -45,6 +55,21 @@ RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --fix-missing zulu-8 \
     || apt-get install -y --fix-missing zulu-8
+{% elif item.image == 'debian:stable' %}
+#
+# Debian (latest)
+#
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get update --fix-missing
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils gnupg2 python3-apt sudo bash ca-certificates lsb-release procps \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils gnupg2 python3-apt sudo bash ca-certificates lsb-release procps
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+RUN echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
+RUN apt-get clean \
+    && apt-get update \
+    && apt-get install -y --fix-missing zulu-8 \
+    || apt-get install -y --fix-missing zulu-8
 {% elif item.image == 'fedora:31' or item.image == 'fedora:32' %}
 #
 # Fedora 31 and 32.
@@ -52,9 +77,25 @@ RUN apt-get clean \
 RUN dnf makecache \
   && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
   && dnf clean all
+#
+# Fedora (latest)
+#
+RUN dnf makecache \
+  && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
+  && dnf clean all
 {% elif item.image == 'ubuntu:18.04' or item.image == 'ubuntu:20.04' %}
 #
 # Ubuntu 18.04 and 20.04.
+#
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get update --fix-missing
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates iproute2 \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates iproute2
+RUN apt-get clean
+{% elif item.image == 'ubuntu:latest' %}
+#
+# Ubuntu (Latest)
 #
 RUN apt-get clean
 RUN apt-get update
