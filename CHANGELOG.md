@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.2](https://github.com/locp/ansible-role-cassandra/tree/1.6.2) (2020-10-11)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.1...1.6.2)
+
+**Fixed bugs:**
+
+- Builds on Latest Branch Failing [\#101](https://github.com/locp/ansible-role-cassandra/issues/101)
+
 ## [1.6.1](https://github.com/locp/ansible-role-cassandra/tree/1.6.1) (2020-08-06)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.0...1.6.1)
@@ -7,6 +15,10 @@
 **Fixed bugs:**
 
 - Reimport of Role to Ansible Galaxy Has Renamed the Role [\#98](https://github.com/locp/ansible-role-cassandra/issues/98)
+
+**Merged pull requests:**
+
+- Release 1.6.1. [\#100](https://github.com/locp/ansible-role-cassandra/pull/100) ([dallinb](https://github.com/dallinb))
 
 ## [1.6.0](https://github.com/locp/ansible-role-cassandra/tree/1.6.0) (2020-08-05)
 
