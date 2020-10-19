@@ -4,6 +4,7 @@ language: python
 arch: arm64-graviton2
 dist: focal
 os: linux
+python: 3.8.6
 virt: vm
 
 
@@ -15,8 +16,6 @@ cache:
     - /home/travis/.rvm
     - /home/travis/.cache/pip
     - /home/travis/virtualenv
-
-python: 3.9
 
 # Install ansible
 install:
