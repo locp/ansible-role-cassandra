@@ -2,9 +2,6 @@
 dependency:
   name: galaxy
 
-driver:
-  name: docker
-
 platforms:
   - name: node0
     command: ${DOCKER_COMMAND:-"sleep infinity"}
