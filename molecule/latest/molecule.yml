@@ -2,6 +2,9 @@
 dependency:
   name: galaxy
 
+driver:
+  name: docker
+
 lint: |
   set -ex
   yamllint -s .
