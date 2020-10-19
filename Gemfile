@@ -15,5 +15,5 @@ group :test do
   gem 'rubocop-rails',
       '2.7.1'
   gem 'travis',
-      '1.9.1'
+      '1.10.0'
 end
