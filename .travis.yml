@@ -1,6 +1,12 @@
 ---
 language: python
 
+arch: arm64-graviton2
+dist: focal
+os: linux
+virt: vm
+
+
 # Skip builds on tag pushes
 if: tag IS blank
 
@@ -10,7 +16,7 @@ cache:
     - /home/travis/.cache/pip
     - /home/travis/virtualenv
 
-python: 3.6
+python: 3.9
 
 # Install ansible
 install:
