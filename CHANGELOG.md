@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.3](https://github.com/locp/ansible-role-cassandra/tree/1.6.3) (2020-10-19)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.2...1.6.3)
+
+**Fixed bugs:**
+
+- Builds Failing on TravisCI [\#102](https://github.com/locp/ansible-role-cassandra/issues/102)
+
 ## [1.6.2](https://github.com/locp/ansible-role-cassandra/tree/1.6.2) (2020-10-11)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.1...1.6.2)
