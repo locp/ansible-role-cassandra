@@ -35,10 +35,10 @@ provisioner:
         ansible_python_interpreter: python3
       debianstable:
         cassandra_15770_workaround: True
-      fedora31:
+      fedora32:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
-      fedora32:
+      fedora33:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
       ubuntu18.04:

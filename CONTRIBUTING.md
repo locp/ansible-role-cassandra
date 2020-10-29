@@ -87,16 +87,16 @@ molecule test --destroy never
 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-- Fedora 31
+- Fedora 32
 ```
 COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --destroy never
 COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-- Fedora 32
+- Fedora 33
 ```
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test --destroy never
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=32 molecule test --scenario-name combine_cluster --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=33 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=33 molecule test --scenario-name combine_cluster --destroy never
 ```
 
 - Ubuntu 18.04

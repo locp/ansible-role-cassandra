@@ -51,10 +51,10 @@ jobs:
            TAG=10
     - env: COMMAND="/usr/sbin/init"
            DISTRO="fedora"
-           TAG=31
+           TAG=32
     - env: COMMAND="/usr/sbin/init"
            DISTRO="fedora"
-           TAG=32
+           TAG=33
     - env: DISTRO="ubuntu"
            TAG=18.04
     - env: DISTRO="ubuntu"

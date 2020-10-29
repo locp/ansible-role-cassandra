@@ -70,9 +70,9 @@ RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --fix-missing zulu-8 \
     || apt-get install -y --fix-missing zulu-8
-{% elif item.image == 'fedora:31' or item.image == 'fedora:32' %}
+{% elif item.image == 'fedora:32' or item.image == 'fedora:33' %}
 #
-# Fedora 31 and 32.
+# Fedora 32 and 33.
 #
 RUN dnf makecache \
   && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
