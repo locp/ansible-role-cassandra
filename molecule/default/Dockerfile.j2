@@ -70,11 +70,21 @@ RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --fix-missing zulu-8 \
     || apt-get install -y --fix-missing zulu-8
-{% elif item.image == 'fedora:32' or item.image == 'fedora:33' %}
+{% elif item.image == 'fedora:32' %}
 #
-# Fedora 32 and 33.
+# Fedora 32
 #
 RUN dnf makecache \
+  && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
+  && dnf clean all
+{% elif item.image == 'fedora:33' %}
+#
+# Fedora 33
+#
+RUN dnf makecache \
+  && dnf --assumeyes install jre \
+  && alternatives --remove-all java \
+  && alternatives --remove-all jre_openjdk \
   && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
   && dnf clean all
 {% elif item.image == 'fedora:latest' %}
@@ -82,6 +92,9 @@ RUN dnf makecache \
 # Fedora (latest)
 #
 RUN dnf makecache \
+  && dnf --assumeyes install jre \
+  && alternatives --remove-all java \
+  && alternatives --remove-all jre_openjdk \
   && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
   && dnf clean all
 {% elif item.image == 'ubuntu:18.04' or item.image == 'ubuntu:20.04' %}
