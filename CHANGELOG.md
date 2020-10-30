@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.4](https://github.com/locp/ansible-role-cassandra/tree/1.6.4) (2020-10-30)
+
+[Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.3...1.6.4)
+
+**Fixed bugs:**
+
+- New Version of Fedora \(33\) Breaking on Latest Branch [\#105](https://github.com/locp/ansible-role-cassandra/issues/105)
+
 ## [1.6.3](https://github.com/locp/ansible-role-cassandra/tree/1.6.3) (2020-10-19)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.2...1.6.3)
@@ -7,6 +15,7 @@
 **Fixed bugs:**
 
 - Builds Failing on TravisCI [\#102](https://github.com/locp/ansible-role-cassandra/issues/102)
+- Release/1.6.3 [\#103](https://github.com/locp/ansible-role-cassandra/pull/103) ([dallinb](https://github.com/dallinb))
 
 ## [1.6.2](https://github.com/locp/ansible-role-cassandra/tree/1.6.2) (2020-10-11)
 
