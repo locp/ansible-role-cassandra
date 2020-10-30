@@ -24,6 +24,7 @@ install:
   - pip freeze
 
 script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - bundle exec rubocop -ES
   - molecule test --destroy never
   - molecule test --scenario-name combine_cluster --destroy never
