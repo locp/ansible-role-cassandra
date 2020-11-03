@@ -1,0 +1,103 @@
+---
+name: Latest Components
+
+on:
+  push:
+    branches: [ feature/latest ]
+  schedule:
+    - cron:  '0 0 1,15 * *'
+
+jobs:
+  centos:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy the Initial Clusters
+      env:
+        COMMAND: /usr/sbin/init
+        DISTRO: centos
+        TAG: latest
+      run: molecule test --destroy never
+
+  debian:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy the Initial Clusters
+      env:
+        DISTRO: debian
+        TAG: stable
+      run: molecule test --destroy never
+
+  fedora:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy the Initial Clusters
+      env:
+        COMMAND: /usr/sbin/init
+        DISTRO: fedora
+        TAG: latest
+      run: molecule test --destroy never
+
+  ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy the Initial Clusters
+      env:
+        DISTRO: ubuntu
+        TAG: latest
+      run: molecule test --destroy never
