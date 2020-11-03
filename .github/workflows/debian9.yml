@@ -1,5 +1,5 @@
 ---
-name: CI Debian 10
+name: CI Debian 9
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Deploy the Initial Clusters
-      run: DISTRO="debian" TAG=10 molecule test --destroy never
+      run: DISTRO="debian" TAG=9 molecule test --destroy never
 
     - name: Combine the Clusters
-      run: DISTRO="debian" TAG=10 molecule test --scenario-name combine_cluster --destroy never
+      run: DISTRO="debian" TAG=9 molecule test --scenario-name combine_cluster --destroy never
