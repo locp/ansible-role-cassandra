@@ -8,7 +8,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -26,7 +26,13 @@ jobs:
         pip install -r requirements.txt
 
     - name: Deploy the Initial Clusters
-      run: DISTRO="ubuntu" TAG=18.04 molecule test --destroy never
+      env:
+        DISTRO: ubuntu
+        TAG: 18.04
+      run: molecule test --destroy never
 
     - name: Combine the Clusters
-      run: DISTRO="ubuntu" TAG=18.04 molecule test --scenario-name combine_cluster --destroy never
+      env:
+        DISTRO: ubuntu
+        TAG: 18.04
+      run: molecule test --scenario-name combine_cluster

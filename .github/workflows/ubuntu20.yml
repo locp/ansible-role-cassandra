@@ -1,5 +1,5 @@
 ---
-name: CI CentOS 8
+name: CI Ubuntu 20.04
 
 on:
   push:
@@ -27,14 +27,12 @@ jobs:
 
     - name: Deploy the Initial Clusters
       env:
-        COMMAND: /usr/sbin/init
-        DISTRO: centos
-        TAG: 8
+        DISTRO: ubuntu
+        TAG: 20.04
       run: molecule test --destroy never
 
     - name: Combine the Clusters
       env:
-        COMMAND: /usr/sbin/init
-        DISTRO: centos
-        TAG: 8
+        DISTRO: ubuntu
+        TAG: 20.04
       run: molecule test --scenario-name combine_cluster
