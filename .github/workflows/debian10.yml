@@ -1,0 +1,32 @@
+---
+name: CI Debian 10
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy the Initial Clusters
+      run: DISTRO="debian" TAG=10 molecule test --destroy never
+
+    - name: Compine the Clusters
+      run: DISTRO="debian" TAG=10 molecule test --scenario-name combine_cluster --destroy never
