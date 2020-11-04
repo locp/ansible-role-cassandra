@@ -2,8 +2,6 @@
 name: CI Debian 10
 
 on:
-  push:
-    branches: [ develop ]
   pull_request:
     branches: [ develop ]
 

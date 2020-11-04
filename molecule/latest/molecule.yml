@@ -31,8 +31,8 @@ provisioner:
   inventory:
     group_vars:
       centoslatest:
-        cassandra_systemd_enabled: True
         ansible_python_interpreter: python3
+        cassandra_systemd_enabled: True
       debianstable:
         cassandra_15770_workaround: True
       fedora32:
