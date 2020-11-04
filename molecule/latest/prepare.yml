@@ -16,7 +16,3 @@
     - name: Display Host Information
       debug:
         var: instance_info
-
-    - name: Display Ansible Facts
-      debug:
-        var: ansible_facts

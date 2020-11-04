@@ -2,8 +2,6 @@
 name: CI Ubuntu 18.04
 
 on:
-  push:
-    branches: [ develop ]
   pull_request:
     branches: [ develop ]
 

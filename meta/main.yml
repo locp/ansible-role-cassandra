@@ -9,7 +9,7 @@ galaxy_info:
 
   role_name: cassandra
 
-  github_branch: master
+  github_branch: main
 
   license: GPLv3
 
