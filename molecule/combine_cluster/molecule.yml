@@ -82,5 +82,4 @@ verifier:
 
   options:
     connection: docker
-    durations: 3
     v: 1

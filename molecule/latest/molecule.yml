@@ -64,10 +64,8 @@ scenario:
     - verify
 
 verifier:
-
   name: testinfra
 
   options:
     connection: docker
-    durations: 3
     v: 1
