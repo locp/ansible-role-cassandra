@@ -23,7 +23,7 @@ for host in testinfra_hosts:
 class TestSupportedPlatform(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        metadata_file_name = '../../meta/main.yml'
+        metadata_file_name = 'meta/main.yml'
 
         with open(metadata_file_name) as f:
             metadata = yaml.load(f, Loader=yaml.FullLoader)
