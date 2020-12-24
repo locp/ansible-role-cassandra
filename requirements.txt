@@ -18,6 +18,7 @@ cryptography==3.3.1
 docker==4.4.0
 enrich==1.2.3
 flake8==3.8.4
+gitchangelog==3.0.4
 idna==2.10
 iniconfig==1.1.1
 Jinja2==2.11.2
@@ -39,6 +40,7 @@ pyflakes==2.2.0
 Pygments==2.7.3
 PyNaCl==1.4.0
 pyparsing==2.4.7
+pystache==0.5.4
 pytest==6.2.1
 pytest-testinfra==6.1.0
 python-dateutil==2.8.1
