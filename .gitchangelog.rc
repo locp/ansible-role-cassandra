@@ -144,7 +144,7 @@ subject_process = (strip |
 tag_filter_regexp = r'^[0-9]+\.[0-9]+(\.[0-9]+)?$'
 
 
-with open('meta/main.yml') as stream:
+with open('vars/main.yml') as stream:
     unreleased_version_label = yaml.safe_load(stream)['version']
 
 output_engine = mustache("markdown")
