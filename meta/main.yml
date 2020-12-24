@@ -50,3 +50,5 @@ galaxy_info:
         - 33
 
   dependencies: []
+
+version: 1.6.5
