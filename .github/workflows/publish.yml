@@ -27,6 +27,6 @@ jobs:
 
       - name: Ansible Galaxy Import
         run: |
-          ansible-galaxy role import --api-key "${GALAXY_API_KEY}" --branch "${GITHUB_REF}" --role-name cassandra locp ansible-role-cassandra
+          ansible-galaxy role import --api-key "${GALAXY_API_KEY}" --branch main --role-name cassandra locp ansible-role-cassandra
         env:
           GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
