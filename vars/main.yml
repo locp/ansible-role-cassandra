@@ -1,2 +1,3 @@
 ---
-version: 1.6.5
+# The version of the Cassandra role.
+cassandra_role_version: 1.6.5
