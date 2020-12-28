@@ -26,6 +26,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Ansible Galaxy Import
-        run: ansible-galaxy role import --api-key "${GALAXY_API_KEY}" --branch "${GITHUB_REF}" --role-name cassandra
+        run: |
+          ansible-galaxy role import --api-key "${GALAXY_API_KEY}" --branch "${GITHUB_REF}" --role-name cassandra dallinb https://github.com/locp/ansible-role-cassandra
         env:
           GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
