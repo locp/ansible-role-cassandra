@@ -1,6 +1,5 @@
 # ansible-role-cassandra
 
-[![Build Status](https://travis-ci.com/locp/ansible-role-cassandra.svg?branch=master)](https://travis-ci.com/locp/ansible-role-cassandra)
 [![Gitter](https://badges.gitter.im/ansible-role-cassandra/community.svg)](https://gitter.im/ansible-role-cassandra/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Ansible role to install and configure
@@ -158,7 +157,7 @@ executes this module.
   `cassandra_systemd_enabled` is **False**.
 
 * `cassandra_systemd_template` (default:
-  `"systemd/system/{{ ansible_facts.distribution }}/{{ ansible_facts.distribution_major_version }}/cassandra.service.j2"`:
+  `"systemd/system/cassandra.service.j2"`:
   The path for a template from which to create unit file for Cassandra.  This
   variable is ignored if `cassandra_systemd_enabled` is **False**.
 
