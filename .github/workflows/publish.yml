@@ -1,0 +1,19 @@
+---
+name: Publish the Role to Galaxy
+
+on:
+  push:
+    branches:
+      - bugfix/git_workflow_publish
+      - main
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Galaxy
+        uses: robertdebock/galaxy-action@1.1.0
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}
