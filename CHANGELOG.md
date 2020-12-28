@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.6.5
+
+### New
+
+* Implement the gitchangelog Python package. [Ben Dalling]
+
+* Migrate latest checks from TravisCI to GitHub workflows. [Ben Dalling]
+
+* Start migration from TravisCI to GitHub Workflow. [Ben Dalling]
+
+### Fix
+
+* Reduce duplicated templates for Systemd. [Ben Dalling]
+
+* Resolve issues with new testinfra version. [Ben Dalling]
+
+* Ensure testing against latest Python packages. [Ben Dalling]
+
+
 ## [1.6.4](https://github.com/locp/ansible-role-cassandra/tree/1.6.4) (2020-10-30)
 
 [Full Changelog](https://github.com/locp/ansible-role-cassandra/compare/1.6.3...1.6.4)
