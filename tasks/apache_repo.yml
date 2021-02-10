@@ -24,6 +24,7 @@
   with_items:
     - A278B781FE4B2BDA
     - E91335D77E3E87CB
+    - F1000962B7F6840C
   when:
     - ansible_os_family is defined
     - ansible_os_family == 'Debian'
