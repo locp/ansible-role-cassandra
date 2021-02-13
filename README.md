@@ -74,6 +74,10 @@ executes this module.
   installed (therefore when the cassandra user is available) but before
   Cassandra is configured.  See the example playbook for more details.
 
+  Please note that when used with the `cassandra_join_cluster` option the
+  paths specified here will be deleted (with all their contents) and
+  recreated so that the node can join a cluster correctly.
+
 * `cassandra_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE.  See
