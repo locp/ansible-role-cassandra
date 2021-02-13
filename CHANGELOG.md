@@ -1,5 +1,57 @@
 # Changelog
 
+## 1.6.7
+
+### Fix
+
+* Ansible Galaxy still not acknowledging Fedora 33. Related to #106. [Ben Dalling]
+
+* Correct path names when clearing data as part of a cluster rejoin. This partially resolves some of the issues raised in #116. [Ben Dalling]
+
+* Clarify the effect of cassandra_join_cluster on cassandra_directories. [Ben Dalling]
+
+
+## 1.6.6 (2021-02-10)
+
+### Fix
+
+* Add GPG key F1000962B7F6840C for Debian. [Ben Dalling]
+
+* Ensure Python packages are cached in GitHub workflows. [Ben Dalling]
+
+* Ensure role is published to Ansible Galaxy. [Ben Dalling]
+
+### Other
+
+* Revert metadata (Fedora-33). [Ben Dalling]
+
+* Build(deps): bump cryptography from 3.3.1 to 3.3.2. [dependabot[bot]]
+
+  Bumps [cryptography](https://github.com/pyca/cryptography) from 3.3.1 to 3.3.2.
+  - [Release notes](https://github.com/pyca/cryptography/releases)
+  - [Changelog](https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst)
+  - [Commits](https://github.com/pyca/cryptography/compare/3.3.1...3.3.2)
+
+
+## 1.6.5 (2020-12-28)
+
+### New
+
+* Implement the gitchangelog Python package. [Ben Dalling]
+
+* Migrate latest checks from TravisCI to GitHub workflows. [Ben Dalling]
+
+* Start migration from TravisCI to GitHub Workflow. [Ben Dalling]
+
+### Fix
+
+* Reduce duplicated templates for Systemd. [Ben Dalling]
+
+* Resolve issues with new testinfra version. [Ben Dalling]
+
+* Ensure testing against latest Python packages. [Ben Dalling]
+
+
 ## 1.6.6
 
 ### Fix
