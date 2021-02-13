@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{ item }}"
-  with_items: "{{ cassandra_directories.keys() | list }}"
+  with_items: "{{ cassandra_directories.data.paths }}"
   when:
     - cassandra_node_count is defined
     - cassandra_node_count == '1'
