@@ -1,11 +1,12 @@
 ---
+
 # Tasks for adding a standalone cluster to an existing cluster.
 - name: Get Current Node Count If Available
   shell:
     cmd: nodetool status | awk '/^(U|D)(N|L|J|M)/{print $2}' | wc -l
   register: cassandra_nodetool_output
   changed_when: false
-  check_mode: no
+  check_mode: false
 
 - name: Store Current Node Count
   set_fact:
@@ -13,7 +14,7 @@
   when:
     - not ansible_check_mode
 
-- name: Stop Cassandra (RedHat)
+- name: Stop Cassandra
   systemd:
     name: cassandra
     state: stopped
@@ -21,19 +22,6 @@
     - cassandra_node_count is defined
     - cassandra_node_count == '1'
     - not ansible_check_mode
-    - ansible_os_family is defined
-    - ansible_os_family == 'RedHat'
-
-- name: Stop Cassandra (Debian)
-  service:
-    name: cassandra
-    state: stopped
-  when:
-    - cassandra_node_count is defined
-    - cassandra_node_count == '1'
-    - not ansible_check_mode
-    - ansible_os_family is defined
-    - ansible_os_family == 'Debian'
 
 - name: Clean Cassandra Data Directory
   file:

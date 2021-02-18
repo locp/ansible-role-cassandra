@@ -1,0 +1,21 @@
+---
+
+- name: Check OS is supported
+  assert:
+    that:
+      - ansible_os_family | default('') is in ['Debian', "RedHat"]
+    fail_msg: "unsupported OS ({{ ansible_os_family | d(None) }}) or facts not gathered"
+
+- name: Check use of deprecated variables
+  debug:
+    msg: "{{ variable.name }} is deprecated; use {{ variable.replacement }} instead"
+  when: lookup('vars', variable.name, default='') | length
+  loop: "{{ deprecated_variables }}"
+  loop_control:
+    loop_var: variable
+  vars:
+    deprecated_variables:
+      - name: cassandra_dc
+        replacement: cassandra_regex_replacements
+      - name: cassandra_rack
+        replacement: cassandra_regex_replacements
