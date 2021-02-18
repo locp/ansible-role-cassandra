@@ -14,7 +14,7 @@
   when:
     - not ansible_check_mode
 
-- name: Stop Cassandra
+- name: Stop Cassandra (RedHat)
   systemd:
     name: cassandra
     state: stopped
@@ -22,6 +22,17 @@
     - cassandra_node_count is defined
     - cassandra_node_count == '1'
     - not ansible_check_mode
+    - ansible_os_family == 'RedHat'
+
+- name: Stop Cassandra (Debian)
+  service:
+    name: cassandra
+    state: stopped
+  when:
+    - cassandra_node_count is defined
+    - cassandra_node_count == '1'
+    - not ansible_check_mode
+    - ansible_os_family == 'Debian'
 
 - name: Clean Cassandra Data Directory
   file:
