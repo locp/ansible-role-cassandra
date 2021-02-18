@@ -11,11 +11,21 @@
   notify:
     - cassandra_restart_service
 
-- name: Ensure the Service is in the Required State
+- name: Ensure the Service is in the Required State (RedHat)
   systemd:
     name: cassandra
     enabled: "{{ cassandra_service_enabled }}"
-    daemon_reload: true
+    daemon_reload: yes
     state: "{{ cassandra_service_state }}"
   when:
     - not ansible_check_mode
+    - ansible_os_family == 'RedHat'
+
+- name: Ensure the Service is in the Required State (Debian)
+  service:
+    name: cassandra
+    enabled: "{{ cassandra_service_enabled }}"
+    state: "{{ cassandra_service_state }}"
+  when:
+    - not ansible_check_mode
+    - ansible_os_family == 'Debian'
