@@ -8,3 +8,9 @@
   when:
     - cassandra_15770_workaround | bool
     - not ansible_check_mode
+
+- name: CASSANDRA-2356 Workaround
+  shell: rm -rf /var/lib/cassandra/data/*
+  when:
+    - cassandra_2356_workaround | bool
+    - not ansible_check_mode
