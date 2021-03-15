@@ -9,6 +9,8 @@ galaxy_info:
 
   role_name: cassandra
 
+  namespace: locp
+
   github_branch: main
 
   license: GPLv3
