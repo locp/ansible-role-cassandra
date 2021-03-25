@@ -49,7 +49,7 @@ pytest==6.2.1
 pytest-testinfra==6.1.0
 python-dateutil==2.8.1
 python-slugify==4.0.1
-PyYAML==5.3.1
+PyYAML==5.4
 requests==2.25.0
 rich==9.13.0
 ruamel.yaml==0.16.12
