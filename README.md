@@ -116,6 +116,14 @@ executes this module.
   `cassandra_cms_max_heapsize_mb`, `cassandra_max_heapsize_mb`,
   `cassandra_cms_heap_new_size_mb` and `cassandra_heap_new_size_mb`.
 
+* `cassandra_path`
+  This variable was introduced in version 1.4.0 but was
+  missed from being documented.  As
+  [pointed out](https://github.com/locp/ansible-role-cassandra/issues/116) if the variable is defined when the
+  variable is set and the directory is deleted, it is not
+  recreated.  The variable has now been deprecated in
+  favour of `cassandra_directories`.
+
 * `cassandra_node_count`:
   A read-only variable that attempts to contain the number of nodes in the
   cluster.  Will only be set if `cassandra_join_cluster` is set to `True`.
