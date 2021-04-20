@@ -1,7 +1,8 @@
-.idea/
-.python-version
 *.pyc
 *.rake_tasks~
 *.swp
+.cache/
+.idea/
+.python-version
 Gemfile.lock
 pytestdebug.log
