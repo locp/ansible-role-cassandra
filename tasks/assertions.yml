@@ -17,5 +17,7 @@
     deprecated_variables:
       - name: cassandra_dc
         replacement: cassandra_regex_replacements
+      - name: cassandra_path
+        replacement: cassandra_directories
       - name: cassandra_rack
         replacement: cassandra_regex_replacements
