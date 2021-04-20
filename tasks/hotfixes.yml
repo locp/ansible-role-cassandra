@@ -1,0 +1,16 @@
+---
+
+- name: CASSANDRA-15770 Workaround
+  lineinfile:
+    line: '    start-stop-daemon -K -u cassandra -p "$PIDFILE" -R TERM/30/KILL/5 >/dev/null'
+    path: /etc/init.d/cassandra
+    regexp: '^.*start-stop-daemon -K.*$'
+  when:
+    - cassandra_15770_workaround | bool
+    - not ansible_check_mode
+
+- name: CASSANDRA-2356 Workaround
+  shell: rm -rf /var/lib/cassandra/*  # noqa 302
+  when:
+    - cassandra_2356_workaround | bool
+    - not ansible_check_mode

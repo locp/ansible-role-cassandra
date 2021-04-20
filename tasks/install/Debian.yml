@@ -1,0 +1,38 @@
+---
+
+- name: Add the Apache Apt Keys
+  apt_key:
+    keyserver: pool.sks-keyservers.net
+    id: "{{ key }}"
+  register: cassandra_remote_status
+  until: cassandra_remote_status is succeeded
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
+  loop:
+    - A278B781FE4B2BDA
+    - E91335D77E3E87CB
+    - F1000962B7F6840C
+  loop_control:
+    loop_var: key
+  when:
+    - cassandra_configure_apache_repo|bool
+
+- name: Configure the Apache Cassandra Apt Repository
+  apt_repository:
+    filename: /etc/apt/sources.list.d/cassandra.sources
+    repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_repo_apache_release }} main"
+    state: present
+  when:
+    - cassandra_configure_apache_repo|bool
+
+- name: Install the Cassandra Package (Apt)
+  apt:
+    name: "{{ cassandra_package }}"
+    cache_valid_time: 600
+  register: cassandra_remote_status
+  until: cassandra_remote_status is succeeded
+  delay: "{{ cassandra_task_delay }}"
+  retries: "{{ cassandra_task_retries }}"
+  when:
+    - cassandra_install_packages|bool
+    - not ansible_check_mode

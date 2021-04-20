@@ -1,6 +1,51 @@
 # Changelog
 
-## 1.6.7
+## 1.6.8
+
+### Fix
+
+* Document the deprecation of cassandra_path. [Ben Dalling]
+
+* Bump minimum Ansible version to 2.10.9. [Ben Dalling]
+
+* Resolve Ansible lint errors in metadata. [Ben Dalling]
+
+* Flag cassandra_path as deprecated. [Ben Dalling]
+
+* CASSANDRA-2356 and code refactor. [nkakouros]
+
+### Other
+
+* Build(deps): bump urllib3 from 1.26.3 to 1.26.4. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.3 to 1.26.4.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.3...1.26.4)
+
+* Build(deps): bump pyyaml from 5.3.1 to 5.4. [dependabot[bot]]
+
+  Bumps [pyyaml](https://github.com/yaml/pyyaml) from 5.3.1 to 5.4.
+  - [Release notes](https://github.com/yaml/pyyaml/releases)
+  - [Changelog](https://github.com/yaml/pyyaml/blob/master/CHANGES)
+  - [Commits](https://github.com/yaml/pyyaml/compare/5.3.1...5.4)
+
+* Build(deps): bump urllib3 from 1.26.2 to 1.26.3. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.2 to 1.26.3.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.2...1.26.3)
+
+* Build(deps): bump jinja2 from 2.11.2 to 2.11.3. [dependabot[bot]]
+
+  Bumps [jinja2](https://github.com/pallets/jinja) from 2.11.2 to 2.11.3.
+  - [Release notes](https://github.com/pallets/jinja/releases)
+  - [Changelog](https://github.com/pallets/jinja/blob/master/CHANGES.rst)
+  - [Commits](https://github.com/pallets/jinja/compare/2.11.2...2.11.3)
+
+
+## 1.6.7 (2021-02-13)
 
 ### Fix
 
@@ -34,66 +79,6 @@
 
 
 ## 1.6.5 (2020-12-28)
-
-### New
-
-* Implement the gitchangelog Python package. [Ben Dalling]
-
-* Migrate latest checks from TravisCI to GitHub workflows. [Ben Dalling]
-
-* Start migration from TravisCI to GitHub Workflow. [Ben Dalling]
-
-### Fix
-
-* Reduce duplicated templates for Systemd. [Ben Dalling]
-
-* Resolve issues with new testinfra version. [Ben Dalling]
-
-* Ensure testing against latest Python packages. [Ben Dalling]
-
-
-## 1.6.6
-
-### Fix
-
-* Add GPG key F1000962B7F6840C for Debian. [Ben Dalling]
-
-* Ensure Python packages are cached in GitHub workflows. [Ben Dalling]
-
-* Ensure role is published to Ansible Galaxy. [Ben Dalling]
-
-### Other
-
-* Revert metadata (Fedora-33). [Ben Dalling]
-
-* Build(deps): bump cryptography from 3.3.1 to 3.3.2. [dependabot[bot]]
-
-  Bumps [cryptography](https://github.com/pyca/cryptography) from 3.3.1 to 3.3.2.
-  - [Release notes](https://github.com/pyca/cryptography/releases)
-  - [Changelog](https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst)
-  - [Commits](https://github.com/pyca/cryptography/compare/3.3.1...3.3.2)
-
-
-## 1.6.5 (2020-12-28)
-
-### New
-
-* Implement the gitchangelog Python package. [Ben Dalling]
-
-* Migrate latest checks from TravisCI to GitHub workflows. [Ben Dalling]
-
-* Start migration from TravisCI to GitHub Workflow. [Ben Dalling]
-
-### Fix
-
-* Reduce duplicated templates for Systemd. [Ben Dalling]
-
-* Resolve issues with new testinfra version. [Ben Dalling]
-
-* Ensure testing against latest Python packages. [Ben Dalling]
-
-
-## 1.6.5
 
 ### New
 

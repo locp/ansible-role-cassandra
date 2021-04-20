@@ -1,0 +1,92 @@
+---
+
+- name: Include OS specific facts
+  include_vars:
+    file: "{{ ansible_os_family }}.yml"
+
+- name: Set cassandra_configuration_file if not defined
+  set_fact:
+    cassandra_configuration_file: "{{ _cassandra_configuration_file }}"
+  when: cassandra_configuration_file is not defined
+
+- name: Derive cassandra_configuration_directory
+  set_fact:
+    cassandra_configuration_directory: "{{ cassandra_configuration_file | dirname }}"
+
+- name: Set default value for cassandra_memtotal_mb
+  set_fact:
+    cassandra_memtotal_mb: "{{ ansible_memtotal_mb }}"
+  when:
+    - ansible_memtotal_mb is defined
+    - cassandra_memtotal_mb is not defined
+
+- name: Set default value for cassandra_processor_vcpus
+  set_fact:
+    cassandra_processor_vcpus: "{{ ansible_processor_vcpus }}"
+  when:
+    - ansible_processor_vcpus is defined
+    - cassandra_processor_vcpus is not defined
+
+- name: Calculate cassandra_cms_max_heapsize_mb
+  set_fact:
+    cassandra_cms_max_heapsize_mb: "{{
+      [
+        ([cassandra_memtotal_mb * 0.5, 1024] | min),
+        ([cassandra_memtotal_mb * 0.25, 14336] | min)
+      ] | max | round | int }}"
+  when:
+    - cassandra_memtotal_mb is defined
+    - cassandra_cms_max_heapsize_mb is not defined
+
+- name: Calculate cassandra_max_heapsize_mb
+  set_fact:
+    cassandra_max_heapsize_mb: "{{
+      [
+        ([cassandra_memtotal_mb * 0.5, 1024] | min),
+        ([cassandra_memtotal_mb * 0.25, 8192] | min)
+      ] | max | round | int }}"
+  when:
+    - cassandra_memtotal_mb is defined
+    - cassandra_max_heapsize_mb is not defined
+
+- name: Calculate cassandra_cms_heap_new_size_mb
+  set_fact:
+    cassandra_cms_heap_new_size_mb: "{{
+      [
+        (cassandra_processor_vcpus * 100.0),
+        ((cassandra_cms_max_heapsize_mb | int) * 0.25)
+      ] | min | round | int }}"
+  when:
+    - cassandra_memtotal_mb is defined
+    - cassandra_processor_vcpus is defined
+    - cassandra_cms_heap_new_size_mb is not defined
+
+- name: Calculate cassandra_heap_new_size_mb
+  set_fact:
+    cassandra_heap_new_size_mb: "{{
+      [
+        (cassandra_processor_vcpus * 100.0),
+        ((cassandra_max_heapsize_mb | int) * 0.25)
+      ] | min | round | int }}"
+  when:
+    - cassandra_memtotal_mb is defined
+    - cassandra_processor_vcpus is defined
+    - cassandra_heap_new_size_mb is not defined
+
+- name: Debug Custom Facts
+  debug:
+    msg: {
+      'ansible_memtotal_mb': "{{ ansible_memtotal_mb }}",
+      'ansible_processor_vcpus': "{{ ansible_processor_vcpus }}",
+      'cassandra_cms_heap_new_size_mb': "{{ cassandra_cms_heap_new_size_mb }}",
+      'cassandra_cms_max_heapsize_mb': "{{ cassandra_cms_max_heapsize_mb }}",
+      'cassandra_heap_new_size_mb': "{{ cassandra_heap_new_size_mb }}",
+      'cassandra_node_count': "{{ cassandra_node_count | default('N/A') }}",
+      'cassandra_max_heapsize_mb': "{{ cassandra_max_heapsize_mb }}",
+      'cassandra_memtotal_mb': "{{ cassandra_memtotal_mb }}",
+      'cassandra_processor_vcpus': "{{ cassandra_processor_vcpus }}"
+    }
+    verbosity: 1
+  when:
+    - ansible_memtotal_mb is defined
+    - ansible_processor_vcpus is defined

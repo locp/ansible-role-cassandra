@@ -29,6 +29,10 @@ executes this module.
   3.0.21, 3.11.7, 4.0.  As we are running our tests against 3.11.6 at the
   moment, this applies the fix to `/etc/init.d/cassandra` if set to True.
 
+* `cassandra_2356_workaround`: (default: *False*)
+  [CASSANDRA-2356](https://issues.apache.org/jira/browse/CASSANDRA-2356)
+  affected deb packages for Cassandra versions pre-4.0.
+
 * `cassandra_cms_heap_new_size_mb`:
   A custom fact that returns a value (MB) that might be suitable to set the
   HEAP_NEWSIZE when using the Concurrent Mark Sweep (CMS) Collector.  See
@@ -111,6 +115,14 @@ executes this module.
   Is used to calculate
   `cassandra_cms_max_heapsize_mb`, `cassandra_max_heapsize_mb`,
   `cassandra_cms_heap_new_size_mb` and `cassandra_heap_new_size_mb`.
+
+* `cassandra_path`
+  This variable was introduced in version 1.4.0 but was
+  missed from being documented.  As
+  [pointed out](https://github.com/locp/ansible-role-cassandra/issues/116) if the variable is defined when the
+  variable is set and the directory is deleted, it is not
+  recreated.  The variable has now been deprecated in
+  favour of `cassandra_directories`.
 
 * `cassandra_node_count`:
   A read-only variable that attempts to contain the number of nodes in the
