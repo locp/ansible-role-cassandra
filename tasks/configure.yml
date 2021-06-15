@@ -3,7 +3,7 @@
 - name: Create Custom Directory
   file:
     group: "{{ directory.0.spec.group | default('cassandra') }}"
-    mode: "{{ directory.0.spec.mode | default(0700) }}"
+    mode: "{{ directory.0.spec.mode | default('0700') }}"
     owner: "{{ directory.0.spec.owner | default('cassandra') }}"
     path: "{{ directory.1 }}"
     state: directory
