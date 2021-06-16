@@ -1,5 +1,43 @@
 # Changelog
 
+## 1.6.9
+
+### Fix
+
+* Skip test that we are running against the latest distro. [Ben Dalling]
+
+* Change J2 template to work with Ansible 4. [Ben Dalling]
+
+* Bump min_ansible_version from 2.10.0 to 2.10.7. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump ansible from 2.10.0 to 2.10.7. [dependabot[bot]]
+
+  Bumps [ansible](https://github.com/ansible/ansible) from 2.10.0 to 2.10.7.
+  - [Release notes](https://github.com/ansible/ansible/releases)
+  - [Commits](https://github.com/ansible/ansible/compare/v2.10.0...v2.10.7)
+
+  ---
+  updated-dependencies:
+  - dependency-name: ansible
+    dependency-type: direct:production
+  ...
+
+* Build(deps): bump urllib3 from 1.26.4 to 1.26.5. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.4 to 1.26.5.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.4...1.26.5)
+
+  ---
+  updated-dependencies:
+  - dependency-name: urllib3
+    dependency-type: direct:production
+  ...
+
+
 ## 1.6.8
 
 ### Fix
