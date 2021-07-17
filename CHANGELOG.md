@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.10
+
+### Other
+
+* FIXED Add apache apt keys. [Tobias Loeb]
+
 ## 1.6.9
 
 ### Fix
