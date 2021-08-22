@@ -27,6 +27,7 @@ provisioner:
   config_options:
     defaults:
       callback_whitelist: "profile_tasks,timer"
+      remote_tmp: "/tmp/.ansible/tmp"
 
   inventory:
     group_vars:
