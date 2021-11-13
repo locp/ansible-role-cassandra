@@ -1,5 +1,5 @@
 ---
-name: CI Fedora 32
+name: CI Fedora 34
 
 on:
   pull_request:
