@@ -49,7 +49,7 @@ galaxy_info:
         - 30  # https://github.com/ansible/galaxy/issues/1926
         - 31  # https://github.com/ansible/galaxy/issues/2105
         - 32  # https://github.com/ansible/galaxy/issues/2356
-        # Tested against 33 but reverting until https://github.com/ansible/galaxy/issues/2533 is fixed.
-        # - 33
+        - 33  # https://github.com/ansible/galaxy/issues/2533
+        - 34
 
   dependencies: []
