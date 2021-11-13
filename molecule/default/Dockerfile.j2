@@ -30,16 +30,6 @@ RUN yum install -y dnf \
   && dnf makecache \
   && dnf --assumeyes install python36 sudo python36-devel python*-dnf bash iproute initscripts java-1.8.0-openjdk-headless \
   && dnf clean all
-{% elif item.image == 'debian:9' %}
-#
-# Debian 9
-#
-RUN apt-get clean
-RUN apt-get update
-RUN apt-get update --fix-missing
-RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates lsb-release procps \
-  || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates lsb-release procps
-RUN apt-get clean
 {% elif item.image == 'debian:10' %}
 #
 # Debian 10
@@ -49,6 +39,21 @@ RUN apt-get update
 RUN apt-get update --fix-missing
 RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates lsb-release procps \
   || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates lsb-release procps
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+RUN echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
+RUN apt-get clean \
+    && apt-get update \
+    && apt-get install -y --fix-missing zulu-8 \
+    || apt-get install -y --fix-missing zulu-8
+{% elif item.image == 'debian:11' %}
+#
+# Debian 11
+#
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get update --fix-missing
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils gnupg2 python3-apt sudo bash ca-certificates lsb-release procps iproute2 \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils gnupg2 python3-apt sudo bash ca-certificates lsb-release procps iproute2
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 RUN echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
 RUN apt-get clean \
@@ -70,16 +75,9 @@ RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --fix-missing zulu-8 \
     || apt-get install -y --fix-missing zulu-8
-{% elif item.image == 'fedora:32' %}
+{% elif item.image == 'fedora:34' %}
 #
-# Fedora 32
-#
-RUN dnf makecache \
-  && dnf --assumeyes install python sudo python-devel python*-dnf bash systemd chkconfig initscripts iproute java-1.8.0-openjdk-headless \
-  && dnf clean all
-{% elif item.image == 'fedora:33' %}
-#
-# Fedora 33
+# Fedora 34
 #
 RUN dnf makecache \
   && dnf --assumeyes install jre \
@@ -118,5 +116,5 @@ RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt py
   || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates iproute2
 RUN apt-get clean
 {% else %}
-Unsupported Linux Distrubution.
+UNSUPPORTED_LINUX_DISTRIBUTION
 {% endif %}

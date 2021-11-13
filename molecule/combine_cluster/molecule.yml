@@ -11,8 +11,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
+      - ${DISTRO:-debian}${TAG:-11}
+    image: ${DISTRO:-debian}:${TAG:-11}
     privileged: True
 
   - name: node1
@@ -20,8 +20,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
+      - ${DISTRO:-debian}${TAG:-11}
+    image: ${DISTRO:-debian}:${TAG:-11}
     privileged: True
 
   - name: node2
@@ -29,8 +29,8 @@ platforms:
     groups:
       - cassandra
       - clustered
-      - ${DISTRO:-debian}${TAG:-10}
-    image: ${DISTRO:-debian}:${TAG:-10}
+      - ${DISTRO:-debian}${TAG:-11}
+    image: ${DISTRO:-debian}:${TAG:-11}
     privileged: True
 
 provisioner:
@@ -51,15 +51,14 @@ provisioner:
       centos8:
         cassandra_systemd_enabled: True
         ansible_python_interpreter: python3
-      debian9:
       debian10:
         cassandra_15770_workaround: True
-      fedora32:
-        ansible_python_interpreter: python3
-        cassandra_systemd_enabled: True
+      debian11:
+        cassandra_15770_workaround: True
       fedora33:
         ansible_python_interpreter: python3
         cassandra_systemd_enabled: True
+      fedora34:
       ubuntu18.04:
       ubuntu20.04:
         cassandra_15770_workaround: True

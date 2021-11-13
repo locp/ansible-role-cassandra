@@ -75,28 +75,28 @@ COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test --destroy never
 COMMAND="/usr/sbin/init" DISTRO="centos" TAG=8 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-- Debian 9
+- Debian 10
 ```
-TAG=9 molecule test --destroy never
-TAG=9 molecule test --scenario-name combine_cluster --destroy never
+TAG=10 molecule test --destroy never
+TAG=10 molecule test --scenario-name combine_cluster --destroy never
 ```
 
-- Debian 10
+- Debian 11
 ```
 molecule test --destroy never
 molecule test --scenario-name combine_cluster --destroy never
-```
-
-- Fedora 32
-```
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --destroy never
-COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=31 molecule test --scenario-name combine_cluster --destroy never
 ```
 
 - Fedora 33
 ```
 COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=33 molecule test --destroy never
 COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=33 molecule test --scenario-name combine_cluster --destroy never
+```
+
+- Fedora 34
+```
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=34 molecule test --destroy never
+COMMAND="/usr/sbin/init" DISTRO="fedora" TAG=34 molecule test --scenario-name combine_cluster --destroy never
 ```
 
 - Ubuntu 18.04

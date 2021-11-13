@@ -1,5 +1,5 @@
 ---
-name: CI Fedora 32
+name: CI Fedora 34
 
 on:
   pull_request:
@@ -34,12 +34,12 @@ jobs:
       env:
         COMMAND: /usr/sbin/init
         DISTRO: fedora
-        TAG: 32
+        TAG: 34
       run: molecule test --destroy never
 
     - name: Combine the Clusters
       env:
         COMMAND: /usr/sbin/init
         DISTRO: fedora
-        TAG: 32
+        TAG: 34
       run: molecule test --scenario-name combine_cluster
