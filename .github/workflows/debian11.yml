@@ -1,5 +1,5 @@
 ---
-name: CI Debian 9
+name: CI Debian 11
 
 on:
   pull_request:
@@ -33,11 +33,11 @@ jobs:
     - name: Deploy the Initial Clusters
       env:
         DISTRO: debian
-        TAG: 9
+        TAG: 11
       run: molecule test --destroy never
 
     - name: Combine the Clusters
       env:
         DISTRO: debian
-        TAG: 9
+        TAG: 11
       run: molecule test --scenario-name combine_cluster
