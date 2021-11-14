@@ -68,13 +68,14 @@ jobs:
 
       - name: Deploy the Initial Clusters
         env:
-          COMMAND: "{{ matrix.command }}"
-          DISTRO: "{{ matrix.distro }}"
-          TAG: "{{ matrix.tag }}"
+          COMMAND: "${{ matrix.command }}"
+          DISTRO: "${{ matrix.distro }}"
+          TAG: "${{ matrix.tag }}"
         run: molecule test --destroy never
 
       - name: Combine the Clusters
         env:
-          DISTRO: debian
-          TAG: 11
+          COMMAND: "${{ matrix.command }}"
+          DISTRO: "${{ matrix.distro }}"
+          TAG: "${{ matrix.tag }}"
         run: molecule test --scenario-name combine_cluster
