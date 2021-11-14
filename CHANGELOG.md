@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.6.11
+
+### New
+
+* Add testing against Debian 11 (bullseye). [Ben Dalling]
+
+### Changes
+
+* Update min_ansible_version to 2.11.6. [Ben Dalling]
+
+* Replace deprecated configuration variables in Molecule configuration. [Ben Dalling]
+
+### Fix
+
+* Ensure Fedora 33 & 34 is in the metadata. [Ben Dalling]
+
+* Ensure tests run against Debian 11. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump ansible from 2.10.7 to 4.2.0. [dependabot[bot]]
+
+  Bumps [ansible](https://github.com/ansible/ansible) from 2.10.7 to 4.2.0.
+  - [Release notes](https://github.com/ansible/ansible/releases)
+  - [Commits](https://github.com/ansible/ansible/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: ansible
+    dependency-type: direct:production
+  ...
+
+
 ## 1.6.10
 
 ### Other
