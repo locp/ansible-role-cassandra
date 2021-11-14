@@ -8,19 +8,51 @@ on:
     - cron:  '0 0 1,15 * *'
 
 jobs:
-  centos:
+  molecule:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - image-version: centos7
+            command: /usr/sbin/init
+            distro: centos
+            tag: 7
+          - image-version: centos8
+            command: /usr/sbin/init
+            distro: centos
+            tag: 8
+          - image-version: debian10
+            command: "sleep infinity"
+            distro: debian
+            tag: 10
+          - image-version: debian11
+            command: "sleep infinity"
+            distro: debian
+            tag: 11
+          - image-version: fedora34
+            command: "/usr/sbin/init"
+            distro: fedora
+            tag: 34
+          - image-version: ubuntu18
+            command: "sleep infinity"
+            distro: ubuntu
+            tag: 18.04
+          - image-version: ubuntu20
+            command: "sleep infinity"
+            distro: ubuntu
+            tag: 20.04
 
     steps:
     - uses: actions/checkout@v2
 
-    - uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+    # - uses: actions/cache@v2
+    #   with:
+    #     path: ~/.cache/pip
+    #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-pip-
 
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
@@ -34,77 +66,7 @@ jobs:
 
     - name: Deploy the Initial Clusters
       env:
-        COMMAND: /usr/sbin/init
-        DISTRO: centos
-        TAG: latest
-      run: molecule test --scenario-name latest --destroy never
-
-  debian:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements-latest.txt
-
-    - name: Deploy the Initial Clusters
-      env:
-        DISTRO: debian
-        TAG: stable
-      run: molecule test --scenario-name latest --destroy never
-
-  fedora:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements-latest.txt
-
-    - name: Deploy the Initial Clusters
-      env:
-        COMMAND: /usr/sbin/init
-        DISTRO: fedora
-        TAG: latest
-      run: molecule test --scenario-name latest --destroy never
-
-  ubuntu:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements-latest.txt
-
-    - name: Deploy the Initial Clusters
-      env:
-        DISTRO: ubuntu
-        TAG: latest
+        COMMAND: "${{ matrix.command }}"
+        DISTRO: "${{ matrix.distro }}"
+        TAG: "${{ matrix.tag }}"
       run: molecule test --scenario-name latest --destroy never
