@@ -3,12 +3,12 @@ name: CI
 
 on:
   pull_request:
-    branches: [ develop ]
-  push:
     branches:
-      - '*'
-      - '!feature/latest'
-      - '!master'
+      - develop
+  push:
+    branches-ignore:
+      - 'feature/latest'
+      - 'master'
 
 jobs:
   molecule:
