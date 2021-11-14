@@ -7,7 +7,7 @@ driver:
 
 platforms:
   - name: node0
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
@@ -16,7 +16,7 @@ platforms:
     privileged: True
 
   - name: node1
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
@@ -25,7 +25,7 @@ platforms:
     privileged: True
 
   - name: node2
-    command: ${DOCKER_COMMAND:-"sleep infinity"}
+    command: ${COMMAND:-"sleep infinity"}
     groups:
       - cassandra
       - clustered
