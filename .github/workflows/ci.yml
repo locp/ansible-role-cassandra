@@ -8,7 +8,7 @@ on:
   push:
     branches-ignore:
       - 'feature/latest'
-      - 'master'
+      - 'main'
 
 jobs:
   molecule:

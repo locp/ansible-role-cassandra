@@ -1,4 +1,4 @@
-ansible==4.8.0
+ansible==4.2.0
 ansible-compat==0.5.0
 ansible-core==2.11.6
 ansible-lint==5.2.1
@@ -18,10 +18,10 @@ colorama==0.4.4
 commonmark==0.9.1
 cookiecutter==1.7.3
 cryptography==35.0.0
-distro==1.6.0
 docker==5.0.3
 enrich==1.2.6
 flake8==4.0.1
+gitchangelog==3.0.4
 idna==3.3
 iniconfig==1.1.1
 Jinja2==3.0.3
@@ -33,6 +33,7 @@ molecule-docker==1.1.0
 packaging==21.2
 parameterized==0.8.1
 paramiko==2.8.0
+pathspec==0.9.0
 pluggy==1.0.0
 poyo==0.5.0
 py==1.11.0
@@ -42,6 +43,7 @@ pyflakes==2.4.0
 Pygments==2.10.0
 PyNaCl==1.4.0
 pyparsing==2.4.7
+pystache==0.5.4
 pytest==6.2.5
 pytest-testinfra==6.4.0
 python-dateutil==2.8.2
@@ -52,7 +54,6 @@ resolvelib==0.5.4
 rich==10.13.0
 ruamel.yaml==0.17.17
 ruamel.yaml.clib==0.2.6
-selinux==0.2.1
 six==1.16.0
 subprocess-tee==0.3.5
 tenacity==8.0.1

@@ -152,7 +152,7 @@ include_merge = False
 log_encoding = 'utf-8'
 OUTPUT_FILE = "CHANGELOG.md"
 INSERT_POINT_REGEX = r'(\#\#\s*)'
-revs = ['^1.6.4', 'HEAD']
+revs = ['^1.6.10', 'HEAD']
 
 publish = FileInsertAtFirstRegexMatch(
     OUTPUT_FILE, INSERT_POINT_REGEX,
