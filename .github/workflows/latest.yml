@@ -26,7 +26,6 @@ jobs:
             tag: latest
           - distro: ubuntu
             command: "sleep infinity"
-            distro: ubuntu
             tag: latest
     steps:
     - uses: actions/checkout@v2
