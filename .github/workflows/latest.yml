@@ -15,34 +15,19 @@ jobs:
     strategy:
       matrix:
         include:
-          - image-version: centos7
+          - distro: centos
             command: /usr/sbin/init
-            distro: centos
-            tag: 7
-          - image-version: centos8
-            command: /usr/sbin/init
-            distro: centos
-            tag: 8
-          - image-version: debian10
+            tag: latest
+          - distro: debian
             command: "sleep infinity"
-            distro: debian
-            tag: 10
-          - image-version: debian11
-            command: "sleep infinity"
-            distro: debian
-            tag: 11
-          - image-version: fedora34
+            tag: stable
+          - distro: fedora
             command: "/usr/sbin/init"
-            distro: fedora
-            tag: 34
-          - image-version: ubuntu18
+            tag: latest
+          - distro: ubuntu
             command: "sleep infinity"
             distro: ubuntu
-            tag: 18.04
-          - image-version: ubuntu20
-            command: "sleep infinity"
-            distro: ubuntu
-            tag: 20.04
+            tag: latest
     steps:
     - uses: actions/checkout@v2
 
