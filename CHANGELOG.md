@@ -1,6 +1,20 @@
 # Changelog
 
-## 1.6.11
+## 1.6.12
+
+### Fix
+
+* Correct distro details when testing latest versions. [Ben Dalling]
+
+### Other
+
+* Fix for not defined cassandra_directories. [joannakotula]
+
+  When not defining 'cassandra_directories' got error:
+  FAILED! => {"msg": "dict2items requires a dictionary, got <class 'ansible.template.AnsibleUndefined'> instead."}
+
+
+## 1.6.11 (2021-11-14)
 
 ### New
 
