@@ -22,7 +22,7 @@
     dest: "{{ cassandra_configuration_file }}"
     owner: root
     group: root
-    mode: 0o644
+    mode: 0644
   notify:
     - cassandra_restart_service
 
