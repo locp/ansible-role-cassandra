@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.6.13
+
+### New
+
+* Add GitHub Workflow bling to README.md. [Ben Dalling]
+
+### Fix
+
+* Migrate from CenOS 8 to 8Stream. [Ben Dalling]
+
+### Other
+
+* Typo fix for 'mode' [fidanf]
+
+
 ## 1.6.12
 
 ### Fix
