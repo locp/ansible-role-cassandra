@@ -1,19 +1,20 @@
 # Molecule managed
 
-FROM {{ item.image }}
-
 {% if item.image == 'centos:7' %}
 #
 # CentOS 7
 #
+FROM {{ item.image }}
+
 RUN yum makecache fast \
   && yum install -y python sudo yum-plugin-ovl bash epel-release \
   && yum install -y iproute initscripts \
   && yum clean all
 {% elif item.image == 'centos:8' %}
 #
-# CentOS 8
+# CentOS 8 Stream
 #
+FROM quay.io/centos/centos:stream8
 RUN yum install -y dnf \
   && yum clean all \
   && rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo \
@@ -24,6 +25,8 @@ RUN yum install -y dnf \
 #
 # CentOS (latest)
 #
+FROM quay.io/centos/centos:stream8
+
 RUN yum install -y dnf \
   && yum clean all \
   && rm -f /etc/yum.repos.d/epel-*.repo /etc/yum.repos.d/CentOS-Extras.repo \
@@ -34,6 +37,8 @@ RUN yum install -y dnf \
 #
 # Debian 10
 #
+FROM {{ item.image }}
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
@@ -49,6 +54,8 @@ RUN apt-get clean \
 #
 # Debian 11
 #
+FROM {{ item.image }}
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
@@ -64,6 +71,8 @@ RUN apt-get clean \
 #
 # Debian (latest)
 #
+FROM {{ item.image }}
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
@@ -79,6 +88,8 @@ RUN apt-get clean \
 #
 # Fedora 34
 #
+FROM {{ item.image }}
+
 RUN dnf makecache \
   && dnf --assumeyes install jre \
   && alternatives --remove-all java \
@@ -89,6 +100,8 @@ RUN dnf makecache \
 #
 # Fedora (latest)
 #
+FROM {{ item.image }}
+
 RUN dnf makecache \
   && dnf --assumeyes install jre \
   && alternatives --remove-all java \
@@ -99,6 +112,8 @@ RUN dnf makecache \
 #
 # Ubuntu 18.04 and 20.04.
 #
+FROM {{ item.image }}
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
@@ -109,6 +124,8 @@ RUN apt-get clean
 #
 # Ubuntu (Latest)
 #
+FROM {{ item.image }}
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
