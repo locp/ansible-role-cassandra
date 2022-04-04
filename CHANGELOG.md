@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.6.14
+
+### Changes
+
+* Update metadata now that we have tested against Fedora 35. [Ben Dalling]
+
+* Update the Python packages. [Ben Dalling]
+
+### Fix
+
+* Fully qualify the collection name for builtin actions. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump paramiko from 2.8.0 to 2.10.1. [dependabot[bot]]
+
+  Bumps [paramiko](https://github.com/paramiko/paramiko) from 2.8.0 to 2.10.1.
+  - [Release notes](https://github.com/paramiko/paramiko/releases)
+  - [Changelog](https://github.com/paramiko/paramiko/blob/main/NEWS)
+  - [Commits](https://github.com/paramiko/paramiko/compare/2.8.0...2.10.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: paramiko
+    dependency-type: direct:production
+  ...
+
+
 ## 1.6.13
 
 ### New
