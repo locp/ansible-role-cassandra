@@ -1,7 +1,7 @@
 ---
 
 - name: Add the Apache Apt Keys
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://downloads.apache.org/cassandra/KEYS
   register: cassandra_remote_status
   until: cassandra_remote_status is succeeded
@@ -11,7 +11,7 @@
     - cassandra_configure_apache_repo|bool
 
 - name: Configure the Apache Cassandra Apt Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     filename: /etc/apt/sources.list.d/cassandra.sources
     repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_repo_apache_release }} main"
     state: present
@@ -19,7 +19,7 @@
     - cassandra_configure_apache_repo|bool
 
 - name: Install the Cassandra Package (Apt)
-  apt:
+  ansible.builtin.apt:
     name: "{{ cassandra_package }}"
     cache_valid_time: 600
   register: cassandra_remote_status
