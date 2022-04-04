@@ -1,7 +1,7 @@
 ---
 
 - name: Create Custom Directory
-  file:
+  ansible.builtin.file:
     group: "{{ directory.0.spec.group | default('cassandra') }}"
     mode: "{{ directory.0.spec.mode | default('0700') }}"
     owner: "{{ directory.0.spec.owner | default('cassandra') }}"
@@ -17,7 +17,7 @@
     - cassandra_directories is defined
 
 - name: Apply Cassandra Configuration
-  template:
+  ansible.builtin.template:
     src: "{{ cassandra_configuration_templ }}"
     dest: "{{ cassandra_configuration_file }}"
     owner: root
@@ -27,7 +27,7 @@
     - cassandra_restart_service
 
 - name: Apply Regular Expression Updates to the Configuration
-  lineinfile:
+  ansible.builtin.lineinfile:
     line: "{{ item.line }}"
     path: "{{ cassandra_configuration_directory }}/{{ item.path }}"
     regexp: "{{ item.regexp }}"
@@ -38,7 +38,7 @@
     - cassandra_restart_service
 
 - name: Set the DC for Cassandra
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
     regexp: '^dc='
     line: "dc={{ cassandra_dc }}"
@@ -49,7 +49,7 @@
     - cassandra_restart_service
 
 - name: Set the Rack for Cassandra
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ cassandra_configuration_file | dirname }}/cassandra-rackdc.properties"
     regexp: '^rack='
     line: "rack={{ cassandra_rack }}"

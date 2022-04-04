@@ -64,14 +64,14 @@
 
   pre_tasks:
     - name: Set Variables for Clustered Nodes
-      set_fact:
+      ansible.builtin.set_fact:
         cassandra_cluster_name: MyCassandraCluster
         cassandra_join_cluster: True
         cassandra_seed: "{{ hostvars[groups['cassandra'][0]]['ansible_default_ipv4'].address }}"
       when: "'clustered' in group_names"
 
     - name: Set Variables for Standalone Nodes
-      set_fact:
+      ansible.builtin.set_fact:
         cassandra_cluster_name: Standalone
         cassandra_seed: "{{ ansible_default_ipv4.address }}"
       when: "'standalone' is in group_names"
@@ -81,19 +81,19 @@
 
   post_tasks:
     - name: Wait for the Cassandra Listener
-      wait_for:
+      ansible.builtin.wait_for:
         host: "{{ ansible_default_ipv4.address }}"
         port: 9042
       when: not ansible_check_mode
 
     - name: Wait for the Cassandra to Gossip
-      wait_for:
+      ansible.builtin.wait_for:
         host: "{{ ansible_default_ipv4.address }}"
         port: 9160
       when: not ansible_check_mode
 
     - name: Wait for the Cassandra Service to be Running (Red Hat)
-      service_facts:
+      ansible.builtin.service_facts:
       retries: 100
       delay: 3
       register: cassandra_services_facts
@@ -107,7 +107,7 @@
         - ansible_distribution != "Fedora"
 
     - name: Wait for the Cassandra Service to be Running (Debian)
-      service_facts:
+      ansible.builtin.service_facts:
       retries: 100
       delay: 3
       register: cassandra_services_facts
