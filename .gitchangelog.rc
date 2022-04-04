@@ -151,9 +151,31 @@ output_engine = mustache("markdown")
 include_merge = False
 log_encoding = 'utf-8'
 OUTPUT_FILE = "CHANGELOG.md"
-INSERT_POINT_REGEX = r'(\#\#\s*)'
-revs = ['^1.6.10', 'HEAD']
+INSERT_POINT_REGEX = r'''(?isxu)
+^
+(
+  \s*\#\s+Changelog\s*(\n|\r\n|\r)        ## ``Changelog`` line
+)
 
+(                     ## Match all between changelog and release rev
+    (
+      (?!
+         (?<=(\n|\r))                ## look back for newline
+         \#\#\s+%(rev)s                     ## revision
+         \s+
+         \([0-9]+-[0-9]{2}-[0-9]{2}\)(\n|\r\n|\r)   ## date
+      )
+      .
+    )*
+)
+
+(?P<tail>\#\#\s+(?P<rev>%(rev)s))
+''' % {'rev': r"[0-9]+\.[0-9]+(\.[0-9]+)?"}
+
+revs = [
+    Caret(FileFirstRegexMatch(OUTPUT_FILE, INSERT_POINT_REGEX)),
+    'HEAD'
+]
 publish = FileInsertAtFirstRegexMatch(
     OUTPUT_FILE, INSERT_POINT_REGEX,
     idx=lambda m: m.start(1)

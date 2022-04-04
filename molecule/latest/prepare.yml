@@ -14,5 +14,5 @@
 
   tasks:
     - name: Display Host Information
-      debug:
+      ansible.builtin.debug:
         var: instance_info

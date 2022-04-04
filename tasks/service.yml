@@ -1,7 +1,7 @@
 ---
 
 - name: Systemd Workaround
-  template:
+  ansible.builtin.template:
     src: "{{ cassandra_systemd_template }}"
     dest: "{{ cassandra_systemd_path }}"
     owner: root
@@ -12,7 +12,7 @@
     - cassandra_restart_service
 
 - name: Ensure the Service is in the Required State (RedHat)
-  systemd:
+  ansible.builtin.systemd:
     name: cassandra
     enabled: "{{ cassandra_service_enabled }}"
     daemon_reload: yes
@@ -22,7 +22,7 @@
     - ansible_os_family == 'RedHat'
 
 - name: Ensure the Service is in the Required State (Debian)
-  service:
+  ansible.builtin.service:
     name: cassandra
     enabled: "{{ cassandra_service_enabled }}"
     state: "{{ cassandra_service_state }}"
