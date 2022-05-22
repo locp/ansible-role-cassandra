@@ -129,8 +129,8 @@ FROM {{ item.image }}
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get update --fix-missing
-RUN apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates iproute2 \
-  || apt-get install -y --fix-missing apt-transport-https apt-utils python-apt python3-apt sudo bash ca-certificates iproute2
+RUN apt-get install -y --fix-missing apt-transport-https apt-utils python3-apt sudo bash ca-certificates iproute2 gpg \
+  || apt-get install -y --fix-missing apt-transport-https apt-utils python3-apt sudo bash ca-certificates iproute2 gpg
 RUN apt-get clean
 {% else %}
 UNSUPPORTED_LINUX_DISTRIBUTION
