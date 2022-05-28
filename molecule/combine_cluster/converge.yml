@@ -62,7 +62,7 @@
       - path: cassandra-rackdc.properties
         line: 'rack=RACK1'
         regexp: '^rack='
-    cassandra_repo_apache_release: 311x
+    cassandra_repo_apache_release: 40x
 
   roles:
     - role: locp.cassandra
