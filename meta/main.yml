@@ -53,5 +53,6 @@ galaxy_info:
         - 33  # https://github.com/ansible/galaxy/issues/2533
         - 34
         - 35
+        - 36
 
   dependencies: []
