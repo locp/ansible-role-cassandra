@@ -15,7 +15,7 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: 2.11.6
+  min_ansible_version: 2.12.6
 
   galaxy_tags:
     - apache
@@ -53,5 +53,6 @@ galaxy_info:
         - 33  # https://github.com/ansible/galaxy/issues/2533
         - 34
         - 35
+        - 36
 
   dependencies: []

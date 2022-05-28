@@ -1,6 +1,27 @@
 # Changelog
 
-## 1.6.14
+## 1.17.0
+
+### New
+
+* Update latest Ubuntu for Jammy Jellyfish. [Ben Dalling]
+
+### Changes
+
+* Migrate installation to Cassandra 4. [Ben Dalling]
+
+* Reflect in Meta file that we have tested against Fedora 36. [Ben Dalling]
+
+* Bump min_ansible_version from 2.11.6 to 2.12.6. [Ben Dalling]
+
+### Fix
+
+* Exclude 3rd party roles from ansible-lint. [Ben Dalling]
+
+* Update CONTRIBUTING.md to reflect no more TravisCI and "dead" branch names. [Ben Dalling]
+
+
+## 1.16.14 (2022-04-04)
 
 ### Changes
 
@@ -28,7 +49,7 @@
   ...
 
 
-## 1.6.13
+## 1.16.3 (2022-02-08)
 
 ### New
 
@@ -43,7 +64,7 @@
 * Typo fix for 'mode' [fidanf]
 
 
-## 1.6.12
+## 1.6.12 (2022-01-13)
 
 ### Fix
 
