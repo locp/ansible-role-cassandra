@@ -7,11 +7,11 @@ The general process for working on ansible-role-cassandra is:
 
 - Fork the project on Github
 - Clone your fork to your local machine
-- Create a feature branch from `master` (e.g.
+- Create a feature branch from `develop` (e.g.
   `git branch delete_all_the_code`)
 - Write code, commit often
 - Write test cases for all changed functionality
-- Submit a pull request against `master` on Github
+- Submit a pull request against `develop` on Github
 - Wait for code review!
 
 Things that will make your branch more likely to be pulled:
@@ -35,8 +35,8 @@ If you add a new configuration option, please try to do all of these things:
 ## Testing
 
 All branch pushes and pull requests are tested on
-[Travis CI ](https://travis-ci.com/github/locp/ansible-role-cassandra).  The
-primary test framework is
+[GitHub Workflows](https://github.com/locp/ansible-role-cassandra/actions).
+The primary test framework is
 [Ansible Molecule](https://molecule.readthedocs.io/en/latest/).
 
 There are two scenarios tested against, each one involves three nodes
