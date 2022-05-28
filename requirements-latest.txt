@@ -5,4 +5,4 @@ flake8
 molecule
 molecule-docker
 parameterized
-pytest-testinfra
+testinfra-bdd
