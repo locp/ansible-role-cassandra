@@ -28,19 +28,12 @@ jobs:
             command: "sleep infinity"
             tag: latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    # - uses: actions/cache@v2
-    #   with:
-    #     path: ~/.cache/pip
-    #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-pip-
-
-    - name: Set up Python 3.8
+    - name: Set up Python 3.10
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.10
 
     - name: Install dependencies
       run: |
@@ -48,9 +41,9 @@ jobs:
         pip install -r requirements-latest.txt
         pip freeze
 
-    - name: Deploy the Initial Clusters
+    - name: Test Against Latest Versions
       env:
         COMMAND: "${{ matrix.command }}"
         DISTRO: "${{ matrix.distro }}"
         TAG: "${{ matrix.tag }}"
-      run: molecule test --scenario-name latest --destroy never
+      run: molecule test --scenario-name latest
