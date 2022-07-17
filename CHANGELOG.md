@@ -1,6 +1,28 @@
-# Changelog
+## 1.18.0
 
-## 1.17.0
+### New
+
+* Add Ubuntu Jammy to the supported platforms. [Ben Dalling]
+
+* Add test to ensure defined platforms are supported by Ansible Galaxy. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump cookiecutter from 1.7.3 to 2.1.1. [dependabot[bot]]
+
+  Bumps [cookiecutter](https://github.com/cookiecutter/cookiecutter) from 1.7.3 to 2.1.1.
+  - [Release notes](https://github.com/cookiecutter/cookiecutter/releases)
+  - [Changelog](https://github.com/cookiecutter/cookiecutter/blob/master/HISTORY.md)
+  - [Commits](https://github.com/cookiecutter/cookiecutter/compare/1.7.3...2.1.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: cookiecutter
+    dependency-type: direct:production
+  ...
+
+
+## 1.17.0 (2022-05-28)
 
 ### New
 
