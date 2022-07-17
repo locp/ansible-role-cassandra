@@ -59,5 +59,4 @@ class TestSupportedPlatform(unittest.TestCase):
         else:
             version = host.system_info.codename
 
-        self.skipTest('Needs https://github.com/ansible/galaxy/issues/2533 resolved')
         self.assertIn(version, supported_versions)
