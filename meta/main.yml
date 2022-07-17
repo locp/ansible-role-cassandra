@@ -37,6 +37,7 @@ galaxy_info:
         - bionic
         - focal
         - xenial
+        - jammy  # https://github.com/ansible/galaxy/issues/2918
     - name: Debian
       versions:
         - buster
