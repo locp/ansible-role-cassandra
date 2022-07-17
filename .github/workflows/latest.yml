@@ -38,7 +38,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements-latest.txt
+        pip install -qr requirements-latest.txt
         pip freeze
 
     - name: Test Against Latest Versions
@@ -46,4 +46,4 @@ jobs:
         COMMAND: "${{ matrix.command }}"
         DISTRO: "${{ matrix.distro }}"
         TAG: "${{ matrix.tag }}"
-      run: molecule test --scenario-name latest
+      run: molecule test --scenario-name latest --destroy never
