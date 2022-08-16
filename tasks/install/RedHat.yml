@@ -3,7 +3,7 @@
 - name: Configure the Apache Cassandra YUM Repository
   ansible.builtin.yum_repository:
     name: cassandra
-    baseurl: "https://www.apache.org/dist/cassandra/redhat/{{ cassandra_repo_apache_release }}/"
+    baseurl: "https://redhat.cassandra.apache.org/{{ cassandra_repo_apache_release }}/"
     gpgcheck: true
     description: Apache Cassandra
     repo_gpgcheck: true
