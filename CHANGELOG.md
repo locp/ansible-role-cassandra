@@ -1,4 +1,22 @@
-## 1.18.0
+# Changelog
+
+
+## 1.18.1
+
+### Changes
+
+* Migrate to testinfra-bdd 2.0.0. [Ben Dalling]
+
+### Fix
+
+* Change apache package repository URLs to new location (CASSANDRA-17748) [Hauke Hans]
+
+* Disable testing against CentOS 7. [Ben Dalling]
+
+* Correct Lint errors in metadata file. [Ben Dalling]
+
+
+## 1.18.0 (2022-07-17)
 
 ### New
 

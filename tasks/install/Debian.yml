@@ -13,7 +13,7 @@
 - name: Configure the Apache Cassandra Apt Repository
   ansible.builtin.apt_repository:
     filename: /etc/apt/sources.list.d/cassandra.sources
-    repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_repo_apache_release }} main"
+    repo: "deb https://debian.cassandra.apache.org {{ cassandra_repo_apache_release }} main"
     state: present
   when:
     - cassandra_configure_apache_repo|bool
