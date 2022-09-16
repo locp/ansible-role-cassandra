@@ -30,7 +30,7 @@ iniconfig==1.1.1
 Jinja2==3.1.2
 jinja2-time==0.2.0
 jsonschema==4.9.1
-Mako==1.2.0
+Mako==1.2.2
 mando==0.6.4
 MarkupSafe==2.1.1
 mccabe==0.6.1
