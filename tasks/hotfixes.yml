@@ -10,7 +10,7 @@
     - not ansible_check_mode
 
 - name: CASSANDRA-2356 Workaround
-  ansible.builtin.shell: rm -rf /var/lib/cassandra/*  # noqa 302
+  ansible.builtin.shell: rm -rf /var/lib/cassandra/*  # noqa deprecated-command-syntax
   when:
     - cassandra_2356_workaround | bool
     - not ansible_check_mode

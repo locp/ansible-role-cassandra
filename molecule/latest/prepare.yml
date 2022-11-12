@@ -1,5 +1,7 @@
 ---
-- hosts: all
+- name: Prepare the System Under Test
+
+  hosts: all
 
   remote_user: root
 
