@@ -9,7 +9,7 @@
     mode: 0644
   when: cassandra_systemd_enabled | bool
   notify:
-    - cassandra_restart_service
+    - Cassandra Restart Service
 
 - name: Ensure the Service is in the Required State (RedHat)
   ansible.builtin.systemd:
