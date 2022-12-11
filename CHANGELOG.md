@@ -1,7 +1,35 @@
 # Changelog
 
 
-## 1.18.1
+## 1.18.2
+
+### Fix
+
+* Set min_ansible_version to 2.14.0. [Ben Dalling]
+
+* Fix Jinja code formatting (lint errors). [Ben Dalling]
+
+* Ensure all tasks are named in tasks/main.yml. [Ben Dalling]
+
+* Refactor the name of the Cassandra Restart Service handler name. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump mako from 1.2.0 to 1.2.2. [dependabot[bot]]
+
+  Bumps [mako](https://github.com/sqlalchemy/mako) from 1.2.0 to 1.2.2.
+  - [Release notes](https://github.com/sqlalchemy/mako/releases)
+  - [Changelog](https://github.com/sqlalchemy/mako/blob/main/CHANGES)
+  - [Commits](https://github.com/sqlalchemy/mako/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: mako
+    dependency-type: direct:production
+  ...
+
+
+## 1.18.1 (2022-08-25)
 
 ### Changes
 
