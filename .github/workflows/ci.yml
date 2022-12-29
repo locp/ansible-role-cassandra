@@ -17,11 +17,10 @@ jobs:
     strategy:
       matrix:
         include:
-          # Disable Tests for CentOS 7 due to https://github.com/locp/ansible-role-cassandra/issues/155
-          # - image-version: centos7
-          #   command: /usr/sbin/init
-          #   distro: centos
-          #   tag: 7
+          - image-version: centos7
+            command: /usr/sbin/init
+            distro: centos
+            tag: 7
           - image-version: centos8
             command: /usr/sbin/init
             distro: centos
