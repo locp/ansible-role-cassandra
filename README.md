@@ -149,8 +149,8 @@ executes this module.
   file.  See the example playbook for more details.
 
 * `cassandra_repo_apache_release` (default: *None*):
-  The name of the release series (can be one of 40x, 311x, or 30x).  This
-  must be set if `cassandra_configure_apache_repo` is set to True.
+  The name of the release series (can be one of 41x, 40x, 311x, or 30x).
+  This must be set if `cassandra_configure_apache_repo` is set to True.
 
 * `cassandra_service_enabled` (default: **yes**):
   Should the cassandra service be enabled (can be yes or no).
@@ -260,7 +260,7 @@ This playbook should be enough to configure Cassandra with a *very* basic
       - path: cassandra-rackdc.properties
         line: 'rack=RACK1'
         regexp: '^rack='
-    cassandra_repo_apache_release: 40x
+    cassandra_repo_apache_release: 41x
 
   roles:
     - role: locp.cassandra

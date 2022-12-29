@@ -60,7 +60,7 @@
       - path: cassandra-rackdc.properties
         line: 'rack=RACK1'
         regexp: '^rack='
-    cassandra_repo_apache_release: 40x
+    cassandra_repo_apache_release: 41x
 
   pre_tasks:
     - name: Set Variables for Clustered Nodes
