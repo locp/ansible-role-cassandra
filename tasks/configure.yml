@@ -24,7 +24,7 @@
     group: root
     mode: 0644
   notify:
-    - cassandra_restart_service
+    - Cassandra Restart Service
 
 - name: Apply Regular Expression Updates to the Configuration
   ansible.builtin.lineinfile:
@@ -35,7 +35,7 @@
   when:
     - not ansible_check_mode
   notify:
-    - cassandra_restart_service
+    - Cassandra Restart Service
 
 - name: Set the DC for Cassandra
   ansible.builtin.lineinfile:
@@ -46,7 +46,7 @@
     - cassandra_dc is defined
     - not ansible_check_mode
   notify:
-    - cassandra_restart_service
+    - Cassandra Restart Service
 
 - name: Set the Rack for Cassandra
   ansible.builtin.lineinfile:
@@ -57,4 +57,4 @@
     - cassandra_rack is defined
     - not ansible_check_mode
   notify:
-    - cassandra_restart_service
+    - Cassandra Restart Service

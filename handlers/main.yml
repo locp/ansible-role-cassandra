@@ -1,6 +1,6 @@
 # handlers file for cassandra
 ---
-- name: cassandra_restart_service
+- name: Cassandra Restart Service
   ansible.builtin.service:
     name: cassandra
     state: restarted

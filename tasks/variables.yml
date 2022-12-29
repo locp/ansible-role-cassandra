@@ -29,33 +29,21 @@
 
 - name: Calculate cassandra_cms_max_heapsize_mb
   ansible.builtin.set_fact:
-    cassandra_cms_max_heapsize_mb: "{{
-      [
-        ([cassandra_memtotal_mb * 0.5, 1024] | min),
-        ([cassandra_memtotal_mb * 0.25, 14336] | min)
-      ] | max | round | int }}"
+    cassandra_cms_max_heapsize_mb: "{{ [([cassandra_memtotal_mb * 0.5, 1024] | min), ([cassandra_memtotal_mb * 0.25, 14336] | min)] | max | round | int }}"
   when:
     - cassandra_memtotal_mb is defined
     - cassandra_cms_max_heapsize_mb is not defined
 
 - name: Calculate cassandra_max_heapsize_mb
   ansible.builtin.set_fact:
-    cassandra_max_heapsize_mb: "{{
-      [
-        ([cassandra_memtotal_mb * 0.5, 1024] | min),
-        ([cassandra_memtotal_mb * 0.25, 8192] | min)
-      ] | max | round | int }}"
+    cassandra_max_heapsize_mb: "{{ [([cassandra_memtotal_mb * 0.5, 1024] | min), ([cassandra_memtotal_mb * 0.25, 8192] | min)] | max | round | int }}"
   when:
     - cassandra_memtotal_mb is defined
     - cassandra_max_heapsize_mb is not defined
 
 - name: Calculate cassandra_cms_heap_new_size_mb
   ansible.builtin.set_fact:
-    cassandra_cms_heap_new_size_mb: "{{
-      [
-        (cassandra_processor_vcpus * 100.0),
-        ((cassandra_cms_max_heapsize_mb | int) * 0.25)
-      ] | min | round | int }}"
+    cassandra_cms_heap_new_size_mb: "{{ [(cassandra_processor_vcpus * 100.0), ((cassandra_cms_max_heapsize_mb | int) * 0.25)] | min | round | int }}"
   when:
     - cassandra_memtotal_mb is defined
     - cassandra_processor_vcpus is defined
@@ -63,11 +51,7 @@
 
 - name: Calculate cassandra_heap_new_size_mb
   ansible.builtin.set_fact:
-    cassandra_heap_new_size_mb: "{{
-      [
-        (cassandra_processor_vcpus * 100.0),
-        ((cassandra_max_heapsize_mb | int) * 0.25)
-      ] | min | round | int }}"
+    cassandra_heap_new_size_mb: "{{ [(cassandra_processor_vcpus * 100.0), ((cassandra_max_heapsize_mb | int) * 0.25)] | min | round | int }}"
   when:
     - cassandra_memtotal_mb is defined
     - cassandra_processor_vcpus is defined
